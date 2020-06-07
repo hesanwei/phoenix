@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/icon_tab_home"
+        android:title="@string/tab_home"
+        app:actionViewClass="android.widget.TextView" />
+
+    <item
+        android:id="@+id/nav_contract"
+        android:icon="@drawable/icon_tab_contract"
+        android:title="@string/tab_contract" />
+
+    <item
+        android:id="@+id/nav_exchange"
+        android:icon="@drawable/icon_tab_exchange"
+        android:title="@string/tab_exchange" />
+
+    <item
+        android:id="@+id/nav_community"
+        android:icon="@drawable/icon_tab_community"
+        android:title="@string/tab_community" />
+
+    <item
+        android:id="@+id/nav_mine"
+        android:icon="@drawable/icon_tab_mine"
+        android:title="@string/tab_mine" />
+
+</menu>
