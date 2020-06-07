@@ -10,6 +10,7 @@ import com.fhhy.phoenix.home.fragment.HomeFragment
 import com.fhhy.phoenix.mine.fragment.MineFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
+import com.jaeger.library.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -24,6 +25,7 @@ class MainActivity : BaseActivity() {
     override fun getLayoutId(): Int = R.layout.activity_main
 
     override fun initView() {
+        StatusBarUtil.setLightMode(this)
         bottomNavigationView.run {
             labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_LABELED
             itemIconTintList = null

@@ -6,4 +6,7 @@
     <string name="tab_exchange">兑币</string>
     <string name="tab_community">社区</string>
     <string name="tab_mine">我的</string>
+    <string name="exchange_coin">币币兑换</string>
+    <string name="right_arrow">→</string>
+    <string name="exchange_rate">汇率</string>
 </resources>
