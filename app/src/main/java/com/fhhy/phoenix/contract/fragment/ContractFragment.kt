@@ -39,7 +39,7 @@ class ContractFragment: BaseMvpFragment<ContractContract.View,ContractContract.P
     override fun lazyLoad() {
         val testData = arrayListOf<ContractBean>()
         for (i in 1..10) {
-            testData.add(ContractBean("ETH/USDT", 9987.5f/i, 0f))
+            testData.add(ContractBean("ETH/USDT", 9987.5f/i, 0.00f))
         }
         adapter.data.addAll(testData)
     }

@@ -6,4 +6,5 @@
         12sp
     </dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">12sp</dimen>
+    <dimen name="horizontal_space">14dp</dimen>
 </resources>

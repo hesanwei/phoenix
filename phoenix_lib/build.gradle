@@ -57,5 +57,5 @@ dependencies {
     api 'com.jaeger.statusbarutil:library:1.5.1'//statusBarUtil
     api 'me.jessyan:autosize:1.2.1'//头条适配
 
-    implementation 'com.jakewharton.rxbinding4:rxbinding:4.0.0'
+    api 'com.jakewharton.rxbinding4:rxbinding:4.0.0'
 }

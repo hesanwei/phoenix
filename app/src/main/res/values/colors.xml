@@ -11,7 +11,8 @@
     <color name="text_main_gray">#7A8189</color>
 
     <color name="gray_rect_color">#E4E5E7</color>
-
+    <color name="blue_button_color">#0089FF</color>
     <color name="currency_up_color">#14BB71</color>
     <color name="currency_down_color">#F54346</color>
+    <color name="color_divider">#F2F4F5</color>
 </resources>

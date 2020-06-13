@@ -57,4 +57,15 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/global_bg</item>
     </style>
+
+    <!--    蓝色buttonStyle-->
+    <style name="BlueButtonStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@drawable/blue_circle_bg_dp6</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
