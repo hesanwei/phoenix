@@ -9,4 +9,12 @@
     <string name="exchange_coin">币币兑换</string>
     <string name="right_arrow">→</string>
     <string name="exchange_rate">汇率</string>
+    <string name="usable">可用：</string>
+    <string name="exchange_by_coin">按%s兑换</string>
+    <string name="all">全部</string>
+    <string name="estimate_available">预估可得：</string>
+    <string name="BTC">BTC</string>
+    <string name="USDT">USDT</string>
+    <string name="ETH">ETH</string>
+    <string name="exchange_now">立即兑换</string>
 </resources>
