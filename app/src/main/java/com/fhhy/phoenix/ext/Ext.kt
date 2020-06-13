@@ -68,3 +68,4 @@ fun Context.setViewClickListener(listener: View.OnClickListener, vararg views: V
         it.setOnClickListener(listener)
     }
 }
+
