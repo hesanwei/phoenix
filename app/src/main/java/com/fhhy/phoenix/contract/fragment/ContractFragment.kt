@@ -1,18 +1,17 @@
 package com.fhhy.phoenix.contract.fragment
 
+import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
 import com.fhhy.phoenix.contract.ContractContract
 import com.fhhy.phoenix.contract.presenter.ContractPresenter
-import com.fhhy.phoenix.mine.fragment.MineFragment
+import com.fhhy.phoenix.login.LoginActivity
 import com.fhhy.phoenix.test.ContractBean
 import com.jaeger.library.StatusBarUtil
 import kotlinx.android.synthetic.main.fragment_contract.*
-import kotlinx.android.synthetic.main.fragment_contract.tvTitle
-import kotlinx.android.synthetic.main.fragment_exchange.*
-import setViewClickListener
+
 
 // Created by admin on 2020/6/7.
 class ContractFragment: BaseMvpFragment<ContractContract.View,ContractContract.Presenter>() {
@@ -29,9 +28,24 @@ class ContractFragment: BaseMvpFragment<ContractContract.View,ContractContract.P
         super.initView(view)
         StatusBarUtil.setTransparentForImageView(activity, tvTitle)
         StatusBarUtil.setLightMode(activity)
+        setupRecyclerView()
+        setupRefreshView()
+    }
+
+    private fun setupRefreshView() {
+        refreshLayout.setOnRefreshListener {
+            refreshLayout.finishRefresh(1500)
+        }
+    }
+
+    private fun setupRecyclerView() {
         rvContractList.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = this@ContractFragment.adapter
+        }
+        // 设置点击事件
+        adapter.setOnItemClickListener { adapter, view, position ->
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
         }
 
     }
@@ -39,7 +53,7 @@ class ContractFragment: BaseMvpFragment<ContractContract.View,ContractContract.P
     override fun lazyLoad() {
         val testData = arrayListOf<ContractBean>()
         for (i in 1..10) {
-            testData.add(ContractBean("ETH/USDT", 9987.5f/i, 0.00f))
+            testData.add(ContractBean("ETH", 9987.5f/i, 1.00f/i))
         }
         adapter.data.addAll(testData)
     }

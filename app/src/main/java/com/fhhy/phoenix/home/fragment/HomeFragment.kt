@@ -64,7 +64,7 @@ class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(
     override fun lazyLoad() {
         val testData = arrayListOf<ContractBean>()
         for (i in 1..10) {
-            testData.add(ContractBean("ETH/USDT", 9987.5f / i, 0.00f))
+            testData.add(ContractBean("ETH", 9987.5f/i, 1.00f/i))
         }
         homeContractAdapter.data.addAll(testData)
     }

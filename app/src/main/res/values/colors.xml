@@ -16,4 +16,5 @@
     <color name="currency_down_color">#F54346</color>
     <color name="color_divider">#F2F4F5</color>
     <color name="color_blue_2766FF">#2766FF</color>
+    <color name="color_bg_login">#343542</color>
 </resources>

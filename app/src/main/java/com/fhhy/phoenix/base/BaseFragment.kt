@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.jaeger.library.StatusBarUtil
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.greenrobot.eventbus.EventBus
 
 /**
@@ -43,6 +43,10 @@ abstract class BaseFragment : Fragment() {
      * 是否使用 EventBus
      */
     open fun useEventBus(): Boolean = false
+
+    protected val mCompositeDisposable: CompositeDisposable by lazy {
+        CompositeDisposable()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -90,6 +94,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        mCompositeDisposable.clear()
         if (useEventBus()) {
             EventBus.getDefault().unregister(this)
         }
