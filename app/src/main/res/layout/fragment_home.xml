@@ -1,15 +1,326 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMessage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tab_home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_height="42dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_message"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMessageCount"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/message_count_bg"
+            android:gravity="center"
+            android:text="3"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toLeftOf="@id/ivMessage"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SmallSp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clMessage">
+
+        <com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.stx.xhb.xbanner.XBanner
+                android:id="@+id/xBanner"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                app:AutoPlayTime="3000"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowNumberIndicator="true"
+                app:pageChangeDuration="800"
+                app:pointsPosition="RIGHT"
+                app:tipTextSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/horizontal_space"
+                android:paddingRight="@dimen/horizontal_space">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_notice" />
+
+                <View
+                    style="@style/VerticalGrayLine"
+                    android:layout_marginStart="@dimen/horizontal_space"
+                    android:layout_marginTop="@dimen/horizontal_space"
+                    android:layout_marginEnd="@dimen/horizontal_space"
+                    android:layout_marginBottom="@dimen/horizontal_space" />
+
+                <com.stx.xmarqueeview.XMarqueeView
+                    android:id="@+id/xMarqueeView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:isSetAnimDuration="true"
+                    app:isSingleLine="true"
+                    app:marquee_count="1" />
+            </LinearLayout>
+
+            <View style="@style/GapViewStyle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/horizontal_space"
+                android:paddingEnd="@dimen/horizontal_space">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvNewGuide"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/icon_new_guide"
+                    android:drawablePadding="6dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="@string/new_guide"
+                    android:textColor="@color/text_main_black"
+                    android:textSize="13sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvInviteFriends"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/icon_invite_friends"
+                    android:drawablePadding="6dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="@string/invite_friends"
+                    android:textColor="@color/text_main_black"
+                    android:textSize="13sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRecharge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/icon_recharge"
+                    android:drawablePadding="6dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="@string/recharge"
+                    android:textColor="@color/text_main_black"
+                    android:textSize="13sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPlatformIntroduction"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/icon_platform_introduction"
+                    android:drawablePadding="6dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="@string/platform_introduction"
+                    android:textColor="@color/text_main_black"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/horizontal_space"
+                android:layout_marginEnd="@dimen/horizontal_space"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="30dp"
+                tools:ignore="DisableBaselineAlignment">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/horizontal_space"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBtc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BTC/USDT"
+                        android:textColor="@color/text_main_black"
+                        android:textSize="12sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBtcTransferU"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="$9227.02"
+                        android:textColor="@color/currency_up_color"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="@id/tvBtc"
+                        app:layout_constraintTop_toBottomOf="@id/tvBtc" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/ivBtcUpOrDown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:text="@string/up_arrow"
+                        android:textColor="@color/currency_up_color"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/tvBtcTransferU"
+                        app:layout_constraintLeft_toRightOf="@id/tvBtcTransferU" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBtcUpOrDownPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:text="+0.87%"
+                        android:textColor="@color/currency_up_color"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tvBtcTransferU"
+                        app:layout_constraintLeft_toRightOf="@id/ivBtcUpOrDown" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/horizontal_space"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvEth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ETH/USDT"
+                        android:textColor="@color/text_main_black"
+                        android:textSize="12sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvEthTransferU"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="$9227.02"
+                        android:textColor="@color/currency_down_color"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="@id/tvEth"
+                        app:layout_constraintTop_toBottomOf="@id/tvEth" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/ivEthUpOrDown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:text="@string/down_arrow"
+                        android:textColor="@color/currency_down_color"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/tvEthTransferU"
+                        app:layout_constraintLeft_toRightOf="@id/tvEthTransferU" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvEthUpOrDownPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:text="-0.87%"
+                        android:textColor="@color/currency_down_color"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tvEthTransferU"
+                        app:layout_constraintLeft_toRightOf="@id/ivEthUpOrDown" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_marginStart="@dimen/horizontal_space"
+                android:layout_marginEnd="@dimen/horizontal_space"
+                android:background="@drawable/gray_circle_bg_dp6"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@mipmap/icon_my_position"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/my_position"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_arrow_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/horizontal_space"
+                android:paddingTop="30dp"
+                android:paddingEnd="@dimen/horizontal_space"
+                android:paddingBottom="10dp"
+                android:text="@string/digital_currency"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:scrollbars="none" />
+        </com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

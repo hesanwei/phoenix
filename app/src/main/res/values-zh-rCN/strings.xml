@@ -18,4 +18,11 @@
     <string name="ETH">ETH</string>
     <string name="exchange_now">立即兑换</string>
     <string name="digital_currency">数字货币</string>
+    <string name="new_guide">新人指南</string>
+    <string name="invite_friends">邀请好友</string>
+    <string name="recharge">充值</string>
+    <string name="platform_introduction">平台介绍</string>
+    <string name="up_arrow">↑</string>
+    <string name="down_arrow">↓</string>
+    <string name="my_position">我的持仓</string>
 </resources>
