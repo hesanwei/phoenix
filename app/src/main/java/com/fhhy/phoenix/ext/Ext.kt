@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.fhhy.phoenix.toast.ToastUtil
+import com.fhhy.phoenix.utils.FormatUtil
 import java.lang.StringBuilder
 
 /**
@@ -69,3 +70,5 @@ fun Fragment.setViewClickListener(listener: View.OnClickListener, vararg views: 
         it.setOnClickListener(listener)
     }
 }
+
+fun Float.format() : String = FormatUtil.getNumberFormat().format(this)

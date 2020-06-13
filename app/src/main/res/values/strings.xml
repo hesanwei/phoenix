@@ -25,4 +25,11 @@
     <string name="up_arrow">↑</string>
     <string name="down_arrow">↓</string>
     <string name="my_position">我的持仓</string>
+    <string name="currency_name" translatable="false"><![CDATA[<font color="#000000">%s</font><font color="#7A8189">/USDT</font>]]></string>
+    <string name="str_login_mobile">手机登录</string>
+    <string name="str_login_input_mobile_hint">请输入您的手机号</string>
+    <string name="str_login_input_pws_hint">请输入密码</string>
+    <string name="forgot_pwd">忘记密码？</string>
+    <string name="str_login_no_account_tip">还没有账号？</string>
+    <string name="str_login_to_register">快速注册</string>
 </resources>

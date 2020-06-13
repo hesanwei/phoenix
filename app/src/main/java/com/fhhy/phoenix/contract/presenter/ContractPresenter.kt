@@ -9,5 +9,7 @@ class ContractPresenter : BasePresenter<ContractContract.Model, ContractContract
     ContractContract.Presenter {
     override fun createModel(): ContractContract.Model? = ContractModel()
 
+    fun loadData() {
+    }
 
 }
