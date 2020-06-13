@@ -8,4 +8,6 @@ import com.fhhy.phoenix.contract.model.ContractModel
 class ContractPresenter : BasePresenter<ContractContract.Model, ContractContract.View>(),
     ContractContract.Presenter {
     override fun createModel(): ContractContract.Model? = ContractModel()
+
+
 }

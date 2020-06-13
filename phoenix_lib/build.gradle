@@ -7,7 +7,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -56,4 +56,6 @@ dependencies {
 
     api 'com.jaeger.statusbarutil:library:1.5.1'//statusBarUtil
     api 'me.jessyan:autosize:1.2.1'//头条适配
+
+    api 'com.jakewharton.rxbinding4:rxbinding:4.0.0'
 }
