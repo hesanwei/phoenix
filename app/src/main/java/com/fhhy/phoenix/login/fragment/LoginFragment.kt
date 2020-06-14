@@ -163,7 +163,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         etPwd.transformationMethod = PasswordTransformationMethod.getInstance()
 
         val areaCodeClick = tvArea.noDoubleClick {
-                TODO("添加跳转选择国家地区")
+              //  TODO("添加跳转选择国家地区")
             }
         mCompositeDisposable.add(areaCodeClick)
 
@@ -215,7 +215,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
 
     private fun initRegisterOneViewAndListeners() {
         val areaCodeClick = tvAreaReg.noDoubleClick {
-            TODO("添加跳转选择国家地区")
+           // TODO("添加跳转选择国家地区")
         }
         mCompositeDisposable.add(areaCodeClick)
 
