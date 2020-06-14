@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.View
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
+import com.fhhy.phoenix.login.LoginActivity
 import com.fhhy.phoenix.mine.activity.AccountActivity
 import com.fhhy.phoenix.mine.contract.MineContract
 import com.fhhy.phoenix.mine.presenter.MinePresenter
@@ -31,6 +32,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
     private fun initViewClick() {
         setViewClickListener(
             this,
+            clUserInfo,
             ivEyes,
             llFundsAccount,
             llFullAccount,
@@ -62,6 +64,11 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
 
     override fun onClick(v: View?) {
         when (v?.id) {
+
+            R.id.clUserInfo -> {
+                startActivity(Intent(context, LoginActivity::class.java))
+            }
+
             R.id.ivEyes -> {//资产可见不可见
                 isFundsVisible = !isFundsVisible
                 setFundsVisible()
@@ -69,12 +76,12 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
 
             R.id.llFundsAccount -> {//资金账户
                 val intent = Intent(context, AccountActivity::class.java)
-                intent.putExtra(AccountActivity.ACCOUNT_TYPE,AccountActivity.ACCOUNT_TYPE_FUNDS)
+                intent.putExtra(AccountActivity.ACCOUNT_TYPE, AccountActivity.ACCOUNT_TYPE_FUNDS)
                 startActivity(intent)
             }
             R.id.llFullAccount -> {//全仓账户
                 val intent = Intent(context, AccountActivity::class.java)
-                intent.putExtra(AccountActivity.ACCOUNT_TYPE,AccountActivity.ACCOUNT_TYPE_FULL)
+                intent.putExtra(AccountActivity.ACCOUNT_TYPE, AccountActivity.ACCOUNT_TYPE_FULL)
                 startActivity(intent)
             }
             R.id.tvRecharge -> {//充值
