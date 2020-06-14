@@ -41,4 +41,5 @@
     <string name="str_forgot_pwd">重置密码</string>
     <string name="str_login_input_sms_hint">请输入验证码</string>
     <string name="forgot_pwd_warning">为了您的资金安全，密码重置后24小时内不能提币！</string>
+    <string name="total_assets_converted">总资产折合</string>
 </resources>

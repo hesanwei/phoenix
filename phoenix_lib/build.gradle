@@ -61,5 +61,6 @@ dependencies {
 
     // 使用了Androidx
     api 'com.github.donkingliang:ConsecutiveScroller:2.6.2'
-    api 'com.github.xiaohaibin:XMarqueeView:2.0.2'//
+    api 'com.github.xiaohaibin:XMarqueeView:2.0.2'//跑马灯view
+    api 'de.hdodenhof:circleimageview:3.1.0'//圆形图片
 }
