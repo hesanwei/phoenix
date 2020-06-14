@@ -79,4 +79,4 @@ fun Float.format(): String = FormatUtil.getNumberFormat().format(this)
 
 inline fun View.noDoubleClick(crossinline clickAction: () -> Unit) : Disposable = clicks().throttleFirst(400, TimeUnit.MILLISECONDS)
     .observeOn(io.reactivex.rxjava3.android.schedulers.AndroidSchedulers.mainThread())
-    .subscribe { clickAction.invoke() }
+    .subscribe { clickAction() }
