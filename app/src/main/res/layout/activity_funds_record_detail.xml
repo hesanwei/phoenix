@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/record_detail"
+        android:textColor="@color/text_main_black"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/horizontal_space"
+        android:background="?selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_back_gray"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCurrency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/text_main_black"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/text_main_black"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCurrency" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/text_main_gray"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMoney" />
+
+    <View
+        android:id="@+id/gapView"
+        style="@style/GapViewStyle"
+        android:layout_marginTop="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvStatus" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRecordType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_space"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/record_type"
+        android:textColor="@color/text_main_gray"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gapView" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRecordTypeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_main_black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvRecordType"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvRecordType" />
+
+    <View
+        android:id="@+id/dividerLine1"
+        style="@style/HorizontalGrayLine"
+        android:layout_marginStart="@dimen/horizontal_space"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvRecordType" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvServiceFee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_space"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/service_fee"
+        android:textColor="@color/text_main_gray"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dividerLine1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvServiceFeeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_main_black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvServiceFee"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvServiceFee" />
+
+    <View
+        android:id="@+id/dividerLine2"
+        style="@style/HorizontalGrayLine"
+        android:layout_marginStart="@dimen/horizontal_space"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvServiceFee" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCreateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_space"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/create_time"
+        android:textColor="@color/text_main_gray"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dividerLine2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCreateTimeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_main_black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvCreateTime"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvCreateTime" />
+
+    <View
+        android:id="@+id/dividerLine3"
+        style="@style/HorizontalGrayLine"
+        android:layout_marginStart="@dimen/horizontal_space"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCreateTime" />
+</androidx.constraintlayout.widget.ConstraintLayout>

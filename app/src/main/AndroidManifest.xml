@@ -20,6 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".login.LoginActivity" />
+        <activity android:name=".mine.activity.AccountActivity" />
+        <activity android:name=".mine.activity.ContractModeSettingActivity" />
+        <activity android:name=".mine.activity.FundsAccountDetailActivity" />
+        <activity android:name=".mine.activity.FundsRecordDetailActivity" />
     </application>
 
 </manifest>

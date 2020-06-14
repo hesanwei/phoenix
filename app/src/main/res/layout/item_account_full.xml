@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clAccount"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginHorizontal="@dimen/horizontal_space"
+        android:background="@mipmap/icon_purple_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCurrency"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="@dimen/horizontal_space"
+            android:layout_marginTop="@dimen/horizontal_space"
+            android:src="@mipmap/icon_btc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/ivCurrency"
+            app:layout_constraintStart_toEndOf="@id/ivCurrency"
+            app:layout_constraintTop_toTopOf="@id/ivCurrency" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/horizontal_space"
+            android:src="@mipmap/icon_arrow_right_white"
+            app:layout_constraintBottom_toBottomOf="@id/ivCurrency"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivCurrency" />
+
+        <LinearLayout
+            android:id="@+id/llAccountNV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAccountNV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.02"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/account_nv"
+                android:textColor="@color/white50"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llUsableMargin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideLine"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llAccountNV">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvUsableMargin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.02"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/usable_margin"
+                android:textColor="@color/white50"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/llUsableMargin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideLine"
+            app:layout_constraintTop_toTopOf="@id/llUsableMargin">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPositionMargin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.02"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/position_margin"
+                android:textColor="@color/white50"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/dividerView"
+        style="@style/VerticalGrayLine"
+        android:layout_height="20dp"
+        android:layout_marginVertical="@dimen/horizontal_space"
+        app:layout_constraintBottom_toTopOf="@id/gapView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clAccount" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvOutCurrency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/out_currency"
+        android:textColor="@color/text_main_black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/dividerView"
+        app:layout_constraintEnd_toEndOf="@id/dividerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/dividerView" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvInCurrency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/in_currency"
+        android:textColor="@color/blue_button_color"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/dividerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/dividerView"
+        app:layout_constraintTop_toTopOf="@id/dividerView" />
+
+    <View
+        android:id="@+id/gapView"
+        style="@style/GapViewStyle"
+        android:layout_marginTop="@dimen/horizontal_space"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dividerView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

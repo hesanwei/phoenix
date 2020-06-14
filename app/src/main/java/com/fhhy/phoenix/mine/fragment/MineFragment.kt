@@ -1,9 +1,11 @@
 package com.fhhy.phoenix.mine.fragment
 
+import android.content.Intent
 import android.view.View
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
-import com.fhhy.phoenix.mine.MineContract
+import com.fhhy.phoenix.mine.activity.AccountActivity
+import com.fhhy.phoenix.mine.contract.MineContract
 import com.fhhy.phoenix.mine.presenter.MinePresenter
 import com.jaeger.library.StatusBarUtil
 import kotlinx.android.synthetic.main.fragment_mine.*
@@ -66,10 +68,14 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
             }
 
             R.id.llFundsAccount -> {//资金账户
-
+                val intent = Intent(context, AccountActivity::class.java)
+                intent.putExtra(AccountActivity.ACCOUNT_TYPE,AccountActivity.ACCOUNT_TYPE_FUNDS)
+                startActivity(intent)
             }
             R.id.llFullAccount -> {//全仓账户
-
+                val intent = Intent(context, AccountActivity::class.java)
+                intent.putExtra(AccountActivity.ACCOUNT_TYPE,AccountActivity.ACCOUNT_TYPE_FULL)
+                startActivity(intent)
             }
             R.id.tvRecharge -> {//充值
 
@@ -121,7 +127,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
      * 点击眼睛，可见不可见
      */
     private fun setFundsVisible() {
-        if (isFundsVisible){
+        if (isFundsVisible) {
             ivEyes.setImageResource(R.mipmap.icon_eyes_open)
             tvAssetsCurrency.visibility = View.VISIBLE
             tvConvertedCurrency.visibility = View.VISIBLE
@@ -131,7 +137,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
             tvTotalFunds.text = "0.0002"
             tvTotalFull.text = "0.0002"
 
-        }else{
+        } else {
             ivEyes.setImageResource(R.mipmap.icon_eyes_close)
             tvAssetsCurrency.visibility = View.INVISIBLE
             tvConvertedCurrency.visibility = View.INVISIBLE

@@ -10,6 +10,7 @@
     <string name="right_arrow">→</string>
     <string name="exchange_rate">汇率</string>
     <string name="usable">可用：</string>
+    <string name="usable2">可用</string>
     <string name="exchange_by_coin">按%s兑换</string>
     <string name="all">全部</string>
     <string name="estimate_available">预估可得：</string>
@@ -48,4 +49,27 @@
     <string name="security_center">安全中心</string>
     <string name="settings">设置</string>
     <string name="about_us">关于我们</string>
+    <string name="funds">资金</string>
+    <string name="standard_full">标准全仓</string>
+    <string name="wallet_balance">钱包余额</string>
+    <string name="account_full_tip_one">当前正在使用合约逐仓模式。全仓账户资金仅在切换为合约全仓时启用。立即切换</string>
+    <string name="account_nv">账户净值</string>
+    <string name="usable_margin">可用保证金</string>
+    <string name="position_margin">仓位保证金</string>
+    <string name="out_currency">转出%s</string>
+    <string name="in_currency">转入%s</string>
+    <string name="account_full_tip_two">当前正在使用合约全仓模式。合约开仓、平仓将会使用该账户下的资金。</string>
+    <string name="contract_mode_setting">合约模式设置</string>
+    <string name="operate_caution">操作提醒</string>
+    <string name="operate_caution_content">逐仓模式合约，合约交易时默认使用逐仓保证金，并且使用资金账户资金。切换至全仓模式，使用合约全仓账户模式资金。有持仓合约或委托订单时不的切换合约模式。</string>
+    <string name="warehouse_mode">逐仓模式</string>
+    <string name="full_mode">全仓模式</string>
+    <string name="block">冻结</string>
+    <string name="funds_record">资产记录</string>
+    <string name="show_last_30_days_data">为保障系统性能，仅展示近30天数据。</string>
+    <string name="no_data">暂无数据</string>
+    <string name="record_detail">记录详情</string>
+    <string name="record_type">记录类型</string>
+    <string name="service_fee">手续费</string>
+    <string name="create_time">创建时间</string>
 </resources>
