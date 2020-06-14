@@ -9,14 +9,18 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportFragmentManager.beginTransaction().apply {
-            replace(android.R.id.content, LoginFragment.create())
+            replace(android.R.id.content, LoginFragment.create(), "LoginFragment")
             commit()
         }
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 1) {
-            supportFragmentManager.popBackStack()
+        val loginFragment = supportFragmentManager.findFragmentByTag("LoginFragment")
+        if (loginFragment != null) {
+            loginFragment.apply {
+                this as LoginFragment
+                onBackPressed()
+            }
         }else {
             super.onBackPressed()
         }

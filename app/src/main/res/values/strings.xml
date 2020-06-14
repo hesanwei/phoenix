@@ -27,10 +27,20 @@
     <string name="my_position">我的持仓</string>
     <string name="currency_name" translatable="false"><![CDATA[<font color="#000000">%s</font><font color="#7A8189">/USDT</font>]]></string>
     <string name="str_login_mobile">手机登录</string>
-    <string name="str_login_input_mobile_hint">请输入您的手机号</string>
+    <string name="str_login_input_mobile_hint">请输入手机号</string>
     <string name="str_login_input_pws_hint">请输入密码</string>
     <string name="forgot_pwd">忘记密码？</string>
     <string name="str_login_no_account_tip">还没有账号？</string>
     <string name="str_login_to_register">快速注册</string>
     <string name="apply_to_be_trader">申请成为交易员</string>
+    <string name="str_register_mobile">手机注册</string>
+    <string name="str_login_have_account_tip">已有账号？</string>
+    <string name="str_login_to_login">快速登录</string>
+    <string name="str_verify_sms_code">短信验证</string>
+    <string name="sms_error_tips">验证码错误或密码无效</string>
+    <string name="str_login_set_pwd_hint">请输入8～20位含数字、字母密码</string>
+    <string name="str_login_invite_code_hint">邀请码（选填）</string>
+    <string name="str_forgot_pwd">重置密码</string>
+    <string name="str_login_input_sms_hint">请输入验证码</string>
+    <string name="forgot_pwd_warning">为了您的资金安全，密码重置后24小时内不能提币！</string>
 </resources>
