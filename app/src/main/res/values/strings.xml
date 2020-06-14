@@ -34,4 +34,18 @@
     <string name="str_login_to_register">快速注册</string>
     <string name="apply_to_be_trader">申请成为交易员</string>
     <string name="total_assets_converted">总资产折合</string>
+    <string name="asset_account">资金账户</string>
+    <string name="full_account">全仓账户</string>
+    <string name="withdraw">提币</string>
+    <string name="funds_transfer">资金划转</string>
+    <string name="my_bonus">我的赠金</string>
+    <string name="documentary_management">跟单管理</string>
+    <string name="recommend_documentary">推荐跟单</string>
+    <string name="contact_customer_service">联系客服</string>
+    <string name="help_center">帮助中心</string>
+    <string name="my_inviter">我的邀请人</string>
+    <string name="authentication">身份认证</string>
+    <string name="security_center">安全中心</string>
+    <string name="settings">设置</string>
+    <string name="about_us">关于我们</string>
 </resources>

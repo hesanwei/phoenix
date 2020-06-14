@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MineItemView">
+        <attr name="mivImage" format="reference" />
+        <attr name="mivName" format="string" />
+        <attr name="mivValue" format="reference" />
+        <attr name="mivShowDivider" format="boolean" />
+    </declare-styleable>
+</resources>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -10,11 +9,14 @@
         android:id="@+id/smartRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/white"
+        app:srlEnableLoadMore="false">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="none">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -34,12 +36,12 @@
                         android:id="@+id/tvUserName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="Jones"
                         android:textColor="@color/black"
                         android:textSize="32sp"
                         android:textStyle="bold"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Jones" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
@@ -83,11 +85,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:text="0.00"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     app:layout_constraintLeft_toLeftOf="@id/clUserInfo"
-                    app:layout_constraintTop_toBottomOf="@id/tvTotalAssetsConverted"
-                    tools:text="0.00" />
+                    app:layout_constraintTop_toBottomOf="@id/tvTotalAssetsConverted" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvAssetsCurrency"
@@ -121,6 +123,234 @@
                     app:layout_constraintBottom_toBottomOf="@id/tvTotalAssets"
                     app:layout_constraintRight_toRightOf="@id/clUserInfo"
                     app:layout_constraintTop_toTopOf="@id/tvTotalAssets" />
+
+                <LinearLayout
+                    android:id="@+id/llAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/horizontal_space"
+                    android:layout_marginTop="12dp"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/tvTotalAssets">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="7dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/icon_blue_card"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/asset_account"
+                            android:textColor="@color/white50"
+                            android:textSize="12sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="0.000002BTC"
+                            android:textColor="@color/white"
+                            android:textSize="15sp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="≈0.002855 USDT"
+                            android:textColor="@color/white50"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/icon_purple_card"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/full_account"
+                            android:textColor="@color/white50"
+                            android:textSize="12sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="0.000002BTC"
+                            android:textColor="@color/white"
+                            android:textSize="15sp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="≈0.002855 USDT"
+                            android:textColor="@color/white50"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llFeature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llAccount">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/icon_recharge"
+                        android:drawablePadding="6dp"
+                        android:gravity="center"
+                        android:text="@string/recharge"
+                        android:textColor="@color/text_main_black"
+                        android:textSize="13sp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/icon_withdraw"
+                        android:drawablePadding="6dp"
+                        android:gravity="center"
+                        android:text="@string/withdraw"
+                        android:textColor="@color/text_main_black"
+                        android:textSize="13sp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/icon_funds_transfer"
+                        android:drawablePadding="6dp"
+                        android:gravity="center"
+                        android:text="@string/funds_transfer"
+                        android:textColor="@color/text_main_black"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/gapView1"
+                    style="@style/GapViewStyle"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llFeature" />
+
+                <com.fhhy.phoenix.mine.widgets.MineItemView
+                    android:id="@+id/mivMyBonus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/gapView1"
+                    app:mivImage="@mipmap/icon_my_bonus"
+                    app:mivName="@string/my_bonus" />
+
+                <com.fhhy.phoenix.mine.widgets.MineItemView
+                    android:id="@+id/mivDocumentaryManagement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/mivMyBonus"
+                    app:mivImage="@mipmap/icon_documentary_management"
+                    app:mivName="@string/documentary_management" />
+
+                <com.fhhy.phoenix.mine.widgets.MineItemView
+                    android:id="@+id/mivRecommendDocumentary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/mivDocumentaryManagement"
+                    app:mivImage="@mipmap/icon_recommend_documentary"
+                    app:mivName="@string/recommend_documentary"
+                    app:mivShowDivider="false" />
+
+                <View
+                    android:id="@+id/gapView2"
+                    style="@style/GapViewStyle"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mivRecommendDocumentary" />
+
+                <com.fhhy.phoenix.mine.widgets.MineItemView
+                    android:id="@+id/mivContactCustomerService"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/gapView2"
+                    app:mivImage="@mipmap/icon_contact_customer_service"
+                    app:mivName="@string/contact_customer_service" />
+
+                <com.fhhy.phoenix.mine.widgets.MineItemView
+                    android:id="@+id/mivHelpCenter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/mivContactCustomerService"
+                    app:mivImage="@mipmap/icon_help_center"
+                    app:mivName="@string/help_center"
+                    app:mivShowDivider="false" />
+
+                <View
+                    android:id="@+id/gapView3"
+                    style="@style/GapViewStyle"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mivHelpCenter" />
+
+                <com.fhhy.phoenix.mine.widgets.MineItemView
+                    android:id="@+id/mivMyInviter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/gapView3"
+                    app:mivImage="@mipmap/icon_my_inviter"
+                    app:mivName="@string/my_inviter" />
+
+                <com.fhhy.phoenix.mine.widgets.MineItemView
+                    android:id="@+id/mivAuthentication"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/mivMyInviter"
+                    app:mivImage="@mipmap/icon_authentication"
+                    app:mivName="@string/authentication" />
+
+                <com.fhhy.phoenix.mine.widgets.MineItemView
+                    android:id="@+id/mivSecurityCenter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/mivAuthentication"
+                    app:mivImage="@mipmap/icon_security_center"
+                    app:mivName="@string/security_center" />
+
+                <com.fhhy.phoenix.mine.widgets.MineItemView
+                    android:id="@+id/mivSettings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/mivSecurityCenter"
+                    app:mivImage="@mipmap/icon_settings"
+                    app:mivName="@string/settings" />
+
+                <com.fhhy.phoenix.mine.widgets.MineItemView
+                    android:id="@+id/mivAboutUs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/mivSettings"
+                    app:mivImage="@mipmap/icon_about_us"
+                    app:mivName="@string/about_us"
+                    app:mivShowDivider="false" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
