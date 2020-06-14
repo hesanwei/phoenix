@@ -6,7 +6,11 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.fhhy.phoenix.toast.ToastUtil
 import com.fhhy.phoenix.utils.FormatUtil
+import com.jakewharton.rxbinding4.view.clicks
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.Disposable
 import java.lang.StringBuilder
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by admin on 2020/6/7.
@@ -71,4 +75,8 @@ fun Fragment.setViewClickListener(listener: View.OnClickListener, vararg views: 
     }
 }
 
-fun Float.format() : String = FormatUtil.getNumberFormat().format(this)
+fun Float.format(): String = FormatUtil.getNumberFormat().format(this)
+
+inline fun View.noDoubleClick(crossinline clickAction: () -> Unit) : Disposable = clicks().throttleFirst(400, TimeUnit.MILLISECONDS)
+    .observeOn(io.reactivex.rxjava3.android.schedulers.AndroidSchedulers.mainThread())
+    .subscribe { clickAction.invoke() }
