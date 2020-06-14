@@ -23,16 +23,16 @@
             android:visibility="visible"/>
 
         <include layout="@layout/fragment_login_state_login_sms"
-            android:visibility="gone"/>
+            android:visibility="invisible"/>
 
         <include layout="@layout/fragment_login_state_register_one"
-            android:visibility="gone"/>
+            android:visibility="invisible"/>
 
         <include layout="@layout/fragment_login_state_register_two"
-            android:visibility="gone"/>
+            android:visibility="invisible"/>
 
         <include layout="@layout/fragment_login_state_forgot_pwd"
-            android:visibility="gone"/>
+            android:visibility="invisible"/>
 
     </FrameLayout>
 

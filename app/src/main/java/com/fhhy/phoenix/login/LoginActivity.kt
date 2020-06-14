@@ -19,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
         if (loginFragment != null) {
             loginFragment.apply {
                 this as LoginFragment
-                onBackPressed()
+                toPreState()
             }
         }else {
             super.onBackPressed()
