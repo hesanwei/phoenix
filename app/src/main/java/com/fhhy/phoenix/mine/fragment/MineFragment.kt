@@ -7,10 +7,14 @@ import com.fhhy.phoenix.mine.MineContract
 import com.fhhy.phoenix.mine.presenter.MinePresenter
 import com.jaeger.library.StatusBarUtil
 import kotlinx.android.synthetic.main.fragment_mine.*
+import setViewClickListener
 
 // Created by admin on 2020/6/7.
-class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>() {
-    //测试
+class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(),
+    View.OnClickListener {
+
+    private var isFundsVisible = true
+
     override fun createPresenter(): MineContract.Presenter = MinePresenter()
 
     override fun getLayoutId(): Int = R.layout.fragment_mine
@@ -19,6 +23,30 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
         super.initView(view)
         StatusBarUtil.setTransparentForImageView(activity, smartRefreshLayout)
         StatusBarUtil.setLightMode(activity)
+        initViewClick()
+    }
+
+    private fun initViewClick() {
+        setViewClickListener(
+            this,
+            ivEyes,
+            llFundsAccount,
+            llFullAccount,
+            tvRecharge,
+            tvWithdraw,
+            tvFundsTransfer,
+            ivInviteFriends,
+            mivMyBonus,
+            mivDocumentaryManagement,
+            mivRecommendDocumentary,
+            mivContactCustomerService,
+            mivHelpCenter,
+            mivMyInviter,
+            mivAuthentication,
+            mivSecurityCenter,
+            mivSettings,
+            mivAboutUs
+        )
     }
 
     override fun lazyLoad() {
@@ -27,6 +55,91 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
     companion object {
         fun newInstance(): MineFragment {
             return MineFragment()
+        }
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.ivEyes -> {//资产可见不可见
+                isFundsVisible = !isFundsVisible
+                setFundsVisible()
+            }
+
+            R.id.llFundsAccount -> {//资金账户
+
+            }
+            R.id.llFullAccount -> {//全仓账户
+
+            }
+            R.id.tvRecharge -> {//充值
+
+            }
+            R.id.tvWithdraw -> {//提币
+
+            }
+
+            R.id.tvFundsTransfer -> {//资金划转
+
+            }
+            R.id.ivInviteFriends -> {//邀请好友
+
+            }
+            R.id.mivMyBonus -> {//我的赠金
+
+            }
+            R.id.mivDocumentaryManagement -> {//跟单管理
+
+            }
+            R.id.mivRecommendDocumentary -> {//推荐跟单
+
+            }
+            R.id.mivContactCustomerService -> {//联系客服
+
+            }
+            R.id.mivHelpCenter -> {//帮助中心
+
+            }
+            R.id.mivMyInviter -> {//我的邀请人
+
+            }
+            R.id.mivAuthentication -> {//身份认证
+
+            }
+            R.id.mivSecurityCenter -> {//安全中心
+
+            }
+            R.id.mivSettings -> {//设置
+
+            }
+            R.id.mivAboutUs -> {//关于我们
+
+            }
+        }
+    }
+
+    /**
+     * 点击眼睛，可见不可见
+     */
+    private fun setFundsVisible() {
+        if (isFundsVisible){
+            ivEyes.setImageResource(R.mipmap.icon_eyes_open)
+            tvAssetsCurrency.visibility = View.VISIBLE
+            tvConvertedCurrency.visibility = View.VISIBLE
+            tvFunds2U.visibility = View.VISIBLE
+            tvFull2U.visibility = View.VISIBLE
+            tvTotalAssets.text = "0.002"
+            tvTotalFunds.text = "0.0002"
+            tvTotalFull.text = "0.0002"
+
+        }else{
+            ivEyes.setImageResource(R.mipmap.icon_eyes_close)
+            tvAssetsCurrency.visibility = View.INVISIBLE
+            tvConvertedCurrency.visibility = View.INVISIBLE
+            tvFunds2U.visibility = View.INVISIBLE
+            tvFull2U.visibility = View.INVISIBLE
+            tvTotalAssets.text = "*****"
+            tvTotalFunds.text = "*****"
+            tvTotalFull.text = "*****"
         }
     }
 }

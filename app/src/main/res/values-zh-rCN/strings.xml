@@ -34,7 +34,7 @@
     <string name="str_login_to_register">快速注册</string>
     <string name="apply_to_be_trader">申请成为交易员</string>
     <string name="total_assets_converted">总资产折合</string>
-    <string name="asset_account">资金账户</string>
+    <string name="funds_account">资金账户</string>
     <string name="full_account">全仓账户</string>
     <string name="withdraw">提币</string>
     <string name="funds_transfer">资金划转</string>
