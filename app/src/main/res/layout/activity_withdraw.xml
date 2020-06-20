@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
@@ -34,9 +33,11 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:overScrollMode="never"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -59,7 +60,6 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/withdraw_way_left_selector"
                     android:button="@null"
-                    android:checked="true"
                     android:paddingHorizontal="18dp"
                     android:paddingVertical="5dp"
                     android:text="@string/common_withdraw"
@@ -140,7 +140,6 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/withdraw_chain_name_left_selector"
                         android:button="@null"
-                        android:checked="true"
                         android:paddingHorizontal="24dp"
                         android:paddingVertical="5dp"
                         android:text="@string/erc_20"
@@ -247,6 +246,7 @@
                     android:layout_marginStart="10dp"
                     android:background="@color/white"
                     android:hint="@string/please_input_withdraw_amount"
+                    android:inputType="numberDecimal"
                     android:padding="20dp"
                     android:textColor="@color/text_main_black"
                     android:textColorHint="@color/text_main_gray"
@@ -396,4 +396,4 @@
     </androidx.core.widget.NestedScrollView>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
