@@ -60,6 +60,10 @@ class AccountFullFragment :
             accountFullAdapter.data = mutableListOf("BTC", "ETH", "USDT", "VST")
             adapter = accountFullAdapter
         }
+
+        accountFullAdapter.setOnItemClickListener { adapter, view, position ->
+
+        }
     }
 
     override fun lazyLoad() {
