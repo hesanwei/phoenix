@@ -101,5 +101,11 @@
     <string name="coin_recharge">%s充值</string>
     <string name="coin_recharge_address">%s  充值地址</string>
     <string name="click_copy">点击复制</string>
+    <string name="user_guide_for_charging_and_withdrawing_COINS">充提币用户指引</string>
+    <string name="recharge_and_withdraw_tips">在您进行“充币”和“提币”操作前，请您认真阅读该指引，加强防范意识，避免上当受骗，同时积极配合平台完成对反洗钱和反恐怖融资行为的打击。</string>
+    <string name="i_read_and_agree">我已阅读并同意</string>
+    <string name="user_guide_for_charging_and_withdrawing_COINS2">《充提币用户指引》</string>
+    <string name="cancel">取消</string>
+    <string name="ok">确定</string>
 
 </resources>

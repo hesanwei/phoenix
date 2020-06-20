@@ -3,6 +3,7 @@ package com.fhhy.phoenix.mine.activity
 import android.view.View
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpActivity
+import com.fhhy.phoenix.dialog.RechargeWithdrawGuideDialog
 import com.fhhy.phoenix.mine.contract.RechargeContract
 import com.fhhy.phoenix.mine.presenter.RechargePresenter
 import kotlinx.android.synthetic.main.activity_recharge.*
@@ -26,6 +27,8 @@ class RechargeActivity : BaseMvpActivity<RechargeContract.View, RechargeContract
 
         initRadioGroup()
         setViewClickListener(this, btnBack, tvCopy)
+
+        RechargeWithdrawGuideDialog().show(supportFragmentManager)
     }
 
     private fun initRadioGroup() {
