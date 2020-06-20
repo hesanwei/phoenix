@@ -63,7 +63,9 @@ class FundsAccountDetailActivity :
             R.id.btnBack -> finish()
 
             R.id.tvRecharge -> {
-                showToast("待开发")
+                val intent = Intent(this, RechargeActivity::class.java)
+                intent.putExtra(FUNDS_NAME,title)
+                startActivity(intent)
             }
 
             R.id.tvWithdraw -> {

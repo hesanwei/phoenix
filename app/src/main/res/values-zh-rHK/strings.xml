@@ -98,4 +98,7 @@
     <string name="poundage">手续费</string>
     <string name="actual_arrival">实际到账</string>
     <string name="operate_caution2">操作提醒：</string>
+    <string name="coin_recharge">%s充值</string>
+    <string name="coin_recharge_address">%s  充值地址</string>
+    <string name="click_copy">点击复制</string>
 </resources>
