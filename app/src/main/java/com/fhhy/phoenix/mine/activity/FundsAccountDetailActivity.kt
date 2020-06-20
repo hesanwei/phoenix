@@ -19,6 +19,8 @@ class FundsAccountDetailActivity :
     BaseMvpActivity<FundsAccountDetailContract.View, FundsAccountDetailContract.Presenter>(),
     FundsAccountDetailContract.View, View.OnClickListener {
 
+    private var title: String? = ""
+
     private val fundsAccountDetailAdapter by lazy {
         FundsAccountDetailAdapter()
     }
@@ -31,7 +33,7 @@ class FundsAccountDetailActivity :
     override fun initView() {
         super.initView()
         StatusBarUtil.setTransparentForImageView(this, clTop)
-        val title = intent.getStringExtra(FUNDS_NAME)
+        title = intent.getStringExtra(FUNDS_NAME)
         tvTitle.text = title
         initRecyclerView()
         setViewClickListener(this, btnBack, tvWithdraw, tvRecharge)
@@ -65,7 +67,9 @@ class FundsAccountDetailActivity :
             }
 
             R.id.tvWithdraw -> {
-                showToast("待开发")
+                val intent = Intent(this, WithdrawActivity::class.java)
+                intent.putExtra(FUNDS_NAME,title)
+                startActivity(intent)
             }
         }
     }

@@ -82,4 +82,20 @@
     <string name="record_type">记录类型</string>
     <string name="service_fee">手续费</string>
     <string name="create_time">创建时间</string>
+    <string name="coin_withdraw">%s提币</string>
+    <string name="common_withdraw">普通提币</string>
+    <string name="internal_transfer">内部转账</string>
+    <string name="usable_balance">可用余额：</string>
+    <string name="chain_name">链名称</string>
+    <string name="erc_20">ERC20</string>
+    <string name="omni">OMNI</string>
+    <string name="address">地址</string>
+    <string name="please_input_address">请输入地址</string>
+    <string name="money">金额</string>
+    <string name="please_input_withdraw_amount">请输入提币数量</string>
+    <string name="note">备注</string>
+    <string name="optional">选填</string>
+    <string name="poundage">手续费</string>
+    <string name="actual_arrival">实际到账</string>
+    <string name="operate_caution2">操作提醒：</string>
 </resources>

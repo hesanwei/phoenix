@@ -24,6 +24,7 @@
         <activity android:name=".mine.activity.ContractModeSettingActivity" />
         <activity android:name=".mine.activity.FundsAccountDetailActivity" />
         <activity android:name=".mine.activity.FundsRecordDetailActivity" />
+        <activity android:name=".mine.activity.WithdrawActivity" />
     </application>
 
 </manifest>
