@@ -66,8 +66,6 @@
     <string name="account_nv">账户净值</string>
     <string name="usable_margin">可用保证金</string>
     <string name="position_margin">仓位保证金</string>
-    <string name="out_currency">转出%s</string>
-    <string name="in_currency">转入%s</string>
     <string name="account_full_tip_two">当前正在使用合约全仓模式。合约开仓、平仓将会使用该账户下的资金。</string>
     <string name="contract_mode_setting">合约模式设置</string>
     <string name="operate_caution">操作提醒</string>
@@ -120,4 +118,17 @@
     <string name="long_bullish">开多/看涨</string>
     <string name="short_bearish">开空/看跌</string>
     <string name="order">订单</string>
+    <string name="equity">净值(%s)</string>
+    <string name="unrealized_P_L">未实现盈亏(%s)</string>
+    <string name="margin_rate">保证金率</string>
+    <string name="available_margin">可用保证金</string>
+    <string name="transfer_in_coin">转入%s</string>
+    <string name="transfer_out_coin">转出%s</string>
+    <string name="coin_withdraw_address">%s提币地址</string>
+    <string name="add_new_address">添加新地址</string>
+    <string name="add">添加</string>
+    <string name="add_coin_address">添加%s地址</string>
+    <string name="about_bonus">关于赠金</string>
+    <string name="history">历史</string>
+    <string name="be_use">待使用</string>
 </resources>

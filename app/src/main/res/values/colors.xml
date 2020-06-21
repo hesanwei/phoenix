@@ -12,6 +12,7 @@
     <color name="text_main_blue">#0578DC</color>
     <color name="text_main_gray">#7A8189</color>
     <color name="text_main_black">#34404B</color>
+    <color name="text_main_red">#FE5F2D</color>
     <color name="text_black_2E2E47">#2E2E47</color>
     <color name="text_black_2E2E47_50">#802E2E47</color>
     <color name="gray_rect_color">#E4E5E7</color>
