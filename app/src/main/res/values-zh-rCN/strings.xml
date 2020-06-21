@@ -115,5 +115,8 @@
     <string name="add_new_address">添加新地址</string>
     <string name="add">添加</string>
     <string name="add_coin_address">添加%s地址</string>
+    <string name="about_bonus">关于赠金</string>
+    <string name="history">历史</string>
+    <string name="be_use">待使用</string>
 
 </resources>

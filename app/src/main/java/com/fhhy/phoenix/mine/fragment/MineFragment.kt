@@ -8,6 +8,7 @@ import com.fhhy.phoenix.dialog.CoinSelectDialog
 import com.fhhy.phoenix.login.LoginActivity
 import com.fhhy.phoenix.mine.activity.AccountActivity
 import com.fhhy.phoenix.mine.activity.FundsAccountDetailActivity.Companion.FUNDS_NAME
+import com.fhhy.phoenix.mine.activity.MyBonusActivity
 import com.fhhy.phoenix.mine.activity.RechargeActivity
 import com.fhhy.phoenix.mine.activity.WithdrawActivity
 import com.fhhy.phoenix.mine.contract.MineContract
@@ -116,7 +117,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
 
             }
             R.id.mivMyBonus -> {//我的赠金
-
+                startActivity(Intent(context, MyBonusActivity::class.java))
             }
             R.id.mivDocumentaryManagement -> {//跟单管理
 

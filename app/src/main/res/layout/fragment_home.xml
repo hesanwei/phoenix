@@ -44,7 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/clMessage">
+        app:layout_constraintTop_toBottomOf="@id/clMessage"
+        app:srlEnableLoadMore="false">
 
         <com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout
             android:layout_width="match_parent"

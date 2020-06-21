@@ -29,6 +29,7 @@
         <activity android:name=".mine.activity.FullAccountDetailActivity" />
         <activity android:name=".mine.activity.CoinAddressActivity" />
         <activity android:name=".mine.activity.AddNewAddressActivity" />
+        <activity android:name=".mine.activity.MyBonusActivity" />
     </application>
 
 </manifest>
