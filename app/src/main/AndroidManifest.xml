@@ -26,6 +26,7 @@
         <activity android:name=".mine.activity.FundsRecordDetailActivity" />
         <activity android:name=".mine.activity.WithdrawActivity" />
         <activity android:name=".mine.activity.RechargeActivity" />
+        <activity android:name=".contractdetail.ContractDetailActivity" />
     </application>
 
 </manifest>

@@ -1,3 +1,4 @@
+include ':KLineChartLib'
 include ':phoenix_lib'
 include ':app'
 rootProject.name = "phoenix"

@@ -1,0 +1,52 @@
+package com.fhhy.phoenix.base
+
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.CallSuper
+import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
+import io.reactivex.disposables.CompositeDisposable
+
+abstract class BaseVBFragment<VB : ViewBinding> : Fragment() {
+
+    private var _binding: VB? = null
+    protected val mBinding get() = _binding!!
+    protected val mCompositeDisposable = CompositeDisposable()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        Log.d("BaseFragment", "onCreateView: ")
+        _binding = getViewBinding(inflater, container)
+        return mBinding.root
+    }
+
+    abstract fun getViewBinding(inflater: LayoutInflater,
+                                container: ViewGroup?): VB
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupViews()
+        setupListeners()
+        setupObservers()
+    }
+
+    protected abstract fun setupViews()
+    protected abstract fun setupListeners()
+    protected abstract fun setupObservers()
+
+    @CallSuper
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        mCompositeDisposable.clear()
+    }
+
+
+}
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="chart_red">#14BB71</color>
+    <color name="chart_green">#F54346</color>
+    <color name="chart_line">#C9933E</color>
+    <color name="chart_line_background">#1aC9933E</color>
+
+    <color name="chart_ma5">#FF9305</color>
+    <color name="chart_ma10">#CE3099</color>
+    <color name="chart_ma30">#3A91E8</color>
+    <color name="chart_white">#ffffff</color>
+
+    <color name="chart_background">#202326</color>
+    <color name="chart_bac">#00FFFFFF</color>
+    <color name="chart_point_bac">#E0F2F1</color>
+    <color name="chart_grid_line">#E8E8E8</color>
+    <color name="chart_grid_row_line">#979797</color>
+    <color name="chart_text">#818596</color>
+    <color name="chart_selector">#E0F2F1</color>
+    <!--选中时 y柱状的color-->
+    <color name="chart_selector_y_line">#66E0F2F1</color>
+    <!--选中时 x横线的color-->
+    <color name="chart_selector_x_line">#66E0F2F1</color>
+    <color name="chart_tab_background">#30343C</color>
+    <color name="chart_tab_indicator">#FF6601</color>
+</resources>

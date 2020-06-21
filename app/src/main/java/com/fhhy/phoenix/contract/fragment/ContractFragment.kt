@@ -7,6 +7,7 @@ import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
 import com.fhhy.phoenix.contract.ContractContract
 import com.fhhy.phoenix.contract.presenter.ContractPresenter
+import com.fhhy.phoenix.contractdetail.ContractDetailActivity
 import com.fhhy.phoenix.login.LoginActivity
 import com.fhhy.phoenix.test.ContractBean
 import com.jaeger.library.StatusBarUtil
@@ -45,7 +46,7 @@ class ContractFragment: BaseMvpFragment<ContractContract.View,ContractContract.P
         }
         // 设置点击事件
         adapter.setOnItemClickListener { adapter, view, position ->
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            startActivity(Intent(requireContext(), ContractDetailActivity::class.java))
         }
 
     }

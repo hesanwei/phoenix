@@ -107,4 +107,17 @@
     <string name="user_guide_for_charging_and_withdrawing_COINS2">《充提币用户指引》</string>
     <string name="cancel">取消</string>
     <string name="ok">确定</string>
+    <string name="fund_rate">资金费率</string>
+    <string name="settle_time">结算时间</string>
+    <string name="high_max">最高</string>
+    <string name="lowest">最低</string>
+    <string name="minutes_one">1分钟</string>
+    <string name="minutes_five">5分钟</string>
+    <string name="minutes_fifteen">15分钟</string>
+    <string name="minutes_thirteen">30分钟</string>
+    <string name="more">更多</string>
+    <string name="quota">指标</string>
+    <string name="long_bullish">开多/看涨</string>
+    <string name="short_bearish">开空/看跌</string>
+    <string name="order">订单</string>
 </resources>
