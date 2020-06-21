@@ -21,7 +21,7 @@ class RechargeActivity : BaseMvpActivity<RechargeContract.View, RechargeContract
     override fun initView() {
         super.initView()
         val title = intent.getStringExtra(FundsAccountDetailActivity.FUNDS_NAME)
-        tvTitle.text = String.format(resources.getString(R.string.coin_withdraw), title)
+        tvTitle.text = String.format(resources.getString(R.string.coin_recharge), title)
         tvRechargeAddress.text =
             String.format(resources.getString(R.string.coin_recharge_address), title)
 

@@ -4,8 +4,12 @@ import android.content.Intent
 import android.view.View
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
+import com.fhhy.phoenix.dialog.CoinSelectDialog
 import com.fhhy.phoenix.login.LoginActivity
 import com.fhhy.phoenix.mine.activity.AccountActivity
+import com.fhhy.phoenix.mine.activity.FundsAccountDetailActivity.Companion.FUNDS_NAME
+import com.fhhy.phoenix.mine.activity.RechargeActivity
+import com.fhhy.phoenix.mine.activity.WithdrawActivity
 import com.fhhy.phoenix.mine.contract.MineContract
 import com.fhhy.phoenix.mine.presenter.MinePresenter
 import com.jaeger.library.StatusBarUtil
@@ -85,10 +89,24 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
                 startActivity(intent)
             }
             R.id.tvRecharge -> {//充值
-
+                CoinSelectDialog(mutableListOf("BTC", "ETH", "USDT"),
+                    object : CoinSelectDialog.OnItemSelectListener {
+                        override fun onItemSelect(coin: String) {
+                            val intent = Intent(context, RechargeActivity::class.java)
+                            intent.putExtra(FUNDS_NAME, coin)
+                            startActivity(intent)
+                        }
+                    }).show(activity!!.supportFragmentManager)
             }
             R.id.tvWithdraw -> {//提币
-
+                CoinSelectDialog(mutableListOf("BTC", "ETH", "USDT"),
+                    object : CoinSelectDialog.OnItemSelectListener {
+                        override fun onItemSelect(coin: String) {
+                            val intent = Intent(context, WithdrawActivity::class.java)
+                            intent.putExtra(FUNDS_NAME, coin)
+                            startActivity(intent)
+                        }
+                    }).show(activity!!.supportFragmentManager)
             }
 
             R.id.tvFundsTransfer -> {//资金划转

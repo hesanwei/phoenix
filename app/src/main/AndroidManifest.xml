@@ -27,6 +27,7 @@
         <activity android:name=".mine.activity.WithdrawActivity" />
         <activity android:name=".mine.activity.RechargeActivity" />
         <activity android:name=".mine.activity.FullAccountDetailActivity" />
+        <activity android:name=".mine.activity.CoinAddressActivity" />
     </application>
 
 </manifest>

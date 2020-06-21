@@ -30,6 +30,7 @@ class CoinSelectDialog(
         }
         coinSelectAdapter.setOnItemClickListener { adapter, view, position ->
             listener.onItemSelect(coinSelectAdapter.data[position])
+            dismiss()
         }
     }
 

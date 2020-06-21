@@ -11,11 +11,11 @@ class AccountFullAdapter : BaseQuickAdapter<String, BaseViewHolder>(R.layout.ite
             setText(R.id.tvCurrency, item)
             setText(
                 R.id.tvOutCurrency,
-                String.format(context.resources.getString(R.string.out_currency), item)
+                String.format(context.resources.getString(R.string.transfer_out_coin), item)
             )
             setText(
                 R.id.tvInCurrency,
-                String.format(context.resources.getString(R.string.in_currency), item)
+                String.format(context.resources.getString(R.string.transfer_in_coin), item)
             )
         }
     }

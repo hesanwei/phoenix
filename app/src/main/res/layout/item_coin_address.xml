@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_space"
+        android:layout_marginTop="20dp"
+        android:text="@string/BTC"
+        android:textColor="@color/text_main_black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="15454654544545454545"
+        android:textColor="@color/text_main_gray"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@id/tvNote"
+        app:layout_constraintTop_toBottomOf="@id/tvNote" />
+
+    <View
+        style="@style/HorizontalGrayLine"
+        android:layout_marginStart="@dimen/horizontal_space"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/tvNote"
+        app:layout_constraintTop_toBottomOf="@id/tvAddress" />
+</androidx.constraintlayout.widget.ConstraintLayout>
