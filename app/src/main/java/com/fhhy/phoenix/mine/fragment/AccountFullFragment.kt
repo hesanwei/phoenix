@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
 import com.fhhy.phoenix.mine.activity.ContractModeSettingActivity
+import com.fhhy.phoenix.mine.activity.FullAccountDetailActivity
+import com.fhhy.phoenix.mine.activity.FundsAccountDetailActivity.Companion.FUNDS_NAME
 import com.fhhy.phoenix.mine.adapter.AccountFullAdapter
 import com.fhhy.phoenix.mine.contract.AccountFullContract
 import com.fhhy.phoenix.mine.presenter.AccountFullPresenter
@@ -62,7 +64,9 @@ class AccountFullFragment :
         }
 
         accountFullAdapter.setOnItemClickListener { adapter, view, position ->
-
+            val intent = Intent(context, FullAccountDetailActivity::class.java)
+            intent.putExtra(FUNDS_NAME,accountFullAdapter.data[position])
+            startActivity(intent)
         }
     }
 

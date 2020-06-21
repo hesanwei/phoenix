@@ -107,4 +107,10 @@
     <string name="user_guide_for_charging_and_withdrawing_COINS2">《充提币用户指引》</string>
     <string name="cancel">取消</string>
     <string name="ok">确定</string>
+    <string name="equity">净值(%s)</string>
+    <string name="unrealized_P_L">未实现盈亏(%s)</string>
+    <string name="margin_rate">保证金率</string>
+    <string name="available_margin">可用保证金</string>
+    <string name="transfer_in_coin">转入%s</string>
+    <string name="transfer_out_coin">转出%s</string>
 </resources>
