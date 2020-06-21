@@ -113,5 +113,7 @@
     <string name="transfer_out_coin">转出%s</string>
     <string name="coin_withdraw_address">%s提币地址</string>
     <string name="add_new_address">添加新地址</string>
+    <string name="add">添加</string>
+    <string name="add_coin_address">添加%s地址</string>
 
 </resources>

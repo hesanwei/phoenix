@@ -28,6 +28,7 @@
         <activity android:name=".mine.activity.RechargeActivity" />
         <activity android:name=".mine.activity.FullAccountDetailActivity" />
         <activity android:name=".mine.activity.CoinAddressActivity" />
+        <activity android:name=".mine.activity.AddNewAddressActivity" />
     </application>
 
 </manifest>
