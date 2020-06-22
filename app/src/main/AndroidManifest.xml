@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -31,6 +33,7 @@
         <activity android:name=".mine.activity.AddNewAddressActivity" />
         <activity android:name=".mine.activity.MyBonusActivity" />
         <activity android:name=".contractdetail.ContractDetailActivity" />
+        <activity android:name=".mine.activity.ScanQRCodeActivity" />
 
     </application>
 
