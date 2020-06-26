@@ -25,4 +25,8 @@
     <color name="color_bg_withdraw">#FEF8EF</color>
     <color name="red">#FF0000</color>
     <color name="gray_555">#555555</color>
+    <color name="pop_selected_color">#007AFF</color>
+    <color name="pop_unselected_color">#000000</color>
+    <color name="color_title_normal">#7A8189</color>
+    <color name="color_title_selected">#000000</color>
 </resources>
