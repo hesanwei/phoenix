@@ -131,4 +131,18 @@
     <string name="about_bonus">关于赠金</string>
     <string name="history">历史</string>
     <string name="be_use">待使用</string>
+    <string name="entrust_record">委托记录</string>
+    <string name="in_position">持仓中</string>
+    <string name="share">分享</string>
+    <string name="open_position_average">开仓均价</string>
+    <string name="current_price">当前价</string>
+    <string name="total_trade_amount">交易总金额</string>
+    <string name="margin">保证金</string>
+    <string name="stop_gain_trigger_price">止盈触发价</string>
+    <string name="funds_cost">资金费用</string>
+    <string name="stop_trigger_price">止损触发价</string>
+    <string name="open_position_time">开仓时间</string>
+    <string name="forecast_strong_parity">预估强平价</string>
+    <string name="check_full_stop">止盈止损</string>
+    <string name="close_position">平仓</string>
 </resources>
