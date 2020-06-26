@@ -131,5 +131,32 @@
     <string name="about_bonus">关于赠金</string>
     <string name="history">历史</string>
     <string name="be_use">待使用</string>
+    <string name="main_map">主图</string>
+    <string name="second_map">副图</string>
+    <string name="quota_settings">指标设置</string>
+    <string name="hour_one">1小时</string>
+    <string name="hour_four">4小时</string>
+    <string name="one_day">1天</string>
+    <string name="latest_deal">最新成交</string>
+    <string name="delegate_list">委托列表</string>
+    <string name="contract_info">合约信息</string>
+    <string name="deal_time">成交时间</string>
+    <string name="deal_direction">方向</string>
+    <string name="deal_price">成交价格</string>
+    <string name="deal_count">数量/BTC</string>
+    <string name="direction_long">做多</string>
+    <string name="direction_short">做空</string>
+    <string name="long_count">做多数量</string>
+    <string name="delegate_price">价格(1位小数)</string>
+    <string name="short_count">做空数量</string>
+    <string name="look_more">查看更多</string>
+    <string name="price_source">价格来源</string>
+    <string name="exchange_location">交易所</string>
+    <string name="latest_price">最新价格</string>
+    <string name="trade_info">交易信息</string>
+    <string name="margin">保证金</string>
+    <string name="max_leverage">最大杠杆</string>
+    <string name="max_position">最大持仓</string>
+    <string name="weight">权重</string>
 
 </resources>

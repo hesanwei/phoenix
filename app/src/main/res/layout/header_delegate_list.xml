@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/long_count"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="6dp"
+        android:paddingTop="12dp"
+        android:paddingStart="16dp"
+        android:textColor="@color/text_main_gray"
+        android:textSize="12sp"
+        android:text="@string/long_count"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.28"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_main_gray"
+        android:textSize="12sp"
+        android:text="@string/delegate_price"
+        android:gravity="center"
+        android:paddingBottom="6dp"
+        android:paddingTop="12dp"
+        app:layout_constraintStart_toEndOf="@+id/long_count"
+        app:layout_constraintEnd_toStartOf="@+id/short_count"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/short_count"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingEnd="16dp"
+        android:paddingBottom="6dp"
+        android:paddingTop="12dp"
+        android:textColor="@color/text_main_gray"
+        android:textSize="12sp"
+        android:gravity="end"
+        android:text="@string/short_count"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.28"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
