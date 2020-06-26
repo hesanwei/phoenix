@@ -171,4 +171,7 @@
     <string name="max_leverage">最大杠杆</string>
     <string name="max_position">最大持仓</string>
     <string name="weight">权重</string>
+    <string name="PL">盈亏</string>
+    <string name="close_position_average">平仓均价</string>
+    <string name="close_position_time">平仓时间</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.fhhy.phoenix.contractdetail
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseVBFragment
+import com.fhhy.phoenix.contract.activity.OrderActivity
 import com.fhhy.phoenix.contractdetail.adapter.ViewPagerAdapter
 import com.fhhy.phoenix.contractdetail.delegate.DelegateListFragment
 import com.fhhy.phoenix.contractdetail.lastestdeal.ContractInfoFragment
@@ -150,6 +152,10 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
             morePopWindow
                 .setOffsetX(mBinding.optionGroup.more.measuredWidth - 88.dp)
                 .showPopupWindow(mBinding.optionGroup.more)
+        }
+
+        mBinding.optionBottom.btnOrder.noDoubleClick {
+            startActivity(Intent(context, OrderActivity::class.java))
         }
     }
 

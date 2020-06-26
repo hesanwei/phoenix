@@ -40,7 +40,7 @@
         android:paddingHorizontal="@dimen/horizontal_space"
         android:text="@string/entrust_record"
         android:textColor="@color/text_main_black"
-        android:textSize="17sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/tvTitle"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvTitle" />

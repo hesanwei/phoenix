@@ -63,6 +63,8 @@
 
     </com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout>
 
-    <include layout="@layout/fragment_contract_bottom" />
+    <include
+        android:id="@+id/option_bottom"
+        layout="@layout/fragment_contract_bottom" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
