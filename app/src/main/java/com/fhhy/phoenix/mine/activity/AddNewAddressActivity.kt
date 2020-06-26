@@ -1,14 +1,17 @@
 package com.fhhy.phoenix.mine.activity
 
+import android.content.Intent
 import android.view.View
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpActivity
 import com.fhhy.phoenix.mine.activity.FundsAccountDetailActivity.Companion.FUNDS_NAME
 import com.fhhy.phoenix.mine.contract.AddNewAddressContract
 import com.fhhy.phoenix.mine.presenter.AddNewsAddressPresenter
+import com.fhhy.phoenix.utils.QRCodeUtils
 import com.jaeger.library.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_add_new_address.*
 import setViewClickListener
+import showToast
 
 // Created by admin on 2020/6/21.
 class AddNewAddressActivity :
@@ -39,8 +42,34 @@ class AddNewAddressActivity :
             }
 
             R.id.ibScan -> {
-
+                QRCodeUtils.jumpToScanActivity(this, REQUEST_CODE, PERMISSION_CODE)
             }
         }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_CODE) {
+            QRCodeUtils.jumpToScanActivity(this, REQUEST_CODE, PERMISSION_CODE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE) {
+            if (data != null) {
+                val result = data.getStringExtra("result")
+                showToast("扫码结果=$result")
+            }
+        }
+    }
+
+    companion object {
+        private const val REQUEST_CODE = 0x001
+        private const val PERMISSION_CODE = 0x002
     }
 }

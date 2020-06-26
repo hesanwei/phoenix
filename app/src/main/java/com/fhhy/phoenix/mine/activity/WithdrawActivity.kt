@@ -9,6 +9,7 @@ import com.fhhy.phoenix.dialog.RechargeWithdrawGuideDialog
 import com.fhhy.phoenix.mine.activity.FundsAccountDetailActivity.Companion.FUNDS_NAME
 import com.fhhy.phoenix.mine.contract.WithdrawContract
 import com.fhhy.phoenix.mine.presenter.WithdrawPresenter
+import com.fhhy.phoenix.utils.QRCodeUtils
 import kotlinx.android.synthetic.main.activity_withdraw.*
 import setViewClickListener
 import showToast
@@ -16,8 +17,6 @@ import showToast
 // Created by admin on 2020/6/20.
 class WithdrawActivity : BaseMvpActivity<WithdrawContract.View, WithdrawContract.Presenter>(),
     WithdrawContract.View, View.OnClickListener {
-    private val REQUEST_CODE = 0x333
-    private val PERMISS_REQUEST_CODE = 0x356
     private var title: String? = ""
 
     override fun createPresenter(): WithdrawContract.Presenter = WithdrawPresenter()
@@ -69,15 +68,7 @@ class WithdrawActivity : BaseMvpActivity<WithdrawContract.View, WithdrawContract
 
 
     private fun jumpToScanQRCode() {
-        if (checkPermissions(arrayOf(Manifest.permission.CAMERA, Manifest.permission.VIBRATE))) {
-            val intent = Intent(this@WithdrawActivity, ScanQRCodeActivity::class.java)
-            startActivityForResult(intent, REQUEST_CODE)
-        } else {
-            requestPermission(
-                arrayOf(Manifest.permission.CAMERA, Manifest.permission.VIBRATE),
-                PERMISS_REQUEST_CODE
-            )
-        }
+        QRCodeUtils.jumpToScanActivity(this, REQUEST_CODE, PERMISSION_REQUEST_CODE)
     }
 
     override fun onRequestPermissionsResult(
@@ -86,19 +77,23 @@ class WithdrawActivity : BaseMvpActivity<WithdrawContract.View, WithdrawContract
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISS_REQUEST_CODE) {
-            val intent = Intent(this, ScanQRCodeActivity::class.java)
-            startActivityForResult(intent, REQUEST_CODE)
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            jumpToScanQRCode()
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode==REQUEST_CODE){
-            if (data!=null){
-                val result=data.getStringExtra("result")
+        if (requestCode == REQUEST_CODE) {
+            if (data != null) {
+                val result = data.getStringExtra("result")
                 showToast("扫码结果=$result")
             }
         }
+    }
+
+    companion object {
+        private const val REQUEST_CODE = 0x333
+        private const val PERMISSION_REQUEST_CODE = 0x356
     }
 }
