@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_main_black"
+        android:text="@string/price_source"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        android:drawableEnd="@drawable/ic_tips_gray"
+        android:gravity="center_vertical"
+        android:drawablePadding="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/exchange_location"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingStart="16dp"
+        android:textColor="@color/text_main_gray"
+        android:textSize="12sp"
+        android:text="@string/exchange_location"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.28"
+        app:layout_constraintTop_toBottomOf="@+id/title_price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_main_gray"
+        android:textSize="12sp"
+        android:text="@string/weight"
+        android:gravity="center"
+        android:paddingTop="15dp"
+        app:layout_constraintStart_toEndOf="@+id/exchange_location"
+        app:layout_constraintEnd_toStartOf="@+id/latest_price"
+        app:layout_constraintTop_toBottomOf="@+id/title_price"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/latest_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingEnd="16dp"
+        android:paddingTop="15dp"
+        android:textColor="@color/text_main_gray"
+        android:textSize="12sp"
+        android:gravity="end"
+        android:text="@string/latest_price"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.28"
+        app:layout_constraintTop_toBottomOf="@+id/title_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

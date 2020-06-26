@@ -1,9 +1,12 @@
 import android.app.Activity
 import android.content.Context
+import android.content.res.Resources
 import android.text.TextUtils
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.fhhy.phoenix.R
 import com.fhhy.phoenix.toast.ToastUtil
 import com.fhhy.phoenix.utils.FormatUtil
 import com.jakewharton.rxbinding4.view.clicks
@@ -77,6 +80,24 @@ fun Fragment.setViewClickListener(listener: View.OnClickListener, vararg views: 
 
 fun Float.format(): String = FormatUtil.getNumberFormat().format(this)
 
-inline fun View.noDoubleClick(crossinline clickAction: () -> Unit) : Disposable = clicks().throttleFirst(400, TimeUnit.MILLISECONDS)
-    .observeOn(io.reactivex.rxjava3.android.schedulers.AndroidSchedulers.mainThread())
-    .subscribe { clickAction() }
+inline fun View.noDoubleClick(crossinline clickAction: () -> Unit): Disposable =
+    clicks().throttleFirst(400, TimeUnit.MILLISECONDS)
+        .observeOn(io.reactivex.rxjava3.android.schedulers.AndroidSchedulers.mainThread())
+        .subscribe { clickAction() }
+
+val Float.dp: Float                 // [xxhdpi](360 -> 1080)
+    get() = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics
+    )
+
+val Int.dp: Int
+    get() = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), Resources.getSystem().displayMetrics
+    ).toInt()
+
+//获取颜色 通过boolean值 是涨还是跌
+fun Context.getTextColor(up: Boolean): Int =
+    if (up)
+        resources.getColor(R.color.currency_up_color)
+    else
+        resources.getColor(R.color.currency_down_color)
