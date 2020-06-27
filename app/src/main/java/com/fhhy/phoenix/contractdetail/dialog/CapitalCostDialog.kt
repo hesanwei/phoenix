@@ -8,7 +8,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.fhhy.phoenix.R
 
 /**
- * Created by hecuncun on 2020/6/27
  * 资金费用
  */
 class CapitalCostDialog : FullScreenDialogFragment() {

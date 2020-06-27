@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.8dp"
-        android:background="#E8E8E8"/>
+        android:background="#E8E8E8" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="10dp"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="16dp"
-            android:layout_height="0dp" />
+        android:paddingVertical="10dp">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btn_long_bullish"
             android:layout_width="0dp"
             android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_weight="1"
             android:background="@drawable/bg_btn_currency_up"
             android:gravity="center"
             android:text="@string/long_bullish"
-            android:layout_marginEnd="16dp"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_short_bearish"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginEnd="0dp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btn_short_bearish"
@@ -39,23 +41,28 @@
             android:gravity="center"
             android:text="@string/short_bearish"
             android:textColor="@color/white"
-            android:textSize="16sp" />
-
-        <View
-            android:layout_width="8dp"
-            android:layout_height="0dp" />
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_order"
+            app:layout_constraintStart_toEndOf="@+id/btn_long_bullish"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginStart="16dp" />
 
         <TextView
             android:id="@+id/btn_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:background="?selectableItemBackground"
             android:drawableTop="@drawable/ic_contract_order"
             android:gravity="center"
-            android:paddingHorizontal="8dp"
             android:paddingVertical="2dp"
-            android:text="@string/order" />
-    </LinearLayout>
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@string/order"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_short_bearish"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

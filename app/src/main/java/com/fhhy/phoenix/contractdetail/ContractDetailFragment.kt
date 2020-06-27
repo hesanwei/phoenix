@@ -86,27 +86,12 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
             fragments
         )
     }
-//初始化dialog
-    private val capitalRateDialog:CapitalRateDialog by lazy {
+
+    //资金费率dialog
+    private val capitalRateDialog: CapitalRateDialog by lazy {
         CapitalRateDialog.newInstance()
     }
-    private val estimateFinalPriceDialog:EstimateFinalPriceDialog by lazy {
-        EstimateFinalPriceDialog.newInstance()
-    }
 
-    private val marketPriceDialog:MarketPriceDialog by lazy {
-        MarketPriceDialog.newInstance()
-    }
-    private val planDelegateDesDialog:PlanDelegateDesDialog by lazy {
-        PlanDelegateDesDialog.newInstance()
-    }
-    private val stopProfitLossDesDialog:StopProfitLossDesDialog by lazy {
-        StopProfitLossDesDialog.newInstance()
-    }
-
-    private val capitalCostDialog:CapitalCostDialog by lazy {
-        CapitalCostDialog.newInstance("0.042%","-3.15")
-    }
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -116,6 +101,9 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
     override fun setupViews() {
         StatusBarUtil.setTransparentForImageView(activity, mBinding.appBar.root)
         StatusBarUtil.setLightMode(activity)
+
+        mBinding.head.fundRate.underline()
+
         //kLineChartView
         mBinding.kLineChartView.adapter = kLineAdapter
         mBinding.kLineChartView.dateTimeFormatter = DateFormatter()
@@ -184,12 +172,6 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
             }
         }
 
-        mBinding.head.fundRate.underline()
-        addDisposable {
-            mBinding.head.fundRate.noDoubleClick {
-
-            }
-        }
         addDisposable {
             mBinding.optionGroup.quota.noDoubleClick {
                 quotaPopWindow.showPopupWindow(mBinding.optionGroup.quota)
@@ -224,6 +206,19 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
                 }
             }
         }
+
+        addDisposable {
+            mBinding.bottom.btnOrder.noDoubleClick {
+                startActivity(Intent(context, OrderActivity::class.java))
+            }
+        }
+
+        addDisposable {
+            mBinding.head.fundRate.noDoubleClick {
+                capitalRateDialog.show(requireActivity().supportFragmentManager, "capitalRate")
+            }
+        }
+
     }
 
     fun switchMode() {
@@ -246,7 +241,6 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
                 switchLongOrShortTab(showLong)
             }
         }
-
     }
 
     fun refreshLongShortVisible(showLong: Boolean) {
@@ -262,23 +256,7 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
             }
         }
 
-        mBinding.optionBottom.btnOrder.noDoubleClick {
-            startActivity(Intent(context, OrderActivity::class.java))
-        }
 
-        mBinding.head.fundRate.noDoubleClick {
-            capitalRateDialog.show(requireActivity().supportFragmentManager,"capitalRate")
-        }
-        mBinding.head.currPrice.noDoubleClick {
-            marketPriceDialog.show(requireActivity().supportFragmentManager,"marketPrice")
-        }
-        mBinding.head.currencyTrendPercent.noDoubleClick {
-            //todo 测试显示各种dialog
-           // capitalCostDialog.show(requireActivity().supportFragmentManager,"capitalCost")
-           // estimateFinalPriceDialog.show(requireActivity().supportFragmentManager,"estimateFinalPrice")
-           // planDelegateDesDialog.show(requireActivity().supportFragmentManager,"planDelegateDes")
-           // stopProfitLossDesDialog.show(requireActivity().supportFragmentManager,"stopProfitLossDes")
-        }
     }
 
     override fun setupObservers() {

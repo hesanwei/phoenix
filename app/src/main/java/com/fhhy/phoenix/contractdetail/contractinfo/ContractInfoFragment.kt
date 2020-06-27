@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseVBFragment
 import com.fhhy.phoenix.contractdetail.contractinfo.ContractInfoAdapter
+import com.fhhy.phoenix.contractdetail.dialog.MarketPriceDialog
 import com.fhhy.phoenix.databinding.FragmentContractInfoBinding
 import com.fhhy.phoenix.databinding.FragmentLatestDealBinding
 import com.fhhy.phoenix.test.PriceSourceBean
@@ -15,6 +17,10 @@ class ContractInfoFragment : BaseVBFragment<FragmentContractInfoBinding>() {
 
     private val mAdapter: ContractInfoAdapter by lazy {
         ContractInfoAdapter()
+    }
+
+    private val marketPriceDialog: MarketPriceDialog by lazy {
+        MarketPriceDialog.newInstance()
     }
 
     override fun getViewBinding(
@@ -28,9 +34,17 @@ class ContractInfoFragment : BaseVBFragment<FragmentContractInfoBinding>() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = mAdapter
         }
+
+        mAdapter.addChildClickViewIds(R.id.title_price)
+        mAdapter.setOnItemChildClickListener { adapter, view, position ->
+            if (view.id == R.id.title_price) {
+                marketPriceDialog.show(requireFragmentManager(), "marketPriceDialog")
+            }
+        }
     }
 
     override fun setupListeners() {
+
     }
 
     override fun setupObservers() {

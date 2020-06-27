@@ -9,6 +9,10 @@ import com.fhhy.phoenix.base.BaseVBFragment
 import com.fhhy.phoenix.contractdetail.AccountSelectDialog
 import com.fhhy.phoenix.contractdetail.ContractDetailFragment
 import com.fhhy.phoenix.contractdetail.bean.AccountTypeBean
+import com.fhhy.phoenix.contractdetail.dialog.CapitalCostDialog
+import com.fhhy.phoenix.contractdetail.dialog.EstimateFinalPriceDialog
+import com.fhhy.phoenix.contractdetail.dialog.PlanDelegateDesDialog
+import com.fhhy.phoenix.contractdetail.dialog.StopProfitLossDesDialog
 import com.fhhy.phoenix.databinding.FragmentCreateOrderBinding
 import noDoubleClick
 import showToast
@@ -26,6 +30,26 @@ class CreateOrderFragment : BaseVBFragment<FragmentCreateOrderBinding>() {
     }
 
     private var isLong: Boolean = true
+
+    //预计成交价dialog
+    private val estimateFinalPriceDialog: EstimateFinalPriceDialog by lazy {
+        EstimateFinalPriceDialog.newInstance()
+    }
+
+    //计划委托说明dialog
+    private val planDelegateDesDialog: PlanDelegateDesDialog by lazy {
+        PlanDelegateDesDialog.newInstance()
+    }
+
+    //止盈止损说明
+    private val stopProfitLossDesDialog: StopProfitLossDesDialog by lazy {
+        StopProfitLossDesDialog.newInstance()
+    }
+
+    //资金费用
+    private val capitalCostDialog: CapitalCostDialog by lazy {
+        CapitalCostDialog.newInstance("0.042%", "-3.15")
+    }
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -54,6 +78,11 @@ class CreateOrderFragment : BaseVBFragment<FragmentCreateOrderBinding>() {
             }
         }
         addDisposable {
+            mBinding.bottomContainer.tvEstimated.noDoubleClick {
+                estimateFinalPriceDialog.show(requireActivity().supportFragmentManager,"estimateFinalPrice")
+            }
+        }
+        addDisposable {
             mBinding.longShortSwitchContainer.radioClose.noDoubleClick {
                 if (isLong) {
                     switchLongOrShortTab(false)
@@ -69,11 +98,6 @@ class CreateOrderFragment : BaseVBFragment<FragmentCreateOrderBinding>() {
         addDisposable {
             mBinding.bottomContainer.tvRecharge.noDoubleClick {
                 showToast("重置")
-            }
-        }
-        addDisposable {
-            mBinding.bottomContainer.tvEstimated.noDoubleClick {
-                showToast("预计成交价")
             }
         }
 

@@ -8,7 +8,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.fhhy.phoenix.R
 
 /**
- * Created by hecuncun on 2020/6/27
  * 止盈止损说明
  */
 class StopProfitLossDesDialog : FullScreenDialogFragment() {
