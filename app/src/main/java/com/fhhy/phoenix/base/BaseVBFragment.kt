@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
+
+typealias Block = () -> Disposable
 
 abstract class BaseVBFragment<VB : ViewBinding> : Fragment() {
 
@@ -26,14 +29,20 @@ abstract class BaseVBFragment<VB : ViewBinding> : Fragment() {
         return mBinding.root
     }
 
-    abstract fun getViewBinding(inflater: LayoutInflater,
-                                container: ViewGroup?): VB
+    abstract fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): VB
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
         setupListeners()
         setupObservers()
+    }
+
+    protected fun addDisposable(block: Block) {
+        mCompositeDisposable.add(block.invoke())
     }
 
     protected abstract fun setupViews()

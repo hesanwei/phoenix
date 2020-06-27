@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseVBFragment
 import com.fhhy.phoenix.contractdetail.adapter.ViewPagerAdapter
+import com.fhhy.phoenix.contractdetail.createorder.CreateOrderFragment
 import com.fhhy.phoenix.contractdetail.delegate.DelegateListFragment
 import com.fhhy.phoenix.contractdetail.lastestdeal.ContractInfoFragment
 import com.fhhy.phoenix.contractdetail.lastestdeal.LatestDealFragment
@@ -21,8 +23,7 @@ import com.github.fujianlian.klinechart.KLineEntity
 import com.github.fujianlian.klinechart.formatter.DateFormatter
 import com.jaeger.library.StatusBarUtil
 import dp
-import io.reactivex.android.schedulers.AndroidSchedulers
-import kotlinx.android.synthetic.main.fragment_contract.*
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import net.lucode.hackware.magicindicator.ViewPagerHelper
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
@@ -31,10 +32,12 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTit
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView
 import noDoubleClick
+import underline
 
 
 class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
 
+    private var isNormal: Boolean = true
     private val viewModel: ContractDetailViewModel by lazy {
         ViewModelProvider(this, ContractDetailViewModel.Factory(requireActivity().application)).get(
             ContractDetailViewModel::class.java
@@ -53,6 +56,9 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
 
     private val commonNavigator: CommonNavigator by lazy {
         CommonNavigator(requireContext())
+    }
+    private val createOrderFragment by lazy {
+        CreateOrderFragment.create()
     }
     private val titles by lazy {
         listOf(
@@ -96,6 +102,17 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
         mBinding.kLineChartView.justShowLoading()
 
 
+        mBinding.kLineChartViewTwo.adapter = kLineAdapter
+        mBinding.kLineChartViewTwo.dateTimeFormatter = DateFormatter()
+        mBinding.kLineChartViewTwo.setGridRows(4)
+        mBinding.kLineChartViewTwo.setGridColumns(4)
+
+        mBinding.kLineChartViewTwo.justShowLoading()
+        //replace some fragment
+        childFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_container, createOrderFragment, CreateOrderFragment.TAG)
+            commit()
+        }
         //indicator And viewPager
         initViewPager()
 
@@ -138,18 +155,88 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
     }
 
     override fun setupListeners() {
-        mBinding.appBar.btnBack.noDoubleClick {
-            requireActivity().finish()
+        addDisposable {
+            mBinding.appBar.btnBack.noDoubleClick {
+                requireActivity().finish()
+            }
         }
 
-        mBinding.optionGroup.quota.noDoubleClick {
-            quotaPopWindow.showPopupWindow(mBinding.optionGroup.quota)
-        }
-        mBinding.optionGroup.more.noDoubleClick {
+        mBinding.head.fundRate.underline()
+        addDisposable {
+            mBinding.head.fundRate.noDoubleClick {
 
-            morePopWindow
-                .setOffsetX(mBinding.optionGroup.more.measuredWidth - 88.dp)
-                .showPopupWindow(mBinding.optionGroup.more)
+            }
+        }
+        addDisposable {
+            mBinding.optionGroup.quota.noDoubleClick {
+                quotaPopWindow.showPopupWindow(mBinding.optionGroup.quota)
+            }
+        }
+
+        addDisposable {
+            mBinding.optionGroup.more.noDoubleClick {
+                morePopWindow
+                    .setOffsetX(mBinding.optionGroup.more.measuredWidth - 88.dp)
+                    .showPopupWindow(mBinding.optionGroup.more)
+            }
+        }
+        addDisposable {
+            mBinding.bottom.btnLongBullish.noDoubleClick {
+                if (isNormal) {
+                    hideLongOrShort(true)
+                    switchMode()
+                } else {
+                    commitOrder()
+                }
+            }
+        }
+
+        addDisposable {
+            mBinding.bottom.btnShortBearish.noDoubleClick {
+                if (isNormal) {
+                    hideLongOrShort(false)
+                    switchMode()
+                } else {
+                    commitOrder()
+                }
+            }
+        }
+    }
+
+    fun switchMode() {
+        isNormal = isNormal.not()
+        mBinding.head.root.isVisible = isNormal
+        mBinding.topDivider.isVisible = isNormal
+        mBinding.secondDivider.isVisible = isNormal
+        mBinding.scrollContainer.isVisible = isNormal
+        mBinding.llContainer.isVisible = !isNormal
+        if (isNormal) {
+            mBinding.bottom.btnLongBullish.isVisible = true
+            mBinding.bottom.btnShortBearish.isVisible = true
+        }
+    }
+
+    private fun hideLongOrShort(showLong: Boolean) {
+        val fragment = childFragmentManager.findFragmentByTag(CreateOrderFragment.TAG)
+        fragment?.run {
+            if (this is CreateOrderFragment) {
+                switchLongOrShortTab(showLong)
+            }
+        }
+
+    }
+
+    fun refreshLongShortVisible(showLong: Boolean) {
+        mBinding.bottom.btnLongBullish.isVisible = showLong
+        mBinding.bottom.btnShortBearish.isVisible = !showLong
+    }
+
+    private fun commitOrder() {
+        val fragment = childFragmentManager.findFragmentByTag(CreateOrderFragment.TAG)
+        fragment?.run {
+            if (this is CreateOrderFragment) {
+                commitOrder()
+            }
         }
     }
 
@@ -168,6 +255,9 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
         kLineAdapter.notifyDataSetChanged()
         mBinding.kLineChartView.startAnimation()
         mBinding.kLineChartView.refreshEnd()
+
+        mBinding.kLineChartViewTwo.startAnimation()
+        mBinding.kLineChartViewTwo.refreshEnd()
     }
 
     companion object {

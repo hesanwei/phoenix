@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         app:barrierDirection="start"
         app:constraint_referenced_ids="fund_rate_value,settle_time_value"/>
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fund_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

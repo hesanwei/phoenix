@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="10dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_container"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/bg_create_order_trigger_edit"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rg_margin_percent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="20dp"
+            android:text="@string/margin"
+            android:textColor="@color/text_main_black"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="0.5dp"
+            android:background="@color/color_divider_gray"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/margin_edit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:textColor="@color/text_main_black"
+            android:hint="@string/please_enter"
+            android:textColorHint="@color/text_main_gray"
+            android:layout_weight="1"
+            android:background="@null"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <RadioGroup
+        android:id="@+id/rg_margin_percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="@id/ll_container"
+        app:layout_constraintBottom_toBottomOf="@id/ll_container"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/margin_percent_ten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="10%"
+            android:button="@null"
+            android:checked="true"
+            android:layout_marginStart="10dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:gravity="center"
+            android:background="@drawable/bg_create_order_margin_rb_item"
+            android:textColor="@color/withdraw_way_text_color_selector"
+            android:textSize="@dimen/create_order_rb_text_size"/>
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/margin_percent_twenty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="20%"
+            android:layout_marginStart="10dp"
+
+            android:button="@null"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:gravity="center"
+            android:background="@drawable/bg_create_order_margin_rb_item"
+            android:textColor="@color/withdraw_way_text_color_selector"
+            android:textSize="@dimen/create_order_rb_text_size"/>
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/margin_percent_fifty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="50%"
+            android:layout_marginStart="10dp"
+
+            android:button="@null"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:gravity="center"
+            android:background="@drawable/bg_create_order_margin_rb_item"
+            android:textColor="@color/withdraw_way_text_color_selector"
+            android:textSize="@dimen/create_order_rb_text_size"/>
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/margin_percent_hundred"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="100%"
+            android:button="@null"
+            android:layout_marginStart="10dp"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:gravity="center"
+            android:background="@drawable/bg_create_order_margin_rb_item"
+            android:textColor="@color/withdraw_way_text_color_selector"
+            android:textSize="@dimen/create_order_rb_text_size"/>
+    </RadioGroup>
+</androidx.constraintlayout.widget.ConstraintLayout>

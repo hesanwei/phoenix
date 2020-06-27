@@ -26,12 +26,9 @@
             android:background="@drawable/bg_btn_currency_up"
             android:gravity="center"
             android:text="@string/long_bullish"
+            android:layout_marginEnd="16dp"
             android:textColor="@color/white"
             android:textSize="16sp" />
-
-        <View
-            android:layout_width="16dp"
-            android:layout_height="0dp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btn_short_bearish"

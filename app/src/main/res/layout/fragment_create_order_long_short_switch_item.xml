@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/radio_open"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1"
+        android:background="?selectableItemBackground"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp_10">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_long"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/open"
+            android:background="@drawable/bg_create_order_custom_rb"
+            android:textColor="@color/currency_up_color"
+            android:textSize="13sp" />
+
+        <View
+            android:id="@+id/long_selected"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/currency_up_color" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/radio_close"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="10dp"
+        android:layout_weight="1"
+        android:background="?selectableItemBackground"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp_10">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_short"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/close"
+            android:textColor="@color/text_main_gray"
+            android:textSize="13sp" />
+
+        <View
+            android:id="@+id/short_selected"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/currency_down_color"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="16dp"
+        android:background="#E8E8E8" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_hide_create_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginHorizontal="12dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:paddingHorizontal="4dp"
+        android:src="@drawable/ic_create_order_hide" />
+</androidx.appcompat.widget.LinearLayoutCompat>

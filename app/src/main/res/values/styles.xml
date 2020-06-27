@@ -29,7 +29,7 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
-    <style name="BottomDialog" parent="@android:style/Theme.Dialog">
+    <style name="BottomDialog" parent="@style/Theme.AppCompat.Dialog">
         <item name="android:windowTitleStyle">@null</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
