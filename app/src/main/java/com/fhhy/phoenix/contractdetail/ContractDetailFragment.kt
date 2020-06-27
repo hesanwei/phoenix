@@ -1,6 +1,7 @@
 package com.fhhy.phoenix.contractdetail
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,9 +11,11 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseVBFragment
+import com.fhhy.phoenix.contract.activity.OrderActivity
 import com.fhhy.phoenix.contractdetail.adapter.ViewPagerAdapter
 import com.fhhy.phoenix.contractdetail.createorder.CreateOrderFragment
 import com.fhhy.phoenix.contractdetail.delegate.DelegateListFragment
+import com.fhhy.phoenix.contractdetail.dialog.*
 import com.fhhy.phoenix.contractdetail.lastestdeal.ContractInfoFragment
 import com.fhhy.phoenix.contractdetail.lastestdeal.LatestDealFragment
 import com.fhhy.phoenix.contractdetail.pop.QuotaPopWindow
@@ -83,7 +86,27 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
             fragments
         )
     }
+//初始化dialog
+    private val capitalRateDialog:CapitalRateDialog by lazy {
+        CapitalRateDialog.newInstance()
+    }
+    private val estimateFinalPriceDialog:EstimateFinalPriceDialog by lazy {
+        EstimateFinalPriceDialog.newInstance()
+    }
 
+    private val marketPriceDialog:MarketPriceDialog by lazy {
+        MarketPriceDialog.newInstance()
+    }
+    private val planDelegateDesDialog:PlanDelegateDesDialog by lazy {
+        PlanDelegateDesDialog.newInstance()
+    }
+    private val stopProfitLossDesDialog:StopProfitLossDesDialog by lazy {
+        StopProfitLossDesDialog.newInstance()
+    }
+
+    private val capitalCostDialog:CapitalCostDialog by lazy {
+        CapitalCostDialog.newInstance("0.042%","-3.15")
+    }
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -237,6 +260,24 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
             if (this is CreateOrderFragment) {
                 commitOrder()
             }
+        }
+
+        mBinding.optionBottom.btnOrder.noDoubleClick {
+            startActivity(Intent(context, OrderActivity::class.java))
+        }
+
+        mBinding.head.fundRate.noDoubleClick {
+            capitalRateDialog.show(requireActivity().supportFragmentManager,"capitalRate")
+        }
+        mBinding.head.currPrice.noDoubleClick {
+            marketPriceDialog.show(requireActivity().supportFragmentManager,"marketPrice")
+        }
+        mBinding.head.currencyTrendPercent.noDoubleClick {
+            //todo 测试显示各种dialog
+           // capitalCostDialog.show(requireActivity().supportFragmentManager,"capitalCost")
+           // estimateFinalPriceDialog.show(requireActivity().supportFragmentManager,"estimateFinalPrice")
+           // planDelegateDesDialog.show(requireActivity().supportFragmentManager,"planDelegateDes")
+           // stopProfitLossDesDialog.show(requireActivity().supportFragmentManager,"stopProfitLossDes")
         }
     }
 

@@ -12,7 +12,6 @@ import com.jaeger.library.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_funds_account_detail.*
 import kotlinx.android.synthetic.main.layout_no_data.*
 import setViewClickListener
-import showToast
 
 // Created by admin on 2020/6/14.
 class FundsAccountDetailActivity :

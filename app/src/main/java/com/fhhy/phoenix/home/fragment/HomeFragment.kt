@@ -1,10 +1,12 @@
 package com.fhhy.phoenix.home.fragment
 
+import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
 import com.fhhy.phoenix.contract.fragment.ContractAdapter
+import com.fhhy.phoenix.contractdetail.ContractDetailActivity
 import com.fhhy.phoenix.home.HomeContract
 import com.fhhy.phoenix.home.adapter.BannerAdapter
 import com.fhhy.phoenix.home.adapter.NoticeMarqueeAdapter
@@ -54,6 +56,9 @@ class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(
             layoutManager = LinearLayoutManager(context)
             adapter = homeContractAdapter
         }
+        homeContractAdapter.setOnItemClickListener { adapter, view, position ->
+            startActivity(Intent(requireContext(), ContractDetailActivity::class.java))
+        }
     }
 
     private fun initBannerView() {
@@ -64,7 +69,7 @@ class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(
     override fun lazyLoad() {
         val testData = arrayListOf<ContractBean>()
         for (i in 1..10) {
-            testData.add(ContractBean("ETH", 9987.5f/i, 1.00f/i))
+            testData.add(ContractBean("ETH", 9987.5f / i, 1.00f / i))
         }
         homeContractAdapter.data.addAll(testData)
     }

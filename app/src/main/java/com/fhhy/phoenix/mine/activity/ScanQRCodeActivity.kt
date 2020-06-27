@@ -7,6 +7,7 @@ import android.util.Log
 import cn.bingoogolapple.qrcode.core.QRCodeView
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseActivity
+import com.jaeger.library.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_scan_qrcode.*
 
 /**
@@ -16,22 +17,23 @@ import kotlinx.android.synthetic.main.activity_scan_qrcode.*
 class ScanQRCodeActivity : BaseActivity(), QRCodeView.Delegate {
     private var isOpen = false
     override fun getLayoutId(): Int = R.layout.activity_scan_qrcode
-    override fun setStatusBar(): Boolean=false
+    override fun setStatusBar(): Boolean = false
 
     override fun initView() {
-        zxingview.setDelegate(this)
-        zxingview.changeToScanQRCodeStyle()
+        StatusBarUtil.setTransparentForImageView(this, btnBack)
+        zxView.setDelegate(this)
+        zxView.changeToScanQRCodeStyle()
         iv_light.setOnClickListener {
             isOpen = !isOpen
             if (isOpen) {
-                zxingview.openFlashlight()
+                zxView.openFlashlight()
             } else {
-                zxingview.closeFlashlight()
+                zxView.closeFlashlight()
             }
 
         }
 
-        iv_finish.setOnClickListener {
+        btnBack.setOnClickListener {
             finish()
         }
     }
@@ -59,17 +61,17 @@ class ScanQRCodeActivity : BaseActivity(), QRCodeView.Delegate {
 
     override fun onStart() {
         super.onStart()
-        zxingview.startCamera()
-        zxingview.startSpotAndShowRect()
+        zxView.startCamera()
+        zxView.startSpotAndShowRect()
     }
 
     override fun onStop() {
-        zxingview.stopCamera()
+        zxView.stopCamera()
         super.onStop()
     }
 
     override fun onDestroy() {
-        zxingview.onDestroy()
+        zxView.onDestroy()
         super.onDestroy()
     }
 }

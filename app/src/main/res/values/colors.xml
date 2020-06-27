@@ -21,6 +21,7 @@
     <color name="currency_down_color">#F54346</color>
     <color name="color_divider">#F2F4F5</color>
     <color name="color_blue_2766FF">#2766FF</color>
+    <color name="color_blue_F2F6FF">#F2F6FF</color>
     <color name="color_bg_login">#343542</color>
     <color name="color_bg_withdraw">#FEF8EF</color>
     <color name="red">#FF0000</color>
@@ -30,4 +31,6 @@
     <color name="color_title_normal">#7A8189</color>
     <color name="color_title_selected">#000000</color>
     <color name="color_divider_gray">#D8D8D8</color>
+    <color name="transparent">#00000000</color>
+    <color name="order_item_bg_color">#F2F6FF</color>
 </resources>

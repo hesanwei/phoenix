@@ -71,6 +71,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+
 <!--    tabLayoutStyle-->
     <style name="TabLayoutStyle" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/TabTextAppearance</item>
