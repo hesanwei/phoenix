@@ -10,7 +10,6 @@ import com.fhhy.phoenix.R
 import com.fhhy.phoenix.toast.ToastUtil
 import com.fhhy.phoenix.utils.FormatUtil
 import com.jakewharton.rxbinding4.view.clicks
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import java.lang.StringBuilder
 import java.util.concurrent.TimeUnit

@@ -1,23 +1,13 @@
 package com.fhhy.phoenix.mine.activity
 
-import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.view.View
-import cn.bingoogolapple.qrcode.zxing.QRCodeDecoder
-import cn.bingoogolapple.qrcode.zxing.QRCodeEncoder
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpActivity
 import com.fhhy.phoenix.dialog.RechargeWithdrawGuideDialog
 import com.fhhy.phoenix.mine.contract.RechargeContract
 import com.fhhy.phoenix.mine.presenter.RechargePresenter
-import com.fhhy.phoenix.utils.DeviceUtils
 import com.fhhy.phoenix.utils.QRCodeUtils
-import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
-import io.reactivex.ObservableOnSubscribe
-import io.reactivex.Scheduler
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_recharge.*
 import kotlinx.android.synthetic.main.activity_recharge.rgChainName
 import kotlinx.android.synthetic.main.activity_recharge.tvTitle

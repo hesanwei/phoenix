@@ -1,10 +1,12 @@
 package com.fhhy.phoenix.contract.fragment
 
+import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
 import com.fhhy.phoenix.contract.OrderContract
+import com.fhhy.phoenix.contract.activity.HistoryOrderDetailActivity
 import com.fhhy.phoenix.contract.adapter.HistoryOrderAdapter
 import com.fhhy.phoenix.contract.presenter.OrderPresenter
 import kotlinx.android.synthetic.main.fragment_order.*
@@ -32,6 +34,9 @@ class HistoryOrderFragment : BaseMvpFragment<OrderContract.View, OrderContract.P
             layoutManager = LinearLayoutManager(context)
             historyAdapter.data = mutableListOf("", "", "")
             adapter = historyAdapter
+        }
+        historyAdapter.setOnItemClickListener { adapter, view, position ->
+            startActivity(Intent(context, HistoryOrderDetailActivity::class.java))
         }
     }
 

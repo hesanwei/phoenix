@@ -29,4 +29,5 @@
     <color name="pop_unselected_color">#000000</color>
     <color name="color_title_normal">#7A8189</color>
     <color name="color_title_selected">#000000</color>
+    <color name="order_item_bg_color">#F2F6FF</color>
 </resources>

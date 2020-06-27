@@ -8,7 +8,6 @@ import com.fhhy.phoenix.mine.activity.FundsAccountDetailActivity.Companion.FUNDS
 import com.fhhy.phoenix.mine.contract.AddNewAddressContract
 import com.fhhy.phoenix.mine.presenter.AddNewsAddressPresenter
 import com.fhhy.phoenix.utils.QRCodeUtils
-import com.jaeger.library.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_add_new_address.*
 import setViewClickListener
 import showToast

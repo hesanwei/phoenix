@@ -35,6 +35,7 @@
         <activity android:name=".contractdetail.ContractDetailActivity" />
         <activity android:name=".mine.activity.ScanQRCodeActivity" />
         <activity android:name=".contract.activity.OrderActivity" />
+        <activity android:name=".contract.activity.HistoryOrderDetailActivity" />
 
     </application>
 

@@ -46,7 +46,7 @@
             android:id="@+id/clOrderValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/global_bg"
+            android:background="@color/order_item_bg_color"
             android:paddingHorizontal="@dimen/horizontal_space"
             android:paddingVertical="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -388,7 +388,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/BlueButtonStyle"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="34dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/light_blue_circle_bg_dp6"
@@ -399,7 +399,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/BlueButtonStyle"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="34dp"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:text="@string/close_position"

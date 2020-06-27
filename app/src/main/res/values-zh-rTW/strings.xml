@@ -174,4 +174,8 @@
     <string name="PL">盈亏</string>
     <string name="close_position_average">平仓均价</string>
     <string name="close_position_time">平仓时间</string>
+    <string name="history_order_detail">历史订单详情</string>
+    <string name="margin_coin">保证金(s%)</string>
+    <string name="total_trade_amount2">交易总额</string>
+    <string name="trade_fee">交易手续费</string>
 </resources>
