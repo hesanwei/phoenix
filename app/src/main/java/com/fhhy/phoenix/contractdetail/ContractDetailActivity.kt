@@ -15,7 +15,7 @@ class ContractDetailActivity : AppCompatActivity(){
         window.decorView.setBackgroundColor(resources.getColor(R.color.white))
 
         supportFragmentManager.beginTransaction().apply {
-            replace(android.R.id.content, ContractDetailFragment.create(), "LoginFragment")
+            replace(android.R.id.content, ContractDetailFragment.create(), ContractDetailFragment.TAG)
             commit()
         }
 

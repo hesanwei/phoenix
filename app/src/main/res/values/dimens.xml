@@ -9,4 +9,5 @@
     <dimen name="horizontal_space">14dp</dimen>
 
     <dimen name="tabLayoutHeight">28dp</dimen>
+    <dimen name="create_order_rb_text_size">13sp</dimen>
 </resources>

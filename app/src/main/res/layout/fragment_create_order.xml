@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="@color/color_divider" />
+
+    <include
+        android:id="@+id/long_short_switch_container"
+        layout="@layout/fragment_create_order_long_short_switch_item"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="#E8E8E8"/>
+
+    <include
+        android:id="@+id/mode_container"
+        layout="@layout/fragment_create_order_mode_item"/>
+    <include
+        android:id="@+id/leverage_container_rg"
+        layout="@layout/fragment_create_order_leverage_item"/>
+
+    <include
+        android:id="@+id/trigger_container"
+        layout="@layout/fragment_create_order_trigger_item"/>
+
+    <include
+        android:id="@+id/margin_container"
+        layout="@layout/fragment_create_order_margin_item"/>
+
+   <include
+       android:id="@+id/bottom_container"
+       layout="@layout/fragment_create_order_bottom_other"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

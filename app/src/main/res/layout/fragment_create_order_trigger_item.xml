@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/bg_create_order_trigger_edit"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="6dp"
+            android:text="@string/trigger"
+            android:textColor="@color/text_main_black"
+            android:textSize="13sp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_trigger_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_create_order_minus"
+            android:background="?selectableItemBackgroundBorderless"
+            android:layout_gravity="center_vertical"
+            android:padding="6dp"/>
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="0.5dp"
+            android:background="@color/color_divider_gray"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_trigger_price"
+            android:layout_width="82dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/text_main_black"
+            android:inputType="numberDecimal"
+            android:text="0.0000"
+            android:hint="@string/please_enter"
+            android:background="@null"
+            android:textColorHint="@color/text_main_gray"
+            android:textSize="13sp"/>
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="0.5dp"
+            android:background="@color/color_divider_gray"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_trigger_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_create_order_plus"
+            android:background="?selectableItemBackgroundBorderless"
+            android:layout_gravity="center_vertical"
+            android:padding="6dp"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/trigger_tips"
+        android:layout_marginStart="14dp"
+        android:textSize="13sp"
+        android:textColor="@color/text_main_gray"
+        app:layout_constraintStart_toEndOf="@+id/container"
+        app:layout_constraintTop_toTopOf="@id/container"
+        app:layout_constraintBottom_toBottomOf="@id/container"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/trigger_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings"
+        android:layout_marginStart="14dp"
+        android:textSize="13sp"
+        android:textColor="@color/text_main_blue"
+        app:layout_constraintStart_toEndOf="@+id/tips"
+        app:layout_constraintTop_toTopOf="@id/container"
+        app:layout_constraintBottom_toBottomOf="@id/container"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

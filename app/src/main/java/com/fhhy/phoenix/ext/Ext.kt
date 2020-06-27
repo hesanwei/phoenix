@@ -1,10 +1,12 @@
 import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Paint
 import android.text.TextUtils
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.toast.ToastUtil
@@ -100,3 +102,9 @@ fun Context.getTextColor(up: Boolean): Int =
         resources.getColor(R.color.currency_up_color)
     else
         resources.getColor(R.color.currency_down_color)
+
+//给text 设置下划线
+fun AppCompatTextView.underline() {
+    paint.flags = Paint.UNDERLINE_TEXT_FLAG; //下划线
+    paint.isAntiAlias = true;//抗锯齿
+}

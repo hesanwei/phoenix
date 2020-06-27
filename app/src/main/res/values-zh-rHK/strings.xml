@@ -171,6 +171,22 @@
     <string name="max_leverage">最大杠杆</string>
     <string name="max_position">最大持仓</string>
     <string name="weight">权重</string>
+    <string name="open">开多</string>
+    <string name="close">开空</string>
+    <string name="market">市价</string>
+    <string name="trigger_plan">计划</string>
+    <string name="vst_simulated_gold">VST帐户(模拟金)</string>
+    <string name="leverage">杠杆</string>
+    <string name="trigger">触发价</string>
+    <string name="please_enter">请输入</string>
+    <string name="trigger_tips">成交价：不限</string>
+    <string name="available_balance_holder">可用：10000.0VST</string>
+    <string name="estimate_value">预计成交价</string>
+    <string name="advance">高级设置</string>
+    <string name="account_btc">BTC账户</string>
+    <string name="account_usdt">USDT账户</string>
+    <string name="account_vst">VST账户(模拟金)</string>
+    <string name="account_usdt_bonus">USDT赠金</string>
     <string name="PL">盈亏</string>
     <string name="user_close_position">用户平仓</string>
     <string name="close_position_average">平仓均价</string>
@@ -206,4 +222,5 @@
     <string name="entrust_time">委托时间</string>
     <string name="revoke">撤销</string>
     <string name="entrust_deal_price">委托成交价</string>
+
 </resources>

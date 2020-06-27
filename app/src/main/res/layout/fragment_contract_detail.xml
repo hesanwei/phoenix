@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -15,56 +15,88 @@
         layout="@layout/fragment_contract_detail_head" />
 
     <View
+        android:id="@+id/top_divider"
         android:layout_width="match_parent"
         android:layout_height="8dp"
         android:background="#F2F4F5" />
+    <View
+        android:id="@+id/second_divider"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#FFFFFF" />
 
     <include
         android:id="@+id/option_group"
         layout="@layout/fragment_contract_option_item" />
 
-    <com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <com.github.fujianlian.klinechart.KLineChartView
-            android:id="@+id/k_line_chart_view"
+        <com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout
+            android:id="@+id/scroll_container"
             android:layout_width="match_parent"
-            android:layout_height="360dp" />
+            android:layout_height="match_parent">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:background="#F2F4F5" />
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="44dp">
+            <com.github.fujianlian.klinechart.KLineChartView
+                android:id="@+id/k_line_chart_view"
+                android:layout_width="match_parent"
+                android:layout_height="360dp" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="0.8dp"
-                android:layout_gravity="bottom"
-                android:background="#E8E8E8" />
+                android:layout_height="8dp"
+                android:background="#F2F4F5" />
 
-            <net.lucode.hackware.magicindicator.MagicIndicator
-                android:id="@+id/magic_indicator"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:paddingTop="16dp" />
+                android:layout_height="44dp">
 
-        </FrameLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:layout_gravity="bottom"
+                    android:background="#E8E8E8" />
 
-        <com.fhhy.phoenix.contractdetail.NoScrollViewPager
-            android:id="@+id/view_pager"
+                <net.lucode.hackware.magicindicator.MagicIndicator
+                    android:id="@+id/magic_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:paddingTop="16dp" />
+
+            </FrameLayout>
+
+            <com.fhhy.phoenix.contractdetail.NoScrollViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
 
-    </com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout>
+            <com.github.fujianlian.klinechart.KLineChartView
+                android:id="@+id/k_line_chart_view_two"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </FrameLayout>
 
     <include
-        android:id="@+id/option_bottom"
+        android:id="@+id/bottom"
         layout="@layout/fragment_contract_bottom" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

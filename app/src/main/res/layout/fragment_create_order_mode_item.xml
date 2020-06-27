@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RadioGroup
+        android:id="@+id/radio_group_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="@dimen/horizontal_space"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rb_market"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_create_order_mode_left_item"
+            android:button="@null"
+            android:checked="true"
+            android:paddingHorizontal="18dp"
+            android:paddingVertical="5dp"
+            android:text="@string/market"
+            android:textColor="@color/withdraw_way_text_color_selector"
+            android:textSize="@dimen/create_order_rb_text_size" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rb_trigger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_create_order_mode_right_item"
+            android:button="@null"
+            android:paddingHorizontal="18dp"
+            android:paddingVertical="5dp"
+            android:text="@string/trigger_plan"
+            android:textColor="@color/withdraw_way_text_color_selector"
+            android:textSize="@dimen/create_order_rb_text_size" />
+    </RadioGroup>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/account_type"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:drawableEnd="@drawable/ic_pop_arrow_down"
+        android:drawablePadding="3dp"
+        android:gravity="center_vertical"
+        android:text="@string/vst_simulated_gold"
+        android:textColor="@color/text_main_black"
+        android:textSize="@dimen/create_order_rb_text_size"
+        app:layout_constraintBottom_toBottomOf="@id/radio_group_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/radio_group_top" />
+</androidx.constraintlayout.widget.ConstraintLayout>
