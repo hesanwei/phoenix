@@ -179,4 +179,9 @@
     <string name="margin_coin">保证金(s%)</string>
     <string name="total_trade_amount2">交易总额</string>
     <string name="trade_fee">交易手续费</string>
+    <string name="in_entrust">委托中</string>
+    <string name="trigger_price">触发价</string>
+    <string name="entrust_time">委托时间</string>
+    <string name="revoke">撤销</string>
+    <string name="entrust_deal_price">委托成交价</string>
 </resources>

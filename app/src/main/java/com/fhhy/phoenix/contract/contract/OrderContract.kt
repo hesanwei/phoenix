@@ -1,4 +1,4 @@
-package com.fhhy.phoenix.contract
+package com.fhhy.phoenix.contract.contract
 
 import com.fhhy.phoenix.base.IModel
 import com.fhhy.phoenix.base.IPresenter

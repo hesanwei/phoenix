@@ -1,11 +1,11 @@
 package com.fhhy.phoenix.contract.activity
 
+import android.content.Intent
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseActivity
-import com.fhhy.phoenix.contract.fragment.HistoryOrderFragment
-import com.fhhy.phoenix.contract.fragment.PositionOrderFragment
+import com.fhhy.phoenix.contract.fragment.OrderFragment
 import kotlinx.android.synthetic.main.activity_order.*
 import setViewClickListener
 
@@ -13,11 +13,11 @@ import setViewClickListener
 class OrderActivity : BaseActivity(), View.OnClickListener {
 
     private val positionFragment by lazy {
-        PositionOrderFragment.newInstance()
+        OrderFragment.newInstance(OrderFragment.STATE_POSITION)
     }
 
     private val historyFragment by lazy {
-        HistoryOrderFragment.newInstance()
+        OrderFragment.newInstance(OrderFragment.STATE_HISTORY)
     }
 
     override fun getLayoutId(): Int = R.layout.activity_order
@@ -48,7 +48,7 @@ class OrderActivity : BaseActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.btnBack -> finish()
             R.id.tvEntrustRecord -> {
-
+                startActivity(Intent(this, EntrustRecordActivity::class.java))
             }
         }
     }
