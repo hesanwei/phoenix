@@ -35,6 +35,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTit
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView
 import noDoubleClick
+import showToast
 import underline
 
 
@@ -216,6 +217,18 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
         addDisposable {
             mBinding.head.fundRate.noDoubleClick {
                 capitalRateDialog.show(requireActivity().supportFragmentManager, "capitalRate")
+            }
+        }
+        addDisposable {//todo 测试dialog
+            mBinding.head.currencyTrendPercent.noDoubleClick {
+//                ConfirmOrderDialog.newInstance("做多","2X","市价","100VST","20","10")
+//                    .setOnConfirmListener(object :ConfirmOrderDialog.OnConfirmListener{
+//                        override fun onConfirm() {
+//                           showToast("确认")
+//                        }
+//
+//                    })
+//                    .show(requireActivity().supportFragmentManager,"confirmOrder")
             }
         }
 

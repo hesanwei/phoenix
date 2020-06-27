@@ -222,5 +222,12 @@
     <string name="estimate_capital_rate">预估费率：%s (平台奖励费率)</string>
     <string name="next_capital_cost">下次预估费用：%s VST</string>
     <string name="confirm_order">下单确认</string>
+    <string name="typeAndLever">类型/杠杆</string>
+    <string name="delegate_type">委托类型</string>
+    <string name="capital">本金</string>
+    <string name="stop_profit_price">止盈价</string>
+    <string name="stop_loss_price">止损价</string>
+    <string name="checkout_success">下单成功</string>
+    <string name="checkout_success_dialog_desc">使用赠金的订单，将会在24小时后自动平仓，如需自行平仓，请提前操作。</string>
 
 </resources>

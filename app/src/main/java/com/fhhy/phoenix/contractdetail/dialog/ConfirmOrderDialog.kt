@@ -8,16 +8,36 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.fhhy.phoenix.R
 
 /**
- * 资金费用
+ * Created by hecuncun on 2020/6/27
+ * 下单确认  使用时设置 确认监听器
+ * eg:
+ *    ConfirmOrderDialog.newInstance("做多","2X","市价","100VST","20","10")
+      .setOnConfirmListener(object :ConfirmOrderDialog.OnConfirmListener{
+                override fun onConfirm() {
+                  showToast("确认")
+                 }
+           })
+     .show(requireActivity().supportFragmentManager,"confirmOrder")
  */
 class ConfirmOrderDialog : FullScreenDialogFragment() {
     companion object {
-        fun newInstance(estimateRate:String,nextEstimateCost:String): ConfirmOrderDialog {
-            val dialog =ConfirmOrderDialog()
-            val bundle =Bundle()
-            bundle.putString("estimateRate",estimateRate)
-            bundle.putString("nextEstimateCost",nextEstimateCost)
-            dialog.arguments=bundle
+        fun newInstance(
+            type: String,
+            lever: String,
+            delegateType: String,
+            capital: String,
+            profitPrice: String,
+            lossPrice: String
+        ): ConfirmOrderDialog {
+            val dialog = ConfirmOrderDialog()
+            val bundle = Bundle()
+            bundle.putString("type", type)
+            bundle.putString("lever", lever)
+            bundle.putString("delegateType", delegateType)
+            bundle.putString("capital", capital)
+            bundle.putString("profitPrice", profitPrice)
+            bundle.putString("lossPrice", lossPrice)
+            dialog.arguments = bundle
             return dialog
         }
     }
@@ -29,19 +49,43 @@ class ConfirmOrderDialog : FullScreenDialogFragment() {
     ): View? {
         val inflate = inflater.inflate(R.layout.dialog_confirm_order, null, false)
         val tvConfirm = inflate.findViewById<AppCompatTextView>(R.id.tv_confirm)
-       // val tv_estimate_cost_rate = inflate.findViewById<AppCompatTextView>(R.id.tv_estimate_cost_rate)
-       // val tv_next_estimate_cost = inflate.findViewById<AppCompatTextView>(R.id.tv_next_estimate_cost)
-        tvConfirm.setOnClickListener {
+        val tvCancel = inflate.findViewById<AppCompatTextView>(R.id.tv_cancel)
+
+        val tv_type = inflate.findViewById<AppCompatTextView>(R.id.tv_type)//类型
+        val tv_lever = inflate.findViewById<AppCompatTextView>(R.id.tv_lever)//杠杆
+        val tv_delegate_type = inflate.findViewById<AppCompatTextView>(R.id.tv_delegate_type)//委托类型
+        val tv_capital = inflate.findViewById<AppCompatTextView>(R.id.tv_capital)//本金
+        val tv_stop_profit_price =
+            inflate.findViewById<AppCompatTextView>(R.id.tv_stop_profit_price)//止盈价
+        val tv_stop_loss_price =
+            inflate.findViewById<AppCompatTextView>(R.id.tv_stop_loss_price)//止损价
+        tvCancel.setOnClickListener {
             dismiss()
         }
-
-        if (arguments!=null){
-           val estimateRate = arguments!!.getString("estimateRate")
-           val nextEstimateCost = arguments!!.getString("nextEstimateCost")
-         //   tv_estimate_cost_rate.text=String.format(resources.getString(R.string.estimate_capital_rate), estimateRate)
-         //   tv_next_estimate_cost.text=String.format(resources.getString(R.string.next_capital_cost), nextEstimateCost)
+        tvConfirm.setOnClickListener {
+            onConfirmListener?.onConfirm()
+            dismiss()
+        }
+        if (arguments != null) {
+            tv_type.text = arguments!!.getString("type")
+            tv_lever.text = arguments!!.getString("lever")
+            tv_delegate_type.text = arguments!!.getString("delegateType")
+            tv_capital.text = arguments!!.getString("capital")
+            tv_stop_profit_price.text = arguments!!.getString("profitPrice")
+            tv_stop_loss_price.text = arguments!!.getString("lossPrice")
         }
 
         return inflate
+    }
+
+    private var onConfirmListener: OnConfirmListener? = null
+
+    interface OnConfirmListener {
+        fun onConfirm()
+    }
+
+    fun setOnConfirmListener(listener: OnConfirmListener): ConfirmOrderDialog {
+        onConfirmListener = listener
+        return this
     }
 }
