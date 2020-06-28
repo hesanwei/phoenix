@@ -1,11 +1,14 @@
 package com.fhhy.phoenix.contractdetail.dialog
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import com.fhhy.phoenix.R
+import com.fhhy.phoenix.dialog.BaseDialog
+import kotlinx.android.synthetic.main.dialog_confirm_order.*
 
 /**
  * Created by hecuncun on 2020/6/27
@@ -19,7 +22,7 @@ import com.fhhy.phoenix.R
            })
      .show(requireActivity().supportFragmentManager,"confirmOrder")
  */
-class ConfirmOrderDialog : FullScreenDialogFragment() {
+class ConfirmOrderDialog : BaseDialog() {
     companion object {
         fun newInstance(
             type: String,
@@ -42,27 +45,13 @@ class ConfirmOrderDialog : FullScreenDialogFragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val inflate = inflater.inflate(R.layout.dialog_confirm_order, null, false)
-        val tvConfirm = inflate.findViewById<AppCompatTextView>(R.id.tv_confirm)
-        val tvCancel = inflate.findViewById<AppCompatTextView>(R.id.tv_cancel)
+    override fun getLayoutId(): Int = R.layout.dialog_confirm_order
 
-        val tv_type = inflate.findViewById<AppCompatTextView>(R.id.tv_type)//类型
-        val tv_lever = inflate.findViewById<AppCompatTextView>(R.id.tv_lever)//杠杆
-        val tv_delegate_type = inflate.findViewById<AppCompatTextView>(R.id.tv_delegate_type)//委托类型
-        val tv_capital = inflate.findViewById<AppCompatTextView>(R.id.tv_capital)//本金
-        val tv_stop_profit_price =
-            inflate.findViewById<AppCompatTextView>(R.id.tv_stop_profit_price)//止盈价
-        val tv_stop_loss_price =
-            inflate.findViewById<AppCompatTextView>(R.id.tv_stop_loss_price)//止损价
-        tvCancel.setOnClickListener {
+    override fun initView() {
+        tv_cancel.setOnClickListener {
             dismiss()
         }
-        tvConfirm.setOnClickListener {
+        tv_confirm.setOnClickListener {
             onConfirmListener?.onConfirm()
             dismiss()
         }
@@ -74,9 +63,8 @@ class ConfirmOrderDialog : FullScreenDialogFragment() {
             tv_stop_profit_price.text = arguments!!.getString("profitPrice")
             tv_stop_loss_price.text = arguments!!.getString("lossPrice")
         }
-
-        return inflate
     }
+    override fun getGravity(): Int? = Gravity.CENTER
 
     private var onConfirmListener: OnConfirmListener? = null
 
