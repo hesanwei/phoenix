@@ -1,3 +1,7 @@
+import android.text.TextUtils
+import com.fhhy.phoenix.constants.Constants
+import com.fhhy.phoenix.constants.SPKeyConstants
+import com.fhhy.phoenix.utils.SPUtils
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -14,6 +18,12 @@ class SaveCookieInterceptor : Interceptor {
         val requestUrl = request.url().toString()
         val domain = request.url().host()
         // set-cookie maybe has multi, login to save cookie
+        if (requestUrl.contains(Regex(Constants.IMG_CHECK_CODE_URL))){
+            val cookie = response.headers()["Set-Cookie"]
+            if (!TextUtils.isEmpty(cookie)){
+                SPUtils.setString(SPKeyConstants.SP_KEY_COOKIE,cookie!!)
+            }
+        }
 //        if ((requestUrl.contains(HttpConstant.SAVE_USER_LOGIN_KEY)
 //                        || requestUrl.contains(HttpConstant.SAVE_USER_REGISTER_KEY))
 //                && !response.headers(HttpConstant.SET_COOKIE_KEY).isEmpty()) {

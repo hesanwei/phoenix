@@ -2,6 +2,7 @@ package com.fhhy.phoenix.login.fragment
 
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.InputType
 import android.text.TextUtils
@@ -19,6 +20,7 @@ import androidx.core.view.isVisible
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
 import com.fhhy.phoenix.dialog.ImgCheckCodeDialog
+import com.fhhy.phoenix.http.RetrofitManager
 import com.fhhy.phoenix.login.LoginContract
 import com.fhhy.phoenix.login.State
 import com.fhhy.phoenix.login.presenter.LoginPresenter
@@ -208,20 +210,21 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
 
         //登录按钮
         btnLogin.noDoubleClick {
+
             //TODO  显示图形验证码 然后再确认是否显示验证码页面
             val mobile = etMobile.text.toString()
-            val pwd = etPwd.text.toString()
-            if (!mobile.isMobile()) {
-                showToast("手机号格式不对")
-                return@noDoubleClick
-            }
-
-            if (TextUtils.isEmpty(pwd)) {
-                showToast("密码不能为空")
-                return@noDoubleClick
-            }
-            //请求登录接口
-//            mPresenter?.requestLogin(mobile, pwd)
+//            val pwd = etPwd.text.toString()
+//            if (!mobile.isMobile()) {
+//                showToast("手机号格式不对")
+//                return@noDoubleClick
+//            }
+//
+//            if (TextUtils.isEmpty(pwd)) {
+//                showToast("密码不能为空")
+//                return@noDoubleClick
+//            }
+//            //请求登录接口
+////            mPresenter?.requestLogin(mobile, pwd)
             showImgCheckCodeDialog(mobile)
         }
     }

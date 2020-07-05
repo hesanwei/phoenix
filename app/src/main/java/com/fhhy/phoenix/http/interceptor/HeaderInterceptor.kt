@@ -20,11 +20,14 @@ class HeaderInterceptor : Interceptor {
 
         val request = chain.request()
         val builder = request.newBuilder()
-
-        builder.addHeader("Content-type", "application/json; charset=utf-8")
+        val requestUrl = request.url().toString()
+        builder.addHeader("Content-Type", "multipart/form-data")
             .addHeader("authentication", SPUtils.getString(SPKeyConstants.SP_KEY_TOKEN))
             .addHeader("IMEI", DeviceUtils.getDeviceId(BaseApplication.getAppContext()))
 
+        if (requestUrl.contains(Regex("get_check_code"))) {
+            builder.addHeader("cookie", SPUtils.getString(SPKeyConstants.SP_KEY_COOKIE))
+        }
         return chain.proceed(builder.build())
     }
 

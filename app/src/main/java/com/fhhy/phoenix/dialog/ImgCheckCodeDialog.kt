@@ -1,5 +1,6 @@
 package com.fhhy.phoenix.dialog
 
+import android.graphics.BitmapFactory
 import android.text.TextUtils
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatImageButton
@@ -7,9 +8,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.constants.Constants
+import com.fhhy.phoenix.http.RetrofitManager
 import com.jakewharton.rxbinding4.widget.textChanges
 import kotlinx.android.synthetic.main.dialog_img_check_code.*
 import noDoubleClick
+import showToast
 
 // Created by admin on 2020/7/5.
 class ImgCheckCodeDialog(private val listener: OnOkListener) : BaseDialog() {
@@ -34,11 +37,19 @@ class ImgCheckCodeDialog(private val listener: OnOkListener) : BaseDialog() {
     }
 
     private fun loadImgCheckCode() {
-        Glide.with(activity!!)
-            .load(Constants.IMG_CHECK_CODE_URL)
-            .skipMemoryCache(true)
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .into(ivImgCheckCode)
+        val subscribe = RetrofitManager.apiService.requestImgCode()
+            .compose(SchedulerUtils.ioToMain())
+            .map {
+                it.byteStream()
+            }
+            .map {
+                BitmapFactory.decodeStream(it)
+            }
+            .subscribe({
+                ivImgCheckCode.setImageBitmap(it)
+            }, {
+                showToast(it.message)
+            })
     }
 
     /**

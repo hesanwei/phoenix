@@ -5,6 +5,7 @@ import io.reactivex.Observable
 import okhttp3.HttpUrl
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.http.*
 
 /**
@@ -24,4 +25,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("index/login")
     fun requestLogin(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
+
+    @POST("index/verify")
+    fun requestImgCode(): Observable<ResponseBody>
 }
