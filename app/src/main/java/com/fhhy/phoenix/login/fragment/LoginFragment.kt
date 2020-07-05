@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.os.Bundle
 import android.text.InputType
+import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
@@ -179,17 +180,12 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
                 }
                 if (etMobile.isVisible && !it.isNullOrEmpty()) {
                     currMobile = it.toString()
+                    setButtonClickable(btnLogin, true)
+                } else {
+                    setButtonClickable(btnLogin, false)
                 }
             }
         mCompositeDisposable.add(mobile)
-
-        //登录密码
-        val pwd = etPwd.textChanges()
-            .subscribe {
-                //TODO
-
-            }
-        mCompositeDisposable.add(pwd)
 
         //显示还是隐藏密码
         val eye = btnPwdEye.noDoubleClick {
@@ -213,8 +209,20 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         //登录按钮
         btnLogin.noDoubleClick {
             //TODO  显示图形验证码 然后再确认是否显示验证码页面
-            showImgCheckCodeDialog()
-//            toNextState(State.LOGIN_SMS)
+            val mobile = etMobile.text.toString()
+            val pwd = etPwd.text.toString()
+            if (!mobile.isMobile()) {
+                showToast("手机号格式不对")
+                return@noDoubleClick
+            }
+
+            if (TextUtils.isEmpty(pwd)) {
+                showToast("密码不能为空")
+                return@noDoubleClick
+            }
+            //请求登录接口
+//            mPresenter?.requestLogin(mobile, pwd)
+            showImgCheckCodeDialog(mobile)
         }
     }
 
@@ -243,7 +251,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
             val mobile = etMobileReg.text.toString()
             val isMobile = mobile.isMobile()
             if (isMobile) {
-                mPresenter?.requestCheckCode(currentState, mobile)
+                showImgCheckCodeDialog(mobile)
             } else {
                 showToast("手机号格式错误")
             }
@@ -419,6 +427,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
             return
         }
         val preState = stateStack.peek()
+        currentState = preState
         animExit(currState, preState)
         if (preState == State.LOGIN) {
             etMobile.setText(currMobile)
@@ -438,13 +447,20 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         }
     }
 
-    override fun requestCheckCodeSuccess(currentState: State) {
+    override fun requestCheckCodeSuccess() {
+        showToast("验证码请求成功")
         when (currentState) {
             State.REGISTER_STEP_ONE -> {
                 toNextState(State.REGISTER_STEP_TWO)
             }
+            State.LOGIN -> {
+                toNextState(State.LOGIN_SMS)
+            }
         }
-        showToast("验证码请求成功")
+    }
+
+    override fun requestLoginSuccess(data: Any?) {
+        showToast("请求登录成功")
     }
 
 
@@ -459,10 +475,10 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
     /**
      * 展示图形验证码
      */
-    private fun showImgCheckCodeDialog() {
+    private fun showImgCheckCodeDialog(mobile: String) {
         ImgCheckCodeDialog(object : ImgCheckCodeDialog.OnOkListener {
             override fun onOkClick(imgCheckCode: String) {
-                showToast(imgCheckCode)
+                mPresenter?.requestCheckCode(mobile,imgCheckCode)
             }
         }).show(activity!!.supportFragmentManager)
     }

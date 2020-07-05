@@ -19,4 +19,9 @@ interface ApiService {
     @FormUrlEncoded
     @POST("index/get_check_code")
     fun requestCheckCode(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
+
+    //登录
+    @FormUrlEncoded
+    @POST("index/login")
+    fun requestLogin(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
 }

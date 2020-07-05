@@ -10,9 +10,27 @@ import io.reactivex.Observable
 
 // Created by admin on 2020/6/7.
 class LoginModel : BaseModel(), LoginContract.Model {
-    override fun requestCheckCode(mobile: String?): Observable<HttpResult<Any?>> {
-        val hashMap = getRequestMap()
-        hashMap["mobile"] = mobile
-        return RetrofitManager.apiService.requestCheckCode(hashMap)
+    override fun requestCheckCode(mobile: String?, captcha: String?): Observable<HttpResult<Any?>> {
+        val requestMap = getRequestMap()
+        requestMap["mobile"] = mobile
+        requestMap["captcha"] = captcha
+        return RetrofitManager.apiService.requestCheckCode(requestMap)
     }
+
+    override fun requestLogin(
+        mobile: String?,
+        password: String?,
+        code: String?,
+        invitation_code: String?,
+        google_code: String?
+    ): Observable<HttpResult<Any?>> {
+        val requestMap = getRequestMap()
+        requestMap["mobile"] = mobile
+        requestMap["password"] = password
+        requestMap["code"] = code
+        requestMap["invitation_code"] = invitation_code
+        requestMap["google_code"] = google_code
+        return RetrofitManager.apiService.requestLogin(requestMap)
+    }
+
 }

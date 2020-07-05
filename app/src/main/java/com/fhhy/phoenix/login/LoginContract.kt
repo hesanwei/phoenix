@@ -9,14 +9,29 @@ import io.reactivex.Observable
 // Created by admin on 2020/6/7.
 interface LoginContract {
     interface View : IView {
-        fun requestCheckCodeSuccess(currentState: State)
+        fun requestCheckCodeSuccess()
+        fun requestLoginSuccess(data: Any?)
     }
 
     interface Model : IModel {
-        fun requestCheckCode(mobile: String?): Observable<HttpResult<Any?>>
+        fun requestCheckCode(mobile: String?, captcha: String?): Observable<HttpResult<Any?>>
+        fun requestLogin(
+            mobile: String?,
+            password: String?,
+            code: String? = "",
+            invitation_code: String? = "",
+            google_code: String? = ""
+        ): Observable<HttpResult<Any?>>
     }
 
     interface Presenter : IPresenter<View> {
-        fun requestCheckCode(currentState: State, mobile: String?)
+        fun requestCheckCode(mobile: String?, captcha: String?)
+        fun requestLogin(
+            mobile: String?,
+            password: String?,
+            code: String? = "",
+            invitation_code: String? = "",
+            google_code: String? = ""
+        )
     }
 }
