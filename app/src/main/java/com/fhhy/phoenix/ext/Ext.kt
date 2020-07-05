@@ -13,7 +13,6 @@ import com.fhhy.phoenix.toast.ToastUtil
 import com.fhhy.phoenix.utils.FormatUtil
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.disposables.Disposable
-import java.lang.StringBuilder
 import java.util.concurrent.TimeUnit
 
 /**
@@ -62,6 +61,17 @@ fun String?.dealMobile(): String {
 }
 
 /**
+ * 是否是手机号
+ */
+fun String?.isMobile(): Boolean{
+    if (this == null || this.length != 11){
+        return false
+    }
+    val regex = Regex("[1]\\d{10}") // "[1]"代表第1位为数字1，"\\d{10}"代表后面是可以是0～9的数字，有10位。
+    return this.matches(regex)
+}
+
+/**
  * 页面多个view的点击事件
  */
 fun Context.setViewClickListener(listener: View.OnClickListener, vararg views: View) {
@@ -107,4 +117,8 @@ fun Context.getTextColor(up: Boolean): Int =
 fun AppCompatTextView.underline() {
     paint.flags = Paint.UNDERLINE_TEXT_FLAG; //下划线
     paint.isAntiAlias = true;//抗锯齿
+}
+
+fun Any.getRequestMap(): MutableMap<String, String?> {
+    return HashMap()
 }

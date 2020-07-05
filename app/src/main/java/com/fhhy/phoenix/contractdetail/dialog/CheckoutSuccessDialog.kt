@@ -8,19 +8,15 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.dialog.BaseDialog
-import kotlinx.android.synthetic.main.dialog_stop_profit_loss_des.*
+import kotlinx.android.synthetic.main.dialog_checkout_success.*
 
 /**
- * 止盈止损说明
+ * 下单成功
  */
-class StopProfitLossDesDialog : BaseDialog() {
-    companion object {
-        fun newInstance(): StopProfitLossDesDialog {
-            return StopProfitLossDesDialog()
-        }
-    }
+class CheckoutSuccessDialog : BaseDialog() {
 
-    override fun getLayoutId(): Int = R.layout.dialog_stop_profit_loss_des
+    override fun getLayoutId(): Int = R.layout.dialog_checkout_success
+
     override fun initView() {
         tv_confirm.setOnClickListener {
             dismiss()
@@ -29,4 +25,9 @@ class StopProfitLossDesDialog : BaseDialog() {
 
     override fun getGravity(): Int? = Gravity.CENTER
 
+    companion object {
+        fun newInstance(): CheckoutSuccessDialog {
+            return CheckoutSuccessDialog()
+        }
+    }
 }

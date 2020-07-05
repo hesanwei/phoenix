@@ -46,7 +46,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="类型/杠杆"
+                    android:text="@string/typeAndLever"
                     android:textColor="@color/text_main_gray"
                     android:textSize="13sp" />
 
@@ -57,13 +57,16 @@
                     android:orientation="horizontal">
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="做多"
+                        android:textStyle="bold"
                         android:textColor="@color/currency_up_color"
                         android:textSize="13sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_lever"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
@@ -85,15 +88,17 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="委托类型"
+                    android:text="@string/delegate_type"
                     android:textColor="@color/text_main_gray"
                     android:textSize="13sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_delegate_type"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="市价"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -108,15 +113,17 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="本金"
+                    android:text="@string/capital"
                     android:textColor="@color/text_main_gray"
                     android:textSize="13sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_capital"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="100VST"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -131,15 +138,17 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="止盈价"
+                    android:text="@string/stop_profit_price"
                     android:textColor="@color/text_main_gray"
                     android:textSize="13sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_stop_profit_price"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text=" - -"
+                    android:text="- -"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -154,15 +163,17 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="止损价"
+                    android:text="@string/stop_loss_price"
                     android:textColor="@color/text_main_gray"
                     android:textSize="13sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_stop_loss_price"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text=" - -"
+                    android:text="- -"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="13sp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -177,6 +188,7 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_cancel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -194,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="9dp"
                 android:layout_weight="1"
-                android:background="@drawable/blue_circle_bg_dp6"
+                android:background="@drawable/dialog_blue_circle_bg_dp5"
                 android:gravity="center"
                 android:paddingTop="11dp"
                 android:paddingBottom="11dp"
