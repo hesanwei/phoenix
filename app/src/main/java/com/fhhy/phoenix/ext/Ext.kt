@@ -63,8 +63,8 @@ fun String?.dealMobile(): String {
 /**
  * 是否是手机号
  */
-fun String?.isMobile(): Boolean{
-    if (this == null || this.length != 11){
+fun String?.isMobile(): Boolean {
+    if (this == null || this.length != 11) {
         return false
     }
     val regex = Regex("[1]\\d{10}") // "[1]"代表第1位为数字1，"\\d{10}"代表后面是可以是0～9的数字，有10位。
@@ -122,3 +122,8 @@ fun AppCompatTextView.underline() {
 fun Any.getRequestMap(): MutableMap<String, String?> {
     return HashMap()
 }
+
+//币价 上涨还是下跌判断
+val String.isUp: Boolean
+    get() = "up" == this
+

@@ -7,6 +7,7 @@ import com.fhhy.phoenix.constants.Constants
 import com.google.gson.Gson
 import io.reactivex.Observable
 import io.reactivex.Observer
+import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import okhttp3.RequestBody
 
@@ -24,7 +25,9 @@ fun <T : BaseBean> Observable<T>.request(
         .retryWhen(RetryWithDelay())
         .subscribe(object : Observer<T> {
             override fun onComplete() {
-                view?.hideLoading()
+                if (isShowLoading) {
+                    view?.hideLoading()
+                }
             }
 
             override fun onSubscribe(d: Disposable) {
@@ -53,5 +56,4 @@ fun <T : BaseBean> Observable<T>.request(
             }
         })
 }
-
 

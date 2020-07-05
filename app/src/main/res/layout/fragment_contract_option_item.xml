@@ -19,89 +19,49 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <LinearLayout
+        <CheckedTextView
             android:id="@+id/minute_one"
             android:layout_width="wrap_content"
-            android:paddingTop="8dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:paddingHorizontal="3dp"
-                android:text="@string/minutes_one"
-                android:textColor="@color/black" />
-
-            <View
-                android:id="@+id/one_selected"
-                android:layout_width="20dp"
-                android:layout_height="2dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/bg_selected_indicator" />
-        </LinearLayout>
+            android:paddingTop="8dp"
+            android:text="@string/minutes_one"
+            android:paddingBottom="4dp"
+            android:textSize="@dimen/text_contract_detail_secondary_size"
+            android:textColor="@color/color_option_item_text_selector"
+            android:background="@drawable/bg_checkable_text_selector"
+            android:checked="true"/>
 
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <LinearLayout
+        <CheckedTextView
             android:id="@+id/minute_five"
             android:layout_width="wrap_content"
-            android:paddingTop="8dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:paddingHorizontal="3dp"
-                android:text="@string/minutes_five"
-                android:textColor="@color/gray_555" />
-
-            <View
-                android:id="@+id/five_selected"
-                android:layout_width="20dp"
-                android:layout_height="2dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="3dp"
-                android:visibility="invisible"
-                android:background="@drawable/bg_selected_indicator" />
-        </LinearLayout>
+            android:paddingTop="8dp"
+            android:text="@string/minutes_five"
+            android:paddingBottom="4dp"
+            android:textSize="@dimen/text_contract_detail_secondary_size"
+            android:textColor="@color/color_option_item_text_selector"
+            android:background="@drawable/bg_checkable_text_selector" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <LinearLayout
+        <CheckedTextView
             android:id="@+id/minute_fifteen"
             android:layout_width="wrap_content"
-            android:paddingTop="8dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:paddingHorizontal="3dp"
-                android:text="@string/minutes_fifteen"
-                android:textColor="@color/gray_555" />
-
-            <View
-                android:id="@+id/fifteen_selected"
-                android:layout_width="20dp"
-                android:layout_height="2dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="3dp"
-                android:visibility="invisible"
-                android:background="@drawable/bg_selected_indicator" />
-        </LinearLayout>
+            android:paddingTop="8dp"
+            android:text="@string/minutes_fifteen"
+            android:paddingBottom="4dp"
+            android:textSize="@dimen/text_contract_detail_secondary_size"
+            android:textColor="@color/color_option_item_text_selector"
+            android:background="@drawable/bg_checkable_text_selector" />
 
 
         <View
@@ -109,98 +69,52 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <LinearLayout
+        <CheckedTextView
             android:id="@+id/minute_thirteen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:paddingHorizontal="3dp"
-                android:text="@string/minutes_thirteen"
-                android:textColor="@color/gray_555" />
-
-            <View
-                android:id="@+id/thirteen_selected"
-                android:layout_width="20dp"
-                android:layout_height="2dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="3dp"
-                android:visibility="invisible"
-                android:background="@drawable/bg_selected_indicator" />
-        </LinearLayout>
+            android:text="@string/minutes_thirteen"
+            android:paddingBottom="4dp"
+            android:textSize="@dimen/text_contract_detail_secondary_size"
+            android:textColor="@color/color_option_item_text_selector"
+            android:background="@drawable/bg_checkable_text_selector" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <LinearLayout
+        <CheckedTextView
             android:id="@+id/more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/more_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:paddingHorizontal="3dp"
-                android:drawablePadding="4dp"
-                android:gravity="center_vertical"
-                android:drawableEnd="@drawable/ic_pop_arrow_down"
-                android:text="@string/more"
-                android:textColor="@color/gray_555" />
-
-            <View
-                android:id="@+id/more_selected"
-                android:layout_width="20dp"
-                android:layout_height="2dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="3dp"
-                android:visibility="invisible"
-                android:background="@drawable/bg_selected_indicator" />
-        </LinearLayout>
+            android:text="@string/more"
+            android:paddingBottom="4dp"
+            android:drawablePadding="4dp"
+            android:drawableEnd="@drawable/ic_pop_arrow_down"
+            android:textSize="@dimen/text_contract_detail_secondary_size"
+            android:textColor="@color/color_option_item_text_selector"
+            android:background="@drawable/bg_checkable_text_selector" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <LinearLayout
+        <CheckedTextView
             android:id="@+id/quota"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/quota_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:paddingHorizontal="3dp"
-                android:drawablePadding="4dp"
-                android:gravity="center_vertical"
-                android:drawableEnd="@drawable/ic_pop_arrow_down"
-                android:text="@string/quota"
-                android:textColor="@color/gray_555" />
-
-            <View
-                android:id="@+id/quota_selected"
-                android:layout_width="20dp"
-                android:layout_height="2dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="3dp"
-                android:visibility="invisible"
-                android:background="@drawable/bg_selected_indicator" />
-        </LinearLayout>
+            android:text="@string/quota"
+            android:paddingBottom="4dp"
+            android:drawablePadding="4dp"
+            android:drawableEnd="@drawable/ic_pop_arrow_down"
+            android:textSize="@dimen/text_contract_detail_secondary_size"
+            android:textColor="@color/color_option_item_text_selector"
+            android:background="@drawable/bg_checkable_text_selector" />
 
         <View
             android:layout_width="0dp"

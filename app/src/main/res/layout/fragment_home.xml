@@ -41,6 +41,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/smartRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,6 +64,7 @@
                 app:tipTextSize="12sp" />
 
             <LinearLayout
+                android:id="@+id/xMarqueeContainer"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:gravity="center_vertical"
@@ -95,6 +97,7 @@
             <View style="@style/GapViewStyle" />
 
             <LinearLayout
+                android:id="@+id/homeNavContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"

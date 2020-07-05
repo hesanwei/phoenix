@@ -3,13 +3,14 @@ package com.fhhy.phoenix.http
 import HeaderInterceptor
 import QueryParameterInterceptor
 import SaveCookieInterceptor
+import com.fhhy.phoenix.BuildConfig
 import com.fhhy.phoenix.constants.Constants
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 /**
  * AMRetrofitManager class
@@ -48,10 +49,13 @@ object RetrofitManager {
         //设置 请求的缓存的大小跟位置
 //        val cacheFile = File(App.context.cacheDir, "cache")
 //        val cache = Cache(cacheFile, HttpConstant.MAX_CACHE_SIZE)
-
         builder.run {
 //            addInterceptor(RequestInterceptor())
             addInterceptor(HeaderInterceptor())
+            addInterceptor(HttpLoggingInterceptor().apply {
+                level =
+                    if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BASIC else HttpLoggingInterceptor.Level.NONE
+            })
             addInterceptor(QueryParameterInterceptor())
             addInterceptor(SaveCookieInterceptor())
 //            addInterceptor(CacheInterceptor())
