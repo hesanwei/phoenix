@@ -8,7 +8,6 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
         app:cardCornerRadius="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -20,12 +19,16 @@
             android:layout_height="80dp"
             android:background="@color/black50">
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTips"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@color/transparent"
-                android:src="@mipmap/icon_loading" />
+                android:drawableTop="@mipmap/icon_operate_success"
+                android:gravity="center"
+                android:text="@string/operate_success"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
         </FrameLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

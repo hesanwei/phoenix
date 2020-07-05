@@ -7,4 +7,12 @@
         <attr name="mivValue" format="reference" />
         <attr name="mivShowDivider" format="boolean" />
     </declare-styleable>
+
+    <!--    倒计时TextView-->
+    <declare-styleable name="CountdownTextView">
+        <attr name="ctvDefaultCount" format="integer"/>
+        <attr name="ctvStopText" format="string"/>
+        <attr name="ctvStopTextColor" format="color"/>
+        <attr name="ctvCountTextColor" format="color"/>
+    </declare-styleable>
 </resources>

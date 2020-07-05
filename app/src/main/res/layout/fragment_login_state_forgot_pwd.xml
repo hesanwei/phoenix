@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/stateForgotPwd"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/color_bg_login"
+    android:id="@+id/stateForgotPwd"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/color_bg_login">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:drawableStart="@drawable/ic_login_forgot_pwd_tip"
+        android:gravity="center_vertical"
         android:text="@string/forgot_pwd_warning"
         android:textColor="#FF654E"
         android:textSize="12sp"
-        android:gravity="center_vertical"
         app:layout_constraintBottom_toTopOf="@+id/forgotPwdContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -65,15 +65,18 @@
                     android:id="@+id/etSmsCodeForgotPwd"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/dp_10"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:layout_marginEnd="@dimen/dp_10"
                     android:hint="@string/str_login_input_sms_hint"
                     android:inputType="number"
                     android:paddingHorizontal="@dimen/dp_10"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/text_main_gray"
                     android:textSize="15sp" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.fhhy.phoenix.widgets.CountdownTextView
+                    android:id="@+id/ctvResetPwdCountdown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -102,6 +105,8 @@
                     android:hint="@string/str_login_set_pwd_hint"
                     android:inputType="text"
                     android:paddingHorizontal="@dimen/dp_10"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/text_main_gray"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btnEyeForgotPwd"
@@ -123,7 +128,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btnResetPwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -146,9 +151,9 @@
                 android:gravity="center_vertical"
                 android:textColor="#7A8189"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/btnLogin"
+                app:layout_constraintBottom_toBottomOf="@+id/btnResetPwd"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btnLogin"
+                app:layout_constraintTop_toTopOf="@+id/btnResetPwd"
                 tools:text="验证码已发送至+86 180269923" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

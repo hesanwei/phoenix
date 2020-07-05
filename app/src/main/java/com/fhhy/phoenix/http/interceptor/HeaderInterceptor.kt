@@ -1,3 +1,7 @@
+import com.fhhy.phoenix.base.BaseApplication
+import com.fhhy.phoenix.constants.SPKeyConstants
+import com.fhhy.phoenix.utils.DeviceUtils
+import com.fhhy.phoenix.utils.SPUtils
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -16,16 +20,14 @@ class HeaderInterceptor : Interceptor {
 
         val request = chain.request()
         val builder = request.newBuilder()
+        val requestUrl = request.url().toString()
+        builder.addHeader("Content-Type", "multipart/form-data")
+            .addHeader("authentication", SPUtils.getString(SPKeyConstants.SP_KEY_TOKEN))
+            .addHeader("IMEI", DeviceUtils.getDeviceId(BaseApplication.getAppContext()))
 
-        builder.addHeader("Content-type", "application/json; charset=utf-8")
-        // .header("token", token)
-        // .method(request.method(), request.body())
-
-        val domain = request.url().host()
-        val url = request.url().toString()
-
-        //添加header todo
-
+        if (requestUrl.contains(Regex("get_check_code"))) {
+            builder.addHeader("cookie", SPUtils.getString(SPKeyConstants.SP_KEY_COOKIE))
+        }
         return chain.proceed(builder.build())
     }
 
