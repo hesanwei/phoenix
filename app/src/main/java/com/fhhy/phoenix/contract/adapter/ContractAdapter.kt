@@ -1,4 +1,4 @@
-package com.fhhy.phoenix.contract.fragment
+package com.fhhy.phoenix.contract.adapter
 
 import androidx.core.text.HtmlCompat
 import com.chad.library.adapter.base.BaseQuickAdapter

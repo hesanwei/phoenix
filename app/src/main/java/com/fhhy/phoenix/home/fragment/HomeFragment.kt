@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
-import com.fhhy.phoenix.contract.fragment.ContractAdapter
+import com.fhhy.phoenix.contract.adapter.ContractAdapter
 import com.fhhy.phoenix.contractdetail.ContractDetailActivity
 import com.fhhy.phoenix.home.HomeContract
 import com.fhhy.phoenix.home.adapter.BannerAdapter
@@ -14,7 +14,6 @@ import com.fhhy.phoenix.home.presenter.HomePresenter
 import com.fhhy.phoenix.test.BannerBean
 import com.fhhy.phoenix.test.ContractBean
 import com.jaeger.library.StatusBarUtil
-import com.stx.xhb.xbanner.XBanner
 import kotlinx.android.synthetic.main.fragment_home.*
 
 // Created by admin on 2020/6/7.

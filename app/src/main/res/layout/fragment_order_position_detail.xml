@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/fragment_order_position_detail_app_bar" />
+
+    <include
+        android:id="@+id/head"
+        layout="@layout/fragment_order_position_detail_head" />
+
+    <View
+        android:id="@+id/top_divider"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#F2F4F5" />
+
+    <View
+        android:id="@+id/second_divider"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#FFFFFF" />
+
+    <include
+        android:id="@+id/option_group"
+        layout="@layout/fragment_contract_option_item" />
+
+    <com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout
+        android:id="@+id/scroll_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.fujianlian.klinechart.KLineChartView
+            android:id="@+id/k_line_chart_view"
+            android:layout_width="match_parent"
+            android:layout_height="340dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="#F2F4F5" />
+
+    </com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

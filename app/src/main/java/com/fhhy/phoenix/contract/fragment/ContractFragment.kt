@@ -5,6 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
+import com.fhhy.phoenix.contract.adapter.ContractAdapter
 import com.fhhy.phoenix.contract.contract.ContractContract
 import com.fhhy.phoenix.contract.presenter.ContractPresenter
 import com.fhhy.phoenix.contractdetail.ContractDetailActivity

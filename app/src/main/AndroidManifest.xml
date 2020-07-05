@@ -37,6 +37,7 @@
         <activity android:name=".contract.activity.OrderActivity" />
         <activity android:name=".contract.activity.HistoryOrderDetailActivity" />
         <activity android:name=".contract.activity.EntrustRecordActivity" />
+        <activity android:name=".orderdetail.position.PositionDetailActivity" />
 
     </application>
 

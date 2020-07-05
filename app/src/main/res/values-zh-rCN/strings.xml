@@ -222,5 +222,9 @@
     <string name="estimate_capital_rate">预估费率：%s (平台奖励费率)</string>
     <string name="next_capital_cost">下次预估费用：%s VST</string>
     <string name="confirm_order">下单确认</string>
+    <string name="order_position_detail_title">持仓详情</string>
+    <string name="order_position_detail_high">高：</string>
+    <string name="order_position_detail_low">低：</string>
+    <string name="order_position_detail_total_acount">量：</string>
 
 </resources>
