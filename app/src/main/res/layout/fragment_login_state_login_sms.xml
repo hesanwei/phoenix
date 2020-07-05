@@ -61,11 +61,12 @@
                     android:textColorHint="@color/text_main_gray"
                     android:textSize="15sp" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.fhhy.phoenix.widgets.CountdownTextView
+                    android:id="@+id/ctvLoginCountdown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:textColor="#7A8189"
+                    android:textColor="@color/text_main_gray"
                     android:textSize="15sp"
                     tools:text="59S" />
             </LinearLayout>
@@ -84,7 +85,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/smsContainerLogin"
                 tools:text="验证码已发送至+86 180269923" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btnLoginSms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

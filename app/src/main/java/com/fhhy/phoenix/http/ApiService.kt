@@ -1,6 +1,7 @@
 package com.fhhy.phoenix.http
 
 import com.fhhy.phoenix.bean.HttpResult
+import com.fhhy.phoenix.bean.LoginBean
 import io.reactivex.Observable
 import okhttp3.HttpUrl
 import okhttp3.MultipartBody
@@ -24,7 +25,7 @@ interface ApiService {
     //登录
     @FormUrlEncoded
     @POST("index/login")
-    fun requestLogin(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
+    fun requestLogin(@FieldMap map: Map<String, String?>): Observable<HttpResult<LoginBean?>>
 
     @POST("index/verify")
     fun requestImgCode(): Observable<ResponseBody>

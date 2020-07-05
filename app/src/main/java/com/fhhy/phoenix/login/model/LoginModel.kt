@@ -2,6 +2,7 @@ package com.fhhy.phoenix.login.model
 
 import com.fhhy.phoenix.base.BaseModel
 import com.fhhy.phoenix.bean.HttpResult
+import com.fhhy.phoenix.bean.LoginBean
 import com.fhhy.phoenix.home.HomeContract
 import com.fhhy.phoenix.http.RetrofitManager
 import com.fhhy.phoenix.login.LoginContract
@@ -18,12 +19,12 @@ class LoginModel : BaseModel(), LoginContract.Model {
     }
 
     override fun requestLogin(
-        mobile: String?,
+        mobile: String,
         password: String?,
         code: String?,
         invitation_code: String?,
         google_code: String?
-    ): Observable<HttpResult<Any?>> {
+    ): Observable<HttpResult<LoginBean?>> {
         val requestMap = getRequestMap()
         requestMap["mobile"] = mobile
         requestMap["password"] = password

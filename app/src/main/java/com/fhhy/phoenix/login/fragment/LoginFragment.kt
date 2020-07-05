@@ -19,6 +19,7 @@ import androidx.core.animation.doOnStart
 import androidx.core.view.isVisible
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
+import com.fhhy.phoenix.bean.LoginBean
 import com.fhhy.phoenix.dialog.ImgCheckCodeDialog
 import com.fhhy.phoenix.http.RetrofitManager
 import com.fhhy.phoenix.login.LoginContract
@@ -213,20 +214,31 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
 
             //TODO  显示图形验证码 然后再确认是否显示验证码页面
             val mobile = etMobile.text.toString()
-//            val pwd = etPwd.text.toString()
-//            if (!mobile.isMobile()) {
-//                showToast("手机号格式不对")
-//                return@noDoubleClick
-//            }
-//
-//            if (TextUtils.isEmpty(pwd)) {
-//                showToast("密码不能为空")
-//                return@noDoubleClick
-//            }
-//            //请求登录接口
-////            mPresenter?.requestLogin(mobile, pwd)
-            showImgCheckCodeDialog(mobile)
+            val pwd = etPwd.text.toString()
+            if (!mobile.isMobile()) {
+                showToast("手机号格式不对")
+                return@noDoubleClick
+            }
+
+            if (TextUtils.isEmpty(pwd)) {
+                showToast("密码不能为空")
+                return@noDoubleClick
+            }
+            toLogin(mobile, pwd)
         }
+    }
+
+    /**
+     * 登录
+     */
+    private fun toLogin(
+        mobile: String,
+        pwd: String,
+        smsCheckCode: String? = "",
+        invitation_code: String = ""
+    ) {
+        //请求登录接口
+        mPresenter?.requestLogin(mobile, pwd, smsCheckCode,invitation_code)
     }
 
     private fun initRegisterOneViewAndListeners() {
@@ -298,7 +310,28 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
 
         if (nextState == State.LOGIN_SMS) {
             etSmsLogin.text?.clear()
-            //TODO 重置倒计时
+            ctvLoginCountdown.start()
+            tvSmsCodeTipLogin.text = String.format(
+                context!!.resources.getString(R.string.check_code_send_to_mobile),
+                etMobile.text.toString()
+            )
+            val smsCode = etSmsLogin.textChanges()
+                .subscribe {
+                    setButtonClickable(btnLoginSms, !it.isNullOrEmpty())
+                }
+            mCompositeDisposable.add(smsCode)
+
+            btnLoginSms.noDoubleClick {
+                val smsCheckCode = etSmsLogin.text.toString()
+                if (TextUtils.isEmpty(smsCheckCode)) {
+                    showToast("短信验证码不能为空")
+                    return@noDoubleClick
+                }
+                val mobile = etMobile.text.toString()
+                val pwd = etPwd.text.toString()
+
+                toLogin(mobile, pwd, smsCheckCode)
+            }
         }
     }
 
@@ -434,7 +467,6 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         animExit(currState, preState)
         if (preState == State.LOGIN) {
             etMobile.setText(currMobile)
-            etPwd.transformationMethod = HideReturnsTransformationMethod.getInstance()
             btnPwdEye.setImageResource(R.drawable.ic_login_eye_open)
         }
     }
@@ -462,8 +494,13 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         }
     }
 
-    override fun requestLoginSuccess(data: Any?) {
-        showToast("请求登录成功")
+    override fun requestLoginSuccess(mobile: String, loginBean: LoginBean?) {
+        if ("1" == (loginBean?.need_sms_code)) {
+            showImgCheckCodeDialog(mobile)
+        } else {
+            //todo 保存token
+            requireActivity().finish()
+        }
     }
 
 
@@ -481,7 +518,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
     private fun showImgCheckCodeDialog(mobile: String) {
         ImgCheckCodeDialog(object : ImgCheckCodeDialog.OnOkListener {
             override fun onOkClick(imgCheckCode: String) {
-                mPresenter?.requestCheckCode(mobile,imgCheckCode)
+                mPresenter?.requestCheckCode(mobile, imgCheckCode)
             }
         }).show(activity!!.supportFragmentManager)
     }

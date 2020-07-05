@@ -20,7 +20,7 @@ class LoginPresenter : BasePresenter<LoginContract.Model, LoginContract.View>(),
     }
 
     override fun requestLogin(
-        mobile: String?,
+        mobile: String,
         password: String?,
         code: String?,
         invitation_code: String?,
@@ -28,7 +28,7 @@ class LoginPresenter : BasePresenter<LoginContract.Model, LoginContract.View>(),
     ) {
         mModel?.requestLogin(mobile, password, code, invitation_code, google_code)
             ?.request(mModel, mView) {
-                mView?.requestLoginSuccess(it.data)
+                mView?.requestLoginSuccess(mobile,it.data)
             }
     }
 }
