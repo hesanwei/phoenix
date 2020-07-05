@@ -75,7 +75,8 @@
                     android:textColorHint="@color/text_main_gray"
                     android:textSize="15sp" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.fhhy.phoenix.widgets.CountdownTextView
+                    android:id="@+id/ctvResetPwdCountdown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -127,7 +128,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btnResetPwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -150,9 +151,9 @@
                 android:gravity="center_vertical"
                 android:textColor="#7A8189"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/btnLogin"
+                app:layout_constraintBottom_toBottomOf="@+id/btnResetPwd"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btnLogin"
+                app:layout_constraintTop_toTopOf="@+id/btnResetPwd"
                 tools:text="验证码已发送至+86 180269923" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

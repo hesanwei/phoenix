@@ -19,6 +19,12 @@ class LoginPresenter : BasePresenter<LoginContract.Model, LoginContract.View>(),
         }
     }
 
+    override fun requestUpdatePwdCheckCode(mobile: String?, captcha: String?) {
+        mModel?.requestUpdatePwdCheckCode(mobile, captcha)?.request(mModel, mView) {
+            mView?.requestCheckCodeSuccess()
+        }
+    }
+
     override fun requestRegister(
         mobile: String,
         password: String?,
@@ -27,8 +33,14 @@ class LoginPresenter : BasePresenter<LoginContract.Model, LoginContract.View>(),
     ) {
         mModel?.requestRegister(mobile, password, code, invitation_code)
             ?.request(mModel, mView) {
-                mView?.requestLoginSuccess(mobile,it.data)
+                mView?.requestLoginSuccess(mobile, it.data)
             }
+    }
+
+    override fun requestUpdatePwd(code: String?, password: String?) {
+        mModel?.requestUpdatePwd(code, password)?.request(mModel, mView) {
+            mView?.requestUpdatePwdSuccess()
+        }
     }
 
     override fun requestLogin(
@@ -39,7 +51,7 @@ class LoginPresenter : BasePresenter<LoginContract.Model, LoginContract.View>(),
     ) {
         mModel?.requestLogin(mobile, password, code, google_code)
             ?.request(mModel, mView) {
-                mView?.requestLoginSuccess(mobile,it.data)
+                mView?.requestLoginSuccess(mobile, it.data)
             }
     }
 }

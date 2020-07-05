@@ -18,6 +18,16 @@ class LoginModel : BaseModel(), LoginContract.Model {
         return RetrofitManager.apiService.requestCheckCode(requestMap)
     }
 
+    override fun requestUpdatePwdCheckCode(
+        mobile: String?,
+        captcha: String?
+    ): Observable<HttpResult<Any?>> {
+        val requestMap = getRequestMap()
+        requestMap["mobile"] = mobile
+        requestMap["captcha"] = captcha
+        return RetrofitManager.apiService.requestUpdatePwdCheckCode(requestMap)
+    }
+
     override fun requestLogin(
         mobile: String,
         password: String?,
@@ -44,6 +54,13 @@ class LoginModel : BaseModel(), LoginContract.Model {
         requestMap["code"] = code
         requestMap["invitation_code"] = invitation_code
         return RetrofitManager.apiService.requestRegister(requestMap)
+    }
+
+    override fun requestUpdatePwd(code: String?, password: String?): Observable<HttpResult<Any?>> {
+        val requestMap = getRequestMap()
+        requestMap["code"] = code
+        requestMap["password"] = password
+        return RetrofitManager.apiService.requestUpdatePwd(requestMap)
     }
 
 }

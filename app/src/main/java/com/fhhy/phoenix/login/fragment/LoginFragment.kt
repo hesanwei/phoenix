@@ -2,7 +2,6 @@ package com.fhhy.phoenix.login.fragment
 
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.InputType
 import android.text.TextUtils
@@ -22,11 +21,11 @@ import com.fhhy.phoenix.base.BaseMvpFragment
 import com.fhhy.phoenix.bean.LoginBean
 import com.fhhy.phoenix.constants.SPKeyConstants
 import com.fhhy.phoenix.dialog.ImgCheckCodeDialog
-import com.fhhy.phoenix.http.RetrofitManager
 import com.fhhy.phoenix.login.LoginContract
 import com.fhhy.phoenix.login.State
 import com.fhhy.phoenix.login.event.LoginSuccessEvent
 import com.fhhy.phoenix.login.presenter.LoginPresenter
+import com.fhhy.phoenix.toast.ToastUtil
 import com.fhhy.phoenix.utils.SPUtils
 import com.jaeger.library.StatusBarUtil
 import com.jakewharton.rxbinding4.view.clicks
@@ -203,7 +202,12 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
 
         //忘记密码
         val toForgotPwd = tvForgotPwd.noDoubleClick {
-            toNextState(State.FORGOT_PWD)
+            val mobile = etMobile.text.toString()
+            if (!mobile.isMobile()) {
+                showOperateSuccessDialog("手机号格式不对")
+                return@noDoubleClick
+            }
+            showImgCheckCodeDialog(mobile, true)
         }
         mCompositeDisposable.add(toForgotPwd)
 
@@ -220,12 +224,12 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
             val mobile = etMobile.text.toString()
             val pwd = etPwd.text.toString()
             if (!mobile.isMobile()) {
-                showToast("手机号格式不对")
+                showOperateSuccessDialog("手机号格式不对")
                 return@noDoubleClick
             }
 
             if (TextUtils.isEmpty(pwd)) {
-                showToast("密码不能为空")
+                showOperateSuccessDialog("密码不能为空")
                 return@noDoubleClick
             }
             doLogin(mobile, pwd)
@@ -258,6 +262,10 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         mPresenter?.requestRegister(mobile, pwd, smsCheckCode, invitation_code)
     }
 
+    private fun doUpdatePwd(smsCheckCode: String?, pwd: String?) {
+        mPresenter?.requestUpdatePwd(smsCheckCode, pwd)
+    }
+
     private fun initRegisterOneViewAndListeners() {
         val areaCodeClick = tvAreaReg.noDoubleClick {
             // TODO("添加跳转选择国家地区")
@@ -279,7 +287,6 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         mCompositeDisposable.add(mobile)
 
         val next = btnNext.noDoubleClick {
-            //TODO  先图形验证再请求发送验证码接口 再跳转注册页面的第二步
             val mobile = etMobileReg.text.toString()
             val isMobile = mobile.isMobile()
             if (isMobile) {
@@ -344,11 +351,45 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
 
         if (nextState == State.FORGOT_PWD) {
             etSmsCodeForgotPwd.text?.clear()
-            //TODO 重置倒计时
             etPwdSetPwd.text?.clear()
+            ctvResetPwdCountdown.start()
             etPwdSetPwd.transformationMethod = PasswordTransformationMethod.getInstance()
             btnEyeForgotPwd.setImageResource(R.drawable.ic_login_eye_open)
+            tvSmsCodeTipForgotPwd.text = String.format(
+                context!!.resources.getString(R.string.check_code_send_to_mobile),
+                etMobile.text.toString()
+            )
+            val smsCodeForgotPwd = etSmsCodeForgotPwd.textChanges()
+                .subscribe {
+                    setButtonClickable(
+                        btnResetPwd,
+                        !it.isNullOrEmpty() && !TextUtils.isEmpty(etPwdSetPwd.text)
+                    )
+                }
+            mCompositeDisposable.add(smsCodeForgotPwd)
 
+            val pwdSetPwd = etPwdSetPwd.textChanges()
+                .subscribe {
+                    setButtonClickable(
+                        btnResetPwd,
+                        !it.isNullOrEmpty() && !TextUtils.isEmpty(etSmsCodeForgotPwd.text)
+                    )
+                }
+            mCompositeDisposable.add(pwdSetPwd)
+
+            btnResetPwd.noDoubleClick {
+                val smsCheckCode = etSmsCodeForgotPwd.text.toString()
+                if (TextUtils.isEmpty(smsCheckCode)) {
+                    showToast("短信验证码不能为空")
+                    return@noDoubleClick
+                }
+                val pwd = etPwdSetPwd.text.toString()
+                if (pwd.length > 20 || pwd.length < 6) {
+                    showToast("请输入6～20位数字、字母密码")
+                    return@noDoubleClick
+                }
+                doUpdatePwd(smsCheckCode, pwd)
+            }
         }
 
         if (nextState == State.LOGIN_SMS) {
@@ -526,13 +567,20 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
     }
 
     override fun requestCheckCodeSuccess() {
-        showToast("验证码请求成功")
+        showOperateSuccessDialog("验证码请求成功")
         when (currentState) {
             State.REGISTER_STEP_ONE -> {
                 toNextState(State.REGISTER_STEP_TWO)
             }
             State.LOGIN -> {
-                toNextState(State.LOGIN_SMS)
+                if (isForgetPwd) {
+                    toNextState(State.FORGOT_PWD)
+                } else {
+                    toNextState(State.LOGIN_SMS)
+                }
+            }
+            else -> {
+
             }
         }
     }
@@ -542,6 +590,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
             if ("1" == (loginBean.need_sms_code)) {
                 showImgCheckCodeDialog(mobile)
             } else {
+                showOperateSuccessDialog("登录成功")
                 SPUtils.setString(
                     SPKeyConstants.SP_KEY_TOKEN,
                     if (TextUtils.isEmpty(loginBean.info)) "" else loginBean.info!!
@@ -553,6 +602,18 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         }
     }
 
+    override fun requestUpdatePwdSuccess() {
+        showOperateSuccessDialog("操作成功")
+        toPreState()
+    }
+
+    /**
+     * 展示操作成功弹框
+     */
+    private fun showOperateSuccessDialog(content: String? = "") {
+//        ToastUtil.showOperateTip(content)
+        showToast(content)
+    }
 
     /**
      * 设置下一步按钮是否可点击
@@ -565,10 +626,16 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
     /**
      * 展示图形验证码
      */
-    private fun showImgCheckCodeDialog(mobile: String) {
+    private var isForgetPwd: Boolean = false
+    private fun showImgCheckCodeDialog(mobile: String, isForgetPwd: Boolean = false) {
+        this.isForgetPwd = isForgetPwd
         ImgCheckCodeDialog(object : ImgCheckCodeDialog.OnOkListener {
             override fun onOkClick(imgCheckCode: String) {
-                mPresenter?.requestCheckCode(mobile, imgCheckCode)
+                if (isForgetPwd) {
+                    mPresenter?.requestUpdatePwdCheckCode(mobile, imgCheckCode)
+                } else {
+                    mPresenter?.requestCheckCode(mobile, imgCheckCode)
+                }
             }
         }).show(activity!!.supportFragmentManager)
     }

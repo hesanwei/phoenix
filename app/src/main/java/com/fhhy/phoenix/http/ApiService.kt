@@ -22,6 +22,11 @@ interface ApiService {
     @POST("index/get_check_code")
     fun requestCheckCode(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
 
+    //获取重置密码的短信验证码
+    @FormUrlEncoded
+    @POST("index/get_check_code")
+    fun requestUpdatePwdCheckCode(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
+
     //登录
     @FormUrlEncoded
     @POST("index/login")
@@ -36,4 +41,9 @@ interface ApiService {
     //获取图形验证码
     @POST("index/verify")
     fun requestImgCode(): Observable<ResponseBody>
+
+    //重置密码
+    @FormUrlEncoded
+    @POST("user/update_password")
+    fun requestUpdatePwd(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
 }
