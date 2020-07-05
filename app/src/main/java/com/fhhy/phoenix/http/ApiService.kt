@@ -18,5 +18,5 @@ interface ApiService {
     //获取短信验证码
     @FormUrlEncoded
     @POST("index/get_check_code")
-    fun requestCheckCode(@Field("mobile") mobile: String?): Observable<HttpResult<Any?>>
+    fun requestCheckCode(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
 }

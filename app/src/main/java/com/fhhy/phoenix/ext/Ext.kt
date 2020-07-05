@@ -118,3 +118,7 @@ fun AppCompatTextView.underline() {
     paint.flags = Paint.UNDERLINE_TEXT_FLAG; //下划线
     paint.isAntiAlias = true;//抗锯齿
 }
+
+fun Any.getRequestMap(): MutableMap<String, String?> {
+    return HashMap()
+}
