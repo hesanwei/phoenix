@@ -44,6 +44,10 @@
         <activity android:name=".contract.activity.HistoryOrderDetailActivity" />
         <activity android:name=".contract.activity.EntrustRecordActivity" />
         <activity android:name=".orderdetail.position.PositionDetailActivity" />
+        <activity android:name=".community.activity.SearchTraderActivity" />
+        <activity android:name=".community.activity.TraderInfoActivity" />
+        <activity android:name=".community.activity.FollowOrderManagerActivity" />
+        <activity android:name=".community.activity.HighQualityTraderActivity" />
 
     </application>
 

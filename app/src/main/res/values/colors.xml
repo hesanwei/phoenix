@@ -34,4 +34,11 @@
     <color name="color_divider_gray">#D8D8D8</color>
     <color name="transparent">#00000000</color>
     <color name="order_item_bg_color">#F2F6FF</color>
+    <color name="text_rect_bg_gray">#F6F7FB</color>
+    <color name="text_gray_BFC2CC">#BFC2CC</color>
+    <color name="text_blue_6883B4">#6883B4</color>
+    <color name="color_gray_F5F7FA">#F5F7FA</color>
+    <color name="color_gray_F5F5F5">#F5F5F5</color>
+    <color name="color_gray_F6F7F8">#F6F7F8</color>
+    <color name="color_gray_F4F6F9">#F4F6F9</color>
 </resources>

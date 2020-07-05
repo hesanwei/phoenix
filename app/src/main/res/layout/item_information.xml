@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:paddingHorizontal="10dp"
+    android:background="@color/white"
+    android:layout_height="130dp">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:maxLines="2"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        android:text="如何高效地进行任务管理？现金管限制最长两排字现金管限制最长两排字现金管限制最长两排字…"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/iv_pic"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_pic"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintLeft_toRightOf="@id/tv_title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_title" />
+    <TextView
+        android:id="@+id/tv_tag"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/iv_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="2dp"
+        android:textColor="@color/text_main_gray"
+        android:textSize="13sp"
+        android:background="@drawable/text_rect_bg_gray_4r"
+        android:text="蓝湖笔记"/>
+    <TextView
+        android:id="@+id/tv_num"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_tag"
+        app:layout_constraintTop_toTopOf="@id/tv_tag"
+        app:layout_constraintRight_toLeftOf="@id/iv_pic"
+        android:drawablePadding="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_main_gray"
+        android:textSize="13sp"
+        android:drawableStart="@mipmap/icon_eye"
+        android:text="207"/>
+    <TextView
+        app:layout_constraintRight_toRightOf="@id/tv_num"
+        app:layout_constraintBottom_toTopOf="@id/tv_num"
+        android:layout_marginBottom="7dp"
+        android:textSize="13sp"
+        android:textColor="@color/text_main_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="刚刚"/>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="0.8dp"
+        android:layout_marginStart="15dp"
+        android:background="@color/color_divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

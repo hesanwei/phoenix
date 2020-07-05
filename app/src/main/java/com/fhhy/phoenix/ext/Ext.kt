@@ -2,10 +2,14 @@ import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Paint
+import android.text.SpannableString
+import android.text.Spanned
 import android.text.TextUtils
+import android.text.style.UnderlineSpan
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import com.fhhy.phoenix.R
@@ -115,9 +119,35 @@ fun Context.getTextColor(up: Boolean): Int =
 
 //给text 设置下划线
 fun AppCompatTextView.underline() {
-    paint.flags = Paint.UNDERLINE_TEXT_FLAG; //下划线
-    paint.isAntiAlias = true;//抗锯齿
+//    paint.flags = Paint.UNDERLINE_TEXT_FLAG; //下划线
+//    paint.isAntiAlias = true;//抗锯齿
+    if (text.isNotEmpty()){
+        val spannableString = SpannableString(text.toString().trim())
+        val underlineSpan = UnderlineSpan()
+        spannableString.setSpan(
+            underlineSpan,
+            0,
+            spannableString.length,
+            Spanned.SPAN_INCLUSIVE_EXCLUSIVE
+        )
+        text = spannableString
+    }
 }
+fun TextView.underline() {
+    if (text.isNotEmpty()){
+        val spannableString = SpannableString(text.toString().trim())
+        val underlineSpan = UnderlineSpan()
+        spannableString.setSpan(
+            underlineSpan,
+            0,
+            spannableString.length,
+            Spanned.SPAN_INCLUSIVE_EXCLUSIVE
+        )
+        text = spannableString
+    }
+
+}
+
 
 fun Any.getRequestMap(): MutableMap<String, String?> {
     return HashMap()

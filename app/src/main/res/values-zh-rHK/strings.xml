@@ -237,5 +237,30 @@
     <string name="input_img_check_code">请输入图形验证码</string>
     <string name="check_code_send_to_mobile">验证码已发送至+86 %s</string>
     <string name="operate_success">操作成功</string>
+    <string name="information">资讯</string>
+    <string name="read_follow_order_profit_des">实际跟单总收益说明</string>
+    <string name="dialog_real_profit_des_1">当你干涉交易员的交易订单时，如手动平仓、 主动止盈止损等，对应订单收益并不计入此收益。此收益未统计手续费等费用。</string>
+    <string name="share_to_friend">分享给朋友</string>
+    <string name="dialog_share_link_des_1">点击“复制链接”按钮，然后到微信里粘贴发给朋友，即可完成分享。</string>
+    <string name="copy_link">复制链接</string>
+    <string name="follow_order_manager">跟单管理</string>
+    <string name="real_pan">实盘</string>
+    <string name="simulate">模拟</string>
+    <string name="following">正在跟随</string>
+    <string name="platform_high_quality_trader">全平台优质投资者</string>
+    <string name="search_trader">搜索交易者</string>
+    <string name="desc">说明</string>
+    <string name="dialog_des_1">优质投资者是自发分享交易，且表现优异的交易用户，无需通过榜单申请，同样可以供您选择跟随下单。</string>
+    <string name="dialog_des_2">想成为优质投资的一员？在【我的】-【带单管理】中，分享您的交易活动，便有机会出现优质投资者列表，获得额外的带单收益。</string>
+    <string name="trader_list_order">交易员榜单</string>
+    <string name="sort">筛选</string>
+    <string name="update_tip">数据每小时更新一次</string>
+    <string name="real_name_author">已实名认证</string>
+    <string name="total_profit_rate">累计收益率</string>
+    <string name="last_3_week_win_rate">近3周交易胜率</string>
+    <string name="last_3_week_withdrawal_rate">近3周最大回撤</string>
+    <string name="last_3_week_trade_num">近3周交易笔数</string>
+    <string name="trade_days">交易天数</string>
+    <string name="total_follow_num">累计跟随人数</string>
 
 </resources>
