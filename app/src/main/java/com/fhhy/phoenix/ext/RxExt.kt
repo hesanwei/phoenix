@@ -3,6 +3,7 @@ import com.fhhy.phoenix.base.BaseApplication
 import com.fhhy.phoenix.base.BaseBean
 import com.fhhy.phoenix.base.IModel
 import com.fhhy.phoenix.base.IView
+import com.fhhy.phoenix.constants.Constants
 import com.google.gson.Gson
 import io.reactivex.Observable
 import io.reactivex.Observer
@@ -37,12 +38,12 @@ fun <T : BaseBean> Observable<T>.request(
 
             override fun onNext(t: T) {
                 when {
-//                    t.actionStatus == Constants.ACTION_STATUS_OK && t.isDefaultData == Constants.DEFAULT_DATA -> onSuccess.invoke(
-//                        t
-//                    )
-//                    else -> {
-//                        view?.showError(t.errorMsg)
-//                    }
+                    t.code == Constants.CODE_200 -> onSuccess.invoke(
+                        t
+                    )
+                    else -> {
+                        view?.showError(t.message)
+                    }
                 }
             }
 
