@@ -238,7 +238,7 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
         isNormal = isNormal.not()
         mBinding.head.root.isVisible = isNormal
         mBinding.topDivider.isVisible = isNormal
-        mBinding.secondDivider.isVisible = isNormal
+//        mBinding.secondDivider.isVisible = isNormal
         mBinding.scrollContainer.isVisible = isNormal
         mBinding.llContainer.isVisible = !isNormal
         if (isNormal) {

@@ -2,12 +2,11 @@ package com.fhhy.phoenix.base
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.fhhy.phoenix.dialog.LoadingDialog
+import io.reactivex.disposables.CompositeDisposable
 import showToast
 
 /**
  * AMBaseMvpFragment class
- *
- * @author hesanwei created on 2020/1/16
  *
  */
 @Suppress("UNCHECKED_CAST")
@@ -17,6 +16,9 @@ abstract class BaseMvpFragment<in V : IView, P : IPresenter<V>> : BaseFragment()
      */
     protected var mPresenter: P? = null
 
+    protected val mDisposable by lazy {
+        CompositeDisposable()
+    }
     protected abstract fun createPresenter(): P
 
     override fun initView(view: View) {
@@ -24,8 +26,13 @@ abstract class BaseMvpFragment<in V : IView, P : IPresenter<V>> : BaseFragment()
         mPresenter?.attachView(this as V)
     }
 
+    protected fun addDisposable(block: Block) {
+        mCompositeDisposable.add(block.invoke())
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+        mDisposable.clear()
         mPresenter?.detachView()
         this.mPresenter = null
     }

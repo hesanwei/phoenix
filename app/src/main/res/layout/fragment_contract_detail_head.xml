@@ -5,148 +5,156 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="16dp"
-    android:paddingVertical="8dp">
+    android:paddingTop="4dp"
+    android:paddingBottom="8dp">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/curr_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="--"
+        android:text="2999.89"
         android:textColor="@color/currency_down_color"
         android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="@+id/settle_time_value"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="2999.89"/>
+        app:layout_constraintTop_toTopOf="@id/fund_rate_value"
+        tools:text="2999.89" />
 
     <TextView
         android:id="@+id/currency_trend_percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="--%"
-        android:paddingVertical="2dp"
-        android:paddingHorizontal="3dp"
-        android:textColor="@color/white"
+        android:layout_marginStart="6dp"
         android:background="@drawable/bg_btn_currency_down"
-        app:layout_constraintTop_toBottomOf="@+id/curr_price"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="-0.87%"/>
+        android:paddingHorizontal="3dp"
+        android:paddingVertical="2dp"
+        android:text="--%"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_contract_detail_secondary_size"
+        app:layout_constraintBottom_toBottomOf="@+id/curr_price"
+        app:layout_constraintStart_toEndOf="@+id/curr_price"
+        app:layout_constraintTop_toTopOf="@+id/curr_price"
+        tools:text="-0.87%" />
 
     <TextView
         android:id="@+id/fund_rate_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/gray_555"
         android:text="----"
+        android:textColor="@color/gray_555"
+        android:textSize="@dimen/text_contract_detail_secondary_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/curr_price"
-        app:layout_constraintTop_toTopOf="@+id/curr_price"
-        tools:text="-0.010%"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="-0.010%" />
 
     <TextView
         android:id="@+id/settle_time_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/gray_555"
+        android:layout_marginTop="6dp"
         android:text="----"
+        android:textColor="@color/gray_555"
+        android:textSize="@dimen/text_contract_detail_secondary_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/currency_trend_percent"
-        app:layout_constraintTop_toTopOf="@+id/currency_trend_percent"
-        tools:text="10小时内"/>
+        app:layout_constraintTop_toBottomOf="@+id/fund_rate_value"
+        tools:text="10小时内" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="start"
-        app:constraint_referenced_ids="fund_rate_value,settle_time_value"/>
+        app:constraint_referenced_ids="fund_rate_value,settle_time_value" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fund_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:text="@string/fund_rate"
         android:textColor="#555555"
-        android:layout_marginEnd="8dp"
+        android:textSize="@dimen/text_contract_detail_secondary_size"
         app:layout_constraintEnd_toStartOf="@+id/barrier"
-        app:layout_constraintTop_toTopOf="@id/curr_price"
-        app:layout_constraintBottom_toBottomOf="@+id/curr_price" />
+        app:layout_constraintTop_toTopOf="@id/fund_rate_value" />
 
     <TextView
         android:id="@+id/settle_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:text="@string/settle_time"
         android:textColor="#555555"
-        android:layout_marginEnd="8dp"
+        android:textSize="@dimen/text_contract_detail_secondary_size"
         app:layout_constraintEnd_toStartOf="@+id/barrier"
-        app:layout_constraintTop_toTopOf="@id/currency_trend_percent"
-        app:layout_constraintBottom_toBottomOf="@+id/currency_trend_percent" />
+        app:layout_constraintTop_toTopOf="@id/settle_time_value" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/highest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/gray_555"
+        android:layout_marginTop="4dp"
         android:text="@string/high_max"
-        app:layout_constraintTop_toBottomOf="@+id/currency_trend_percent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:textColor="@color/gray_555"
+        android:textSize="@dimen/text_contract_detail_secondary_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settle_time" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/highest_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/currency_down_color"
-        android:text="--"
         android:layout_marginStart="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/currency_trend_percent"
+        android:text="--"
+        android:textColor="@color/currency_down_color"
+        android:textSize="@dimen/text_contract_detail_secondary_size"
         app:layout_constraintStart_toEndOf="@+id/highest"
-        tools:text="9622.73"/>
+        app:layout_constraintTop_toTopOf="@+id/highest"
+        tools:text="9622.73" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lowest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="8dp"
-        android:textColor="@color/gray_555"
         android:text="@string/lowest"
-        app:layout_constraintTop_toBottomOf="@+id/currency_trend_percent"
-        app:layout_constraintStart_toEndOf="@+id/highest_value"/>
+        android:textColor="@color/gray_555"
+        android:textSize="@dimen/text_contract_detail_secondary_size"
+        app:layout_constraintStart_toEndOf="@+id/highest_value"
+        app:layout_constraintTop_toTopOf="@+id/highest" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lowest_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/currency_up_color"
-        android:text="--"
         android:layout_marginStart="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/currency_trend_percent"
+        android:text="--"
+        android:textColor="@color/currency_up_color"
+        android:textSize="@dimen/text_contract_detail_secondary_size"
         app:layout_constraintStart_toEndOf="@+id/lowest"
-        tools:text="9622.73"/>
+        app:layout_constraintTop_toTopOf="@+id/highest"
+        tools:text="9622.73" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/hours_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/gray_555"
-        android:text="--"
         android:layout_marginStart="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/currency_trend_percent"
+        android:text="--"
+        android:textColor="@color/gray_555"
+        android:textSize="@dimen/text_contract_detail_secondary_size"
         app:layout_constraintStart_toEndOf="@+id/lowest_value"
-        tools:text="24h"/>
+        app:layout_constraintTop_toTopOf="@+id/highest"
+        tools:text="24h" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/total_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/gray_555"
-        android:text="--"
         android:layout_marginStart="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/currency_trend_percent"
+        android:text="--"
+        android:textColor="@color/gray_555"
+        android:textSize="@dimen/text_contract_detail_secondary_size"
         app:layout_constraintStart_toEndOf="@+id/hours_value"
-        tools:text="499898k"/>
+        app:layout_constraintTop_toTopOf="@+id/highest"
+        tools:text="499898k" />
 </androidx.constraintlayout.widget.ConstraintLayout>

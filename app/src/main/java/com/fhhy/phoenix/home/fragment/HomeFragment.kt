@@ -1,32 +1,51 @@
 package com.fhhy.phoenix.home.fragment
 
 import android.content.Intent
+import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
-import com.fhhy.phoenix.contract.fragment.ContractAdapter
+import com.fhhy.phoenix.bean.CurrencyPrice
+import com.fhhy.phoenix.bean.HomeTopWrapBean
+import com.fhhy.phoenix.contract.adapter.ContractAdapter
 import com.fhhy.phoenix.contractdetail.ContractDetailActivity
+import com.fhhy.phoenix.home.CurrencyPriceItemDiff
 import com.fhhy.phoenix.home.HomeContract
 import com.fhhy.phoenix.home.adapter.BannerAdapter
 import com.fhhy.phoenix.home.adapter.NoticeMarqueeAdapter
 import com.fhhy.phoenix.home.presenter.HomePresenter
-import com.fhhy.phoenix.test.BannerBean
-import com.fhhy.phoenix.test.ContractBean
 import com.jaeger.library.StatusBarUtil
-import com.stx.xhb.xbanner.XBanner
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_home.*
 
 // Created by admin on 2020/6/7.
-class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>() {
+class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(),
+    HomeContract.View {
 
     private val homeContractAdapter by lazy {
         ContractAdapter()
     }
 
+    private val homeBgWorker: HomeLifeCycle by lazy {
+        HomeLifeCycle()
+    }
+
+    private val marqueeAdapter by lazy {
+        NoticeMarqueeAdapter()
+    }
+
     override fun createPresenter(): HomeContract.Presenter = HomePresenter()
 
     override fun getLayoutId(): Int = R.layout.fragment_home
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lifecycle.addObserver(homeBgWorker)
+    }
 
     override fun initView(view: View) {
         super.initView(view)
@@ -34,20 +53,31 @@ class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(
         StatusBarUtil.setLightMode(activity)
         initMarqueeView()
         initRecyclerView()
-        initBannerView()
+        ensureSubscribe()
+    }
+
+    private fun ensureSubscribe() {
+        addDisposable {
+            homeBgWorker.currenciesList
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext {
+                    Log.d("HomeFragment", "ensureSubscribe: update list")
+                    updateCurrenciesList(it)
+                }
+                .subscribe()
+        }
+    }
+
+    private fun updateCurrenciesList(list: List<CurrencyPrice>) {
+        list.apply {
+            homeContractAdapter.setDiffNewData(this.toMutableList())
+        }
     }
 
     private fun initMarqueeView() {
-        xMarqueeView.setAdapter(
-            NoticeMarqueeAdapter(
-                listOf(
-                    "重要消息传达不到位？试试公告",
-                    "重要消息传达不到位？试试公告",
-                    "重要消息传达不到位？试试公告",
-                    "重要消息传达不到位？试试公告"
-                )
-            )
-        )
+        xMarqueeContainer.isVisible = false
+        homeNavContainer.isVisible = false
+        xMarqueeView.setAdapter(marqueeAdapter)
     }
 
     private fun initRecyclerView() {
@@ -59,24 +89,62 @@ class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(
         homeContractAdapter.setOnItemClickListener { adapter, view, position ->
             startActivity(Intent(requireContext(), ContractDetailActivity::class.java))
         }
-    }
-
-    private fun initBannerView() {
-        xBanner.setBannerData(mutableListOf(BannerBean(), BannerBean(), BannerBean(), BannerBean()))
-        xBanner.loadImage(BannerAdapter(context!!))
+        homeContractAdapter.setDiffCallback(CurrencyPriceItemDiff())
+        smartRefreshLayout.setOnRefreshListener {
+            mPresenter?.requestHomeData()
+        }
     }
 
     override fun lazyLoad() {
-        val testData = arrayListOf<ContractBean>()
-        for (i in 1..10) {
-            testData.add(ContractBean("ETH", 9987.5f / i, 1.00f / i))
+        mPresenter?.run {
+            requestHomeData()
         }
-        homeContractAdapter.data.addAll(testData)
     }
 
     companion object {
         fun newInstance(): HomeFragment {
             return HomeFragment()
+        }
+    }
+
+    override fun setHomeCurrencies(currencies: List<CurrencyPrice>) {
+        smartRefreshLayout.finishRefresh()
+        homeContractAdapter.setList(currencies)
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        homeBgWorker.onHideChanged(hidden)
+    }
+
+    override fun showBannerAndNav(topWrapBean: HomeTopWrapBean) {
+        smartRefreshLayout.finishRefresh()
+        //绑定banner
+        xBanner.setBannerData(topWrapBean.bannerList)
+        xBanner.loadImage(BannerAdapter(requireContext()))
+
+        //绑定消息轮播
+        marqueeAdapter.setData(topWrapBean.noticeList.map {
+            it.title
+        })
+
+        xMarqueeContainer.isVisible = true
+        homeNavContainer.isVisible = true
+
+        //todo 设置四个按钮的点击事件
+        tvNewGuide.setOnClickListener {
+
+        }
+        tvInviteFriends.setOnClickListener {
+
+        }
+
+        tvPlatformIntroduction.setOnClickListener {
+
+        }
+
+        tvRecharge.setOnClickListener {
+
         }
     }
 }

@@ -222,6 +222,10 @@
     <string name="entrust_time">委托时间</string>
     <string name="revoke">撤销</string>
     <string name="entrust_deal_price">委托成交价</string>
+    <string name="order_position_detail_title">持仓详情</string>
+    <string name="order_position_detail_high">高：</string>
+    <string name="order_position_detail_low">低：</string>
+    <string name="order_position_detail_total_acount">量：</string>
     <string name="typeAndLever">类型/杠杆</string>
     <string name="delegate_type">委托类型</string>
     <string name="capital">本金</string>

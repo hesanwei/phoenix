@@ -9,11 +9,11 @@ import com.stx.xmarqueeview.XMarqueeView
 import com.stx.xmarqueeview.XMarqueeViewAdapter
 
 // Created by admin on 2020/6/13.
-class NoticeMarqueeAdapter(private val dataList: List<String>) :
-    XMarqueeViewAdapter<String>(dataList) {
+class NoticeMarqueeAdapter() :
+    XMarqueeViewAdapter<String>(listOf("")) {
     @SuppressLint("SetTextI18n")
     override fun onBindView(parent: View?, view: View?, position: Int) {
-        view?.findViewById<AppCompatTextView>(R.id.tvNoticeContent)?.text = dataList[position] + position
+        view?.findViewById<AppCompatTextView>(R.id.tvNoticeContent)?.text = mDatas[position]
     }
 
     override fun onCreateView(parent: XMarqueeView?): View {
