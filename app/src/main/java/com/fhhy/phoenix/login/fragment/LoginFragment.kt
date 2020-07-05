@@ -20,11 +20,14 @@ import androidx.core.view.isVisible
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
 import com.fhhy.phoenix.bean.LoginBean
+import com.fhhy.phoenix.constants.SPKeyConstants
 import com.fhhy.phoenix.dialog.ImgCheckCodeDialog
 import com.fhhy.phoenix.http.RetrofitManager
 import com.fhhy.phoenix.login.LoginContract
 import com.fhhy.phoenix.login.State
+import com.fhhy.phoenix.login.event.LoginSuccessEvent
 import com.fhhy.phoenix.login.presenter.LoginPresenter
+import com.fhhy.phoenix.utils.SPUtils
 import com.jaeger.library.StatusBarUtil
 import com.jakewharton.rxbinding4.view.clicks
 import com.jakewharton.rxbinding4.widget.textChanges
@@ -36,6 +39,7 @@ import kotlinx.android.synthetic.main.fragment_login_state_main.*
 import kotlinx.android.synthetic.main.fragment_login_state_register_one.*
 import kotlinx.android.synthetic.main.fragment_login_state_register_two.*
 import noDoubleClick
+import org.greenrobot.eventbus.EventBus
 import showToast
 import java.util.*
 
@@ -224,21 +228,34 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
                 showToast("密码不能为空")
                 return@noDoubleClick
             }
-            toLogin(mobile, pwd)
+            doLogin(mobile, pwd)
         }
     }
 
     /**
      * 登录
      */
-    private fun toLogin(
+    private fun doLogin(
+        mobile: String,
+        pwd: String,
+        smsCheckCode: String? = ""
+    ) {
+        //请求登录接口
+        mPresenter?.requestLogin(mobile, pwd, smsCheckCode)
+    }
+
+
+    /**
+     * 注册
+     */
+    private fun doRegister(
         mobile: String,
         pwd: String,
         smsCheckCode: String? = "",
         invitation_code: String = ""
     ) {
-        //请求登录接口
-        mPresenter?.requestLogin(mobile, pwd, smsCheckCode,invitation_code)
+        //请求注册接口
+        mPresenter?.requestRegister(mobile, pwd, smsCheckCode, invitation_code)
     }
 
     private fun initRegisterOneViewAndListeners() {
@@ -292,11 +309,37 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         if (nextState == State.REGISTER_STEP_TWO) {
             etSmsCode.text?.clear()
             etPwdReg.text?.clear()
-            //TODO 重置倒计时
+            ctvRegisterCountdown.start()
             etPwdReg.transformationMethod = PasswordTransformationMethod.getInstance()
             btnPwdEyeReg.setImageResource(R.drawable.ic_login_eye_open)
 
             etInviteCode.text?.clear()
+
+            tvSmsCodeTip.text = String.format(
+                context!!.resources.getString(R.string.check_code_send_to_mobile),
+                etMobileReg.text.toString()
+            )
+            val smsCode = etSmsCode.textChanges()
+                .subscribe {
+                    setButtonClickable(btnLoginReg, !it.isNullOrEmpty())
+                }
+            mCompositeDisposable.add(smsCode)
+
+            btnLoginReg.noDoubleClick {
+                val smsCheckCode = etSmsCode.text.toString()
+                if (TextUtils.isEmpty(smsCheckCode)) {
+                    showToast("短信验证码不能为空")
+                    return@noDoubleClick
+                }
+                val pwd = etPwdReg.text.toString()
+                if (pwd.length > 20 || pwd.length < 6) {
+                    showToast("请输入6～20位数字、字母密码")
+                    return@noDoubleClick
+                }
+                val mobile = etMobileReg.text.toString()
+                val inviteCode = etInviteCode.text.toString()
+                doRegister(mobile, pwd, smsCheckCode, inviteCode)
+            }
         }
 
         if (nextState == State.FORGOT_PWD) {
@@ -330,7 +373,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
                 val mobile = etMobile.text.toString()
                 val pwd = etPwd.text.toString()
 
-                toLogin(mobile, pwd, smsCheckCode)
+                doLogin(mobile, pwd, smsCheckCode)
             }
         }
     }
@@ -495,11 +538,18 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
     }
 
     override fun requestLoginSuccess(mobile: String, loginBean: LoginBean?) {
-        if ("1" == (loginBean?.need_sms_code)) {
-            showImgCheckCodeDialog(mobile)
-        } else {
-            //todo 保存token
-            requireActivity().finish()
+        if (loginBean != null) {
+            if ("1" == (loginBean.need_sms_code)) {
+                showImgCheckCodeDialog(mobile)
+            } else {
+                SPUtils.setString(
+                    SPKeyConstants.SP_KEY_TOKEN,
+                    if (TextUtils.isEmpty(loginBean.info)) "" else loginBean.info!!
+                )
+                SPUtils.setBoolean(SPKeyConstants.SP_KEY_IS_LOGIN, true)
+                EventBus.getDefault().post(LoginSuccessEvent())
+                requireActivity().finish()
+            }
         }
     }
 

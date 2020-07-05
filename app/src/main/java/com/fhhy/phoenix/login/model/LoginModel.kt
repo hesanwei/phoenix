@@ -22,16 +22,28 @@ class LoginModel : BaseModel(), LoginContract.Model {
         mobile: String,
         password: String?,
         code: String?,
-        invitation_code: String?,
         google_code: String?
     ): Observable<HttpResult<LoginBean?>> {
         val requestMap = getRequestMap()
         requestMap["mobile"] = mobile
         requestMap["password"] = password
         requestMap["code"] = code
-        requestMap["invitation_code"] = invitation_code
         requestMap["google_code"] = google_code
         return RetrofitManager.apiService.requestLogin(requestMap)
+    }
+
+    override fun requestRegister(
+        mobile: String,
+        password: String?,
+        code: String?,
+        invitation_code: String?
+    ): Observable<HttpResult<LoginBean?>> {
+        val requestMap = getRequestMap()
+        requestMap["mobile"] = mobile
+        requestMap["password"] = password
+        requestMap["code"] = code
+        requestMap["invitation_code"] = invitation_code
+        return RetrofitManager.apiService.requestRegister(requestMap)
     }
 
 }

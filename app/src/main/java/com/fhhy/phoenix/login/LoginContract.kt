@@ -20,8 +20,14 @@ interface LoginContract {
             mobile: String,
             password: String?,
             code: String? = "",
-            invitation_code: String? = "",
             google_code: String? = ""
+        ): Observable<HttpResult<LoginBean?>>
+
+        fun requestRegister(
+            mobile: String,
+            password: String?,
+            code: String?,
+            invitation_code: String?
         ): Observable<HttpResult<LoginBean?>>
     }
 
@@ -31,8 +37,14 @@ interface LoginContract {
             mobile: String,
             password: String?,
             code: String? = "",
-            invitation_code: String? = "",
             google_code: String? = ""
+        )
+
+        fun requestRegister(
+            mobile: String,
+            password: String?,
+            code: String?,
+            invitation_code: String?
         )
     }
 }

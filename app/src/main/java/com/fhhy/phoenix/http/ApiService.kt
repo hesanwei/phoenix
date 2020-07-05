@@ -27,6 +27,13 @@ interface ApiService {
     @POST("index/login")
     fun requestLogin(@FieldMap map: Map<String, String?>): Observable<HttpResult<LoginBean?>>
 
+    //注册
+    @FormUrlEncoded
+    @POST("index/register")
+    fun requestRegister(@FieldMap map: Map<String, String?>): Observable<HttpResult<LoginBean?>>
+
+
+    //获取图形验证码
     @POST("index/verify")
     fun requestImgCode(): Observable<ResponseBody>
 }
