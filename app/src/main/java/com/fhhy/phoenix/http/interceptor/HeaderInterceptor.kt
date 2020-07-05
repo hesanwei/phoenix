@@ -1,3 +1,7 @@
+import com.fhhy.phoenix.base.BaseApplication
+import com.fhhy.phoenix.constants.SPKeyConstants
+import com.fhhy.phoenix.utils.DeviceUtils
+import com.fhhy.phoenix.utils.SPUtils
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -18,13 +22,8 @@ class HeaderInterceptor : Interceptor {
         val builder = request.newBuilder()
 
         builder.addHeader("Content-type", "application/json; charset=utf-8")
-        // .header("token", token)
-        // .method(request.method(), request.body())
-
-        val domain = request.url().host()
-        val url = request.url().toString()
-
-        //添加header todo
+            .addHeader("authentication", SPUtils.getString(SPKeyConstants.SP_KEY_TOKEN))
+            .addHeader("IMEI", DeviceUtils.getDeviceId(BaseApplication.getAppContext()))
 
         return chain.proceed(builder.build())
     }
