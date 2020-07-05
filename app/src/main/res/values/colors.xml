@@ -9,6 +9,7 @@
     <color name="white">#ffffff</color>
     <color name="white50">#80ffffff</color>
     <color name="black">#000000</color>
+    <color name="black50">#80000000</color>
     <color name="text_main_blue">#0578DC</color>
     <color name="text_main_gray">#7A8189</color>
     <color name="text_main_black">#34404B</color>

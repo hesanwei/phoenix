@@ -59,7 +59,7 @@
                 android:background="@drawable/bg_login_et_common"
                 android:hint="@string/str_login_input_mobile_hint"
                 android:inputType="number"
-                android:paddingStart="@dimen/dp_10"
+                android:paddingHorizontal="@dimen/dp_10"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +90,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageButton
+                <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnPwdEye"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btnLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

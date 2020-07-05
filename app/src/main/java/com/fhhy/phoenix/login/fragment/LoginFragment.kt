@@ -22,6 +22,7 @@ import com.fhhy.phoenix.login.presenter.LoginPresenter
 import com.jaeger.library.StatusBarUtil
 import com.jakewharton.rxbinding4.view.clicks
 import com.jakewharton.rxbinding4.widget.textChanges
+import isMobile
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login_state_forgot_pwd.*
 import kotlinx.android.synthetic.main.fragment_login_state_login_sms.*
@@ -29,11 +30,12 @@ import kotlinx.android.synthetic.main.fragment_login_state_main.*
 import kotlinx.android.synthetic.main.fragment_login_state_register_one.*
 import kotlinx.android.synthetic.main.fragment_login_state_register_two.*
 import noDoubleClick
+import showToast
 import java.util.*
 
-class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presenter>() {
+class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presenter>(),LoginContract.View {
 
-    private val currentState: State = State.LOGIN
+    private var currentState: State = State.LOGIN
     private var currMobile = ""
     private val stateStack: Stack<State> = Stack()
     private val stateMap: Map<State, View> by lazy {
@@ -163,8 +165,8 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         etPwd.transformationMethod = PasswordTransformationMethod.getInstance()
 
         val areaCodeClick = tvArea.noDoubleClick {
-              //  TODO("添加跳转选择国家地区")
-            }
+            //  TODO("添加跳转选择国家地区")
+        }
         mCompositeDisposable.add(areaCodeClick)
 
         val mobile = etMobile.textChanges()
@@ -188,19 +190,19 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
 
         //显示还是隐藏密码
         val eye = btnPwdEye.noDoubleClick {
-                switchPwdMode(etPwd, btnPwdEye)
-            }
+            switchPwdMode(etPwd, btnPwdEye)
+        }
 
         mCompositeDisposable.add(eye)
 
         //忘记密码
         val toForgotPwd = tvForgotPwd.noDoubleClick {
-                toNextState(State.FORGOT_PWD)
-            }
+            toNextState(State.FORGOT_PWD)
+        }
         mCompositeDisposable.add(toForgotPwd)
 
         //去注册
-        val toRegister = toRegister.noDoubleClick{
+        val toRegister = toRegister.noDoubleClick {
             toNextState(State.REGISTER_STEP_ONE)
         }
         mCompositeDisposable.add(toRegister)
@@ -215,7 +217,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
 
     private fun initRegisterOneViewAndListeners() {
         val areaCodeClick = tvAreaReg.noDoubleClick {
-           // TODO("添加跳转选择国家地区")
+            // TODO("添加跳转选择国家地区")
         }
         mCompositeDisposable.add(areaCodeClick)
 
@@ -232,7 +234,13 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
 
         val next = btnNext.noDoubleClick {
             //TODO  先图形验证再请求发送验证码接口 再跳转注册页面的第二步
-            toNextState(State.REGISTER_STEP_TWO)
+            val mobile = etMobileReg.text.toString()
+            val isMobile = mobile.isMobile()
+            if (isMobile){
+                mPresenter?.requestCheckCode(currentState,mobile)
+            }else{
+                showToast( "手机号格式错误")
+            }
         }
         mCompositeDisposable.add(next)
 
@@ -243,6 +251,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
     }
 
     private fun toNextState(nextState: State) {
+        currentState = nextState
         val preState = stateStack.peek()
         stateStack.push(nextState)
         animEnter(preState, nextState)
@@ -287,7 +296,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
             Log.d(TAG, "exitAnim: ")
             val exitAnim = ObjectAnimator.ofPropertyValuesHolder(
                 this,
-                PropertyValuesHolder.ofFloat(View.TRANSLATION_X, 0f, -width* 1f),
+                PropertyValuesHolder.ofFloat(View.TRANSLATION_X, 0f, -width * 1f),
                 PropertyValuesHolder.ofFloat(View.ALPHA, 1.0f, 0f)
             )
             exitAnim.duration = 300
@@ -329,7 +338,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         currView?.apply {
             val exitAnim = ObjectAnimator.ofPropertyValuesHolder(
                 this,
-                PropertyValuesHolder.ofFloat(View.TRANSLATION_X, 0f, width* 1f),
+                PropertyValuesHolder.ofFloat(View.TRANSLATION_X, 0f, width * 1f),
                 PropertyValuesHolder.ofFloat(View.ALPHA, 1.0f, 0f)
             )
             exitAnim.duration = 300
@@ -360,6 +369,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         }
 
     }
+
     /**
      * 显示密码操作
      */
@@ -420,5 +430,14 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
                 }
             }
         }
+    }
+
+    override fun requestCheckCodeSuccess(currentState: State) {
+        when(currentState){
+            State.REGISTER_STEP_ONE -> {
+                toNextState(State.REGISTER_STEP_TWO)
+            }
+        }
+        showToast("验证码请求成功")
     }
 }

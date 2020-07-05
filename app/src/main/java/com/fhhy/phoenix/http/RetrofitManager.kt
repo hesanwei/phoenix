@@ -29,7 +29,7 @@ object RetrofitManager {
             val gson = GsonBuilder().setLenient()
                 .create()
             retrofit = Retrofit.Builder()
-//                .baseUrl(Constants.BASE_URL)  // baseUrl
+                .baseUrl(Constants.BASE_URL)  // baseUrl
                 .client(getOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
 //                .addConverterFactory(MoshiConverterFactory.create())
