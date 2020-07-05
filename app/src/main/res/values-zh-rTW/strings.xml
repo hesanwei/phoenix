@@ -228,5 +228,7 @@
     <string name="stop_loss_price">止损价</string>
     <string name="checkout_success">下单成功</string>
     <string name="checkout_success_dialog_desc">使用赠金的订单，将会在24小时后自动平仓，如需自行平仓，请提前操作。</string>
+    <string name="img_check_code">图形验证码</string>
+    <string name="input_img_check_code">请输入图形验证码</string>
 
 </resources>

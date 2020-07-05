@@ -11,11 +11,13 @@ import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.core.view.isVisible
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
+import com.fhhy.phoenix.dialog.ImgCheckCodeDialog
 import com.fhhy.phoenix.login.LoginContract
 import com.fhhy.phoenix.login.State
 import com.fhhy.phoenix.login.presenter.LoginPresenter
@@ -33,7 +35,8 @@ import noDoubleClick
 import showToast
 import java.util.*
 
-class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presenter>(),LoginContract.View {
+class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presenter>(),
+    LoginContract.View {
 
     private var currentState: State = State.LOGIN
     private var currMobile = ""
@@ -117,7 +120,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
 
         val sms = etSmsCode.textChanges()
             .subscribe {
-
+                setButtonClickable(btnLoginReg, !it.isNullOrEmpty())
             }
         mCompositeDisposable.add(sms)
 
@@ -210,8 +213,8 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         //登录按钮
         btnLogin.noDoubleClick {
             //TODO  显示图形验证码 然后再确认是否显示验证码页面
-            //test
-            toNextState(State.LOGIN_SMS)
+            showImgCheckCodeDialog()
+//            toNextState(State.LOGIN_SMS)
         }
     }
 
@@ -228,6 +231,9 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
                 }
                 if (etMobileReg.isVisible && !it.isNullOrEmpty()) {
                     currMobile = it.toString()
+                    setButtonClickable(btnNext, true)
+                } else {
+                    setButtonClickable(btnNext, false)
                 }
             }
         mCompositeDisposable.add(mobile)
@@ -236,10 +242,10 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
             //TODO  先图形验证再请求发送验证码接口 再跳转注册页面的第二步
             val mobile = etMobileReg.text.toString()
             val isMobile = mobile.isMobile()
-            if (isMobile){
-                mPresenter?.requestCheckCode(currentState,mobile)
-            }else{
-                showToast( "手机号格式错误")
+            if (isMobile) {
+                mPresenter?.requestCheckCode(currentState, mobile)
+            } else {
+                showToast("手机号格式错误")
             }
         }
         mCompositeDisposable.add(next)
@@ -433,11 +439,31 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
     }
 
     override fun requestCheckCodeSuccess(currentState: State) {
-        when(currentState){
+        when (currentState) {
             State.REGISTER_STEP_ONE -> {
                 toNextState(State.REGISTER_STEP_TWO)
             }
         }
         showToast("验证码请求成功")
+    }
+
+
+    /**
+     * 设置下一步按钮是否可点击
+     */
+    private fun setButtonClickable(button: AppCompatImageButton, isClickable: Boolean) {
+        button.isClickable = isClickable
+        button.setImageResource(if (isClickable) R.drawable.ic_login_next_enable else R.drawable.ic_login_next_disable)
+    }
+
+    /**
+     * 展示图形验证码
+     */
+    private fun showImgCheckCodeDialog() {
+        ImgCheckCodeDialog(object : ImgCheckCodeDialog.OnOkListener {
+            override fun onOkClick(imgCheckCode: String) {
+                showToast(imgCheckCode)
+            }
+        }).show(activity!!.supportFragmentManager)
     }
 }
