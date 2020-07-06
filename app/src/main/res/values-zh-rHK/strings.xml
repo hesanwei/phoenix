@@ -264,5 +264,7 @@
     <string name="total_follow_num">累计跟随人数</string>
     <string name="can_not_see">看不清？</string>
     <string name="regain">重新获取</string>
+    <string name="please_login">请登录</string>
+    <string name="no_login_text">"- - "</string>
 
 </resources>

@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.fhhy.phoenix.constants.SPKeyConstants
+import com.fhhy.phoenix.utils.SPUtils
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.greenrobot.eventbus.EventBus
 
@@ -19,6 +21,7 @@ abstract class BaseFragment : Fragment() {
      * 视图是否加载完毕
      */
     private var isViewPrepare = false
+
     /**
      * 数据是否加载过了
      */
@@ -66,13 +69,17 @@ abstract class BaseFragment : Fragment() {
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        if (!hidden){
+        if (!hidden) {
             visibleToUser()
         }
     }
 
-    open fun visibleToUser(){
+    open fun visibleToUser() {
 
+    }
+
+    protected fun isLogin(): Boolean {
+        return SPUtils.getBoolean(SPKeyConstants.SP_KEY_IS_LOGIN)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

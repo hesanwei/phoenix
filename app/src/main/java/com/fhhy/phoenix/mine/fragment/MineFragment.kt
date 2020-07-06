@@ -27,6 +27,8 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
 
     private var isFundsVisible = true
 
+    override fun useEventBus(): Boolean = true
+
     override fun createPresenter(): MineContract.Presenter = MinePresenter()
 
     override fun getLayoutId(): Int = R.layout.fragment_mine
@@ -41,7 +43,8 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
     private fun initViewClick() {
         setViewClickListener(
             this,
-            clUserInfo,
+            tvLogin,
+            llLogin,
             ivEyes,
             llFundsAccount,
             llFullAccount,
@@ -63,6 +66,27 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
     }
 
     override fun lazyLoad() {
+        initLoginStatus()
+    }
+
+    private fun initLoginStatus() {
+        if (isLogin()) {
+            llLogin.visibility = View.VISIBLE
+            tvLogin.visibility = View.GONE
+            llTotalAssets.visibility = View.VISIBLE
+            tvTotalAssetsNoLogin.visibility = View.GONE
+            tvFunds2U.visibility = View.VISIBLE
+            tvFull2U.visibility = View.VISIBLE
+        } else {
+            llLogin.visibility = View.GONE
+            tvLogin.visibility = View.VISIBLE
+            llTotalAssets.visibility = View.INVISIBLE
+            tvTotalAssetsNoLogin.visibility = View.VISIBLE
+            tvFunds2U.visibility = View.INVISIBLE
+            tvFull2U.visibility = View.INVISIBLE
+            tvTotalFunds.text = resources.getString(R.string.no_login_text)
+            tvTotalFull.text = resources.getString(R.string.no_login_text)
+        }
     }
 
     companion object {
@@ -74,13 +98,19 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
     override fun onClick(v: View?) {
         when (v?.id) {
 
-            R.id.clUserInfo -> {
+            R.id.tvLogin -> {
                 startActivity(Intent(context, LoginActivity::class.java))
             }
 
+            R.id.llLogin -> {
+                //去个人中心页面
+            }
+
             R.id.ivEyes -> {//资产可见不可见
-                isFundsVisible = !isFundsVisible
-                setFundsVisible()
+                if (isLogin()) {
+                    isFundsVisible = !isFundsVisible
+                    setFundsVisible()
+                }
             }
 
             R.id.llFundsAccount -> {//资金账户
@@ -181,6 +211,6 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onLoginSuccess(event: LoginSuccessEvent) {
-        showToast("登录成功 请求数据")
+        lazyLoad()
     }
 }
