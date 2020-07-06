@@ -25,9 +25,9 @@ class HeaderInterceptor : Interceptor {
             .addHeader("authentication", SPUtils.getString(SPKeyConstants.SP_KEY_TOKEN))
             .addHeader("IMEI", DeviceUtils.getDeviceId(BaseApplication.getAppContext()))
 
-        if (requestUrl.contains(Regex("get_check_code"))) {
-            builder.addHeader("cookie", SPUtils.getString(SPKeyConstants.SP_KEY_COOKIE))
-        }
+//        if (requestUrl.contains(Regex("get_check_code"))) {
+        builder.addHeader("cookie", SPUtils.getString(SPKeyConstants.SP_KEY_COOKIE))
+//        }
         return chain.proceed(builder.build())
     }
 

@@ -258,10 +258,12 @@
     <string name="order_position_detail_high">高：</string>
     <string name="order_position_detail_low">低：</string>
     <string name="order_position_detail_total_acount">量：</string>
-    <string name="img_check_code">图形验证码</string>
+    <string name="img_check_code">图形验证</string>
     <string name="input_img_check_code">请输入图形验证码</string>
     <string name="check_code_send_to_mobile">验证码已发送至+86 %s</string>
     <string name="operate_success">操作成功</string>
+    <string name="can_not_see">看不清？</string>
+    <string name="regain">重新获取</string>
 
 
 </resources>

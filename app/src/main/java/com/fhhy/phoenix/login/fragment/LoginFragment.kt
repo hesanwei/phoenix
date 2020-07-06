@@ -89,9 +89,9 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         mCompositeDisposable.add(back)
 
         initLoginViewAndListeners()
-        initLoginViewAndSmsListeners()
+//        initLoginViewAndSmsListeners()
         initRegisterOneViewAndListeners()
-        initRegisterTwoViewAndListeners()
+//        initRegisterTwoViewAndListeners()
         initForgotPwdViewAndListeners()
     }
 
@@ -121,54 +121,54 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         }
     }
 
-    private fun initRegisterTwoViewAndListeners() {
+//    private fun initRegisterTwoViewAndListeners() {
+//
+//        etPwdReg.transformationMethod = PasswordTransformationMethod.getInstance()
+//
+//        val sms = etSmsCode.textChanges()
+//            .subscribe {
+//                setButtonClickable(btnLoginReg, !it.isNullOrEmpty() && !TextUtils.isEmpty(etPwdReg.text))
+//            }
+//        mCompositeDisposable.add(sms)
+//
+//        val setPwd = etPwdReg.textChanges()
+//            .subscribe {
+//                setButtonClickable(btnLoginReg, !it.isNullOrEmpty() && !TextUtils.isEmpty(etSmsCode.text))
+//            }
+//        mCompositeDisposable.add(setPwd)
+//
+//        val eye = btnPwdEyeReg.noDoubleClick {
+//            switchPwdMode(etPwdReg, btnPwdEyeReg)
+//        }
+//        mCompositeDisposable.add(eye)
+//
+//        //邀请码
+//        val inviteCode = etInviteCode.textChanges()
+//            .subscribe {
+//                //
+//            }
+//        mCompositeDisposable.add(inviteCode)
+//
+//        val register = btnLoginReg.noDoubleClick {
+//            //TODO  注册完成
+//            requireActivity().finish()
+//        }
+//        mCompositeDisposable.add(register)
+//
+//    }
 
-        etPwdReg.transformationMethod = PasswordTransformationMethod.getInstance()
-
-        val sms = etSmsCode.textChanges()
-            .subscribe {
-                setButtonClickable(btnLoginReg, !it.isNullOrEmpty())
-            }
-        mCompositeDisposable.add(sms)
-
-        val setPwd = etPwdReg.textChanges()
-            .subscribe {
-
-            }
-        mCompositeDisposable.add(setPwd)
-
-        val eye = btnPwdEyeReg.noDoubleClick {
-            switchPwdMode(etPwdReg, btnPwdEyeReg)
-        }
-        mCompositeDisposable.add(eye)
-
-        //邀请码
-        val inviteCode = etInviteCode.textChanges()
-            .subscribe {
-                //
-            }
-        mCompositeDisposable.add(inviteCode)
-
-        val register = btnLoginReg.noDoubleClick {
-            //TODO  注册完成
-            requireActivity().finish()
-        }
-        mCompositeDisposable.add(register)
-
-    }
-
-    private fun initLoginViewAndSmsListeners() {
-        //TODO 开始倒计时
-        etSmsLogin.textChanges()
-            .subscribe {
-                //TODO 设置按钮是否可点击
-            }
-
-        btnLoginSms.noDoubleClick {
-            //TODO 验证短信验证码 并结束流程
-            requireActivity().finish()
-        }
-    }
+//    private fun initLoginViewAndSmsListeners() {
+//        //TODO 开始倒计时
+//        etSmsLogin.textChanges()
+//            .subscribe {
+//                //TODO 设置按钮是否可点击
+//            }
+//
+//        btnLoginSms.noDoubleClick {
+//            //TODO 验证短信验证码 并结束流程
+//            requireActivity().finish()
+//        }
+//    }
 
     private fun initLoginViewAndListeners() {
 
@@ -184,7 +184,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
                 if (it.isNullOrEmpty()) {
                     currMobile = ""
                 }
-                if (etMobile.isVisible && !it.isNullOrEmpty()) {
+                if (etMobile.isVisible && !it.isNullOrEmpty() && !TextUtils.isEmpty(etPwd.text)) {
                     currMobile = it.toString()
                     setButtonClickable(btnLogin, true)
                 } else {
@@ -192,6 +192,16 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
                 }
             }
         mCompositeDisposable.add(mobile)
+
+        val pwd = etPwd.textChanges()
+            .subscribe {
+                if (!it.isNullOrEmpty() && !TextUtils.isEmpty(etMobile.text)) {
+                    setButtonClickable(btnLogin, true)
+                } else {
+                    setButtonClickable(btnLogin, false)
+                }
+            }
+        mCompositeDisposable.add(pwd)
 
         //显示还是隐藏密码
         val eye = btnPwdEye.noDoubleClick {

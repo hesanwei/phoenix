@@ -29,7 +29,7 @@
             android:id="@+id/rg_follow_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/withdraw_way_left_selector"
+            android:background="@drawable/withdraw_way_right_selector"
             android:button="@null"
             android:paddingHorizontal="34dp"
             android:paddingVertical="5dp"

@@ -9,9 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="100dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -32,6 +32,40 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivImgCheckCode"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="12dp"
+                android:scaleType="fitXY"
+                app:layout_constraintLeft_toLeftOf="@id/tvImgCheckCode"
+                app:layout_constraintRight_toRightOf="@id/tvImgCheckCode"
+                app:layout_constraintTop_toBottomOf="@id/tvImgCheckCode" />
+
+            <LinearLayout
+                android:id="@+id/llRegain"
+                app:layout_constraintBottom_toBottomOf="@id/ivImgCheckCode"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal"
+                android:paddingBottom="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:text="@string/can_not_see"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_main_gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRegain"
+                    android:text="@string/regain"
+                    android:textSize="15sp"
+                    android:textColor="@color/blue_button_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/etImgCheckCode"
                 android:layout_width="0dp"
@@ -41,21 +75,13 @@
                 android:background="@drawable/bg_login_et_common"
                 android:hint="@string/input_img_check_code"
                 android:paddingHorizontal="@dimen/dp_10"
-                android:textSize="15sp"
-                android:textColorHint="@color/text_main_gray"
                 android:textColor="@color/black"
+                android:textColorHint="@color/text_main_gray"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvImgCheckCode" />
+                app:layout_constraintTop_toBottomOf="@+id/ivImgCheckCode" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivImgCheckCode"
-                android:layout_width="60dp"
-                android:layout_height="0dp"
-                android:scaleType="fitXY"
-                app:layout_constraintBottom_toBottomOf="@id/etImgCheckCode"
-                app:layout_constraintRight_toRightOf="@id/etImgCheckCode"
-                app:layout_constraintTop_toTopOf="@id/etImgCheckCode" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btnNext"

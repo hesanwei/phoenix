@@ -1,13 +1,11 @@
 package com.fhhy.phoenix.dialog
 
 import android.graphics.BitmapFactory
+import android.graphics.Paint
 import android.text.TextUtils
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatImageButton
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.fhhy.phoenix.R
-import com.fhhy.phoenix.constants.Constants
 import com.fhhy.phoenix.http.RetrofitManager
 import com.jakewharton.rxbinding4.widget.textChanges
 import kotlinx.android.synthetic.main.dialog_img_check_code.*
@@ -19,8 +17,9 @@ class ImgCheckCodeDialog(private val listener: OnOkListener) : BaseDialog() {
     override fun getLayoutId(): Int = R.layout.dialog_img_check_code
 
     override fun initView() {
+        tvRegain.paint.flags = Paint.UNDERLINE_TEXT_FLAG
         loadImgCheckCode()
-        ivImgCheckCode.setOnClickListener {
+        llRegain.setOnClickListener {
             loadImgCheckCode()
         }
         etImgCheckCode.textChanges()
@@ -60,7 +59,7 @@ class ImgCheckCodeDialog(private val listener: OnOkListener) : BaseDialog() {
         button.setImageResource(if (isClickable) R.drawable.ic_login_next_enable else R.drawable.ic_login_next_disable)
     }
 
-    override fun getGravity(): Int? = Gravity.CENTER
+    override fun getGravity(): Int? = Gravity.TOP
 
     interface OnOkListener {
         fun onOkClick(imgCheckCode: String)
