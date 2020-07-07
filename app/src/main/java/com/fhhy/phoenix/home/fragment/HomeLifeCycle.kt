@@ -54,7 +54,7 @@ class HomeLifeCycle : LifecycleObserver {
         val currenciesList = RetrofitManager.apiService.requestHomeCurrenciesSingle()
             .subscribeOn(Schedulers.io())
             .doOnSuccess {
-                mDataResource.onNext(it.data?.currencyPriceList)
+                mDataResource.onNext(it.data.currencyPriceList)
              }
             .doOnError{}
             .subscribe({},{})
