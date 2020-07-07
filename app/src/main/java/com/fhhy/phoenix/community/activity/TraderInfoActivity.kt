@@ -2,6 +2,7 @@ package com.fhhy.phoenix.community.activity
 
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpActivity
+import com.fhhy.phoenix.community.adapter.TagAdapter
 import com.fhhy.phoenix.community.contract.TraderInfoContract
 import com.fhhy.phoenix.community.presenter.TraderInfoPresenter
 import com.fhhy.phoenix.contractdetail.dialog.ShareLinkDialog
@@ -11,6 +12,10 @@ import showToast
  * Created by hecuncun on 2020/7/5
  */
 class TraderInfoActivity:BaseMvpActivity<TraderInfoContract.View,TraderInfoContract.Presenter>(),TraderInfoContract.View {
+
+    private val tagAdapter: TagAdapter by lazy {
+        TagAdapter()
+    }
     override fun createPresenter(): TraderInfoContract.Presenter =TraderInfoPresenter()
 
     override fun getLayoutId(): Int= R.layout.activity_trader_info
