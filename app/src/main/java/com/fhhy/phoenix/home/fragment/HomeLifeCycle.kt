@@ -52,11 +52,12 @@ class HomeLifeCycle : LifecycleObserver {
     private fun updateData() {
         mDisposable.clear()
         val currenciesList = RetrofitManager.apiService.requestHomeCurrenciesSingle()
-            .compose(SchedulerUtils.ioToMain())
+            .subscribeOn(Schedulers.io())
             .doOnSuccess {
-                mDataResource.onNext(it.data.currencyPriceList)
-            }
-            .subscribe()
+                mDataResource.onNext(it.data?.currencyPriceList)
+             }
+            .doOnError{}
+            .subscribe({},{})
 
         mDisposable.add(currenciesList)
     }
