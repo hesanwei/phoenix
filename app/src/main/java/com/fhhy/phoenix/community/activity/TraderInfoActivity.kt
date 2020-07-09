@@ -2,6 +2,7 @@ package com.fhhy.phoenix.community.activity
 
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpActivity
 import com.fhhy.phoenix.community.adapter.TagAdapter
@@ -14,6 +15,8 @@ import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.activity_order.*
 import kotlinx.android.synthetic.main.activity_order.radioGroup
 import kotlinx.android.synthetic.main.activity_trader_info.*
+import kotlinx.android.synthetic.main.activity_trader_info.recyclerView
+import kotlinx.android.synthetic.main.fragment_order.*
 import setViewClickListener
 import showToast
 import kotlin.math.abs
@@ -43,6 +46,7 @@ class TraderInfoActivity:BaseMvpActivity<TraderInfoContract.View,TraderInfoContr
         super.initView()
         setViewClickListener(this,iv_back,iv_back_2,iv_back_3,iv_share,iv_share_2)
         initRadioGroup()
+        initRecyclerView()
         appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             when {
                 verticalOffset==0 -> {
@@ -67,7 +71,17 @@ class TraderInfoActivity:BaseMvpActivity<TraderInfoContract.View,TraderInfoContr
         //显示空数据
         showNoData(false)
     }
-
+    private fun initRecyclerView() {
+        recyclerView?.run {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+            adapter = tagAdapter
+            tagAdapter.data = mutableListOf("", "", "","","")
+        }
+        tagAdapter.setOnItemClickListener { adapter, view, position ->
+            // startActivity(Intent(requireContext(), TraderInfoActivity::class.java))
+        }
+    }
     /**
      * 空白布局显示开关
      */
