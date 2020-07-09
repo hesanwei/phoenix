@@ -41,10 +41,8 @@ class TraderInfoActivity:BaseMvpActivity<TraderInfoContract.View,TraderInfoContr
 
     override fun initView() {
         super.initView()
-        setViewClickListener(this,iv_back,iv_back_2,iv_share)
+        setViewClickListener(this,iv_back,iv_back_2,iv_back_3,iv_share,iv_share_2)
         initRadioGroup()
-        appBarLayout.isEnabled=false
-        collapsingToolbarLayout.isEnabled=false
         appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             when {
                 verticalOffset==0 -> {
@@ -66,7 +64,22 @@ class TraderInfoActivity:BaseMvpActivity<TraderInfoContract.View,TraderInfoContr
                 }
             }
         })
+        //显示空数据
+        showNoData(false)
     }
+
+    /**
+     * 空白布局显示开关
+     */
+    private fun showNoData(show:Boolean) {
+        if (show){
+            fl_no_data.visibility=View.VISIBLE
+        }else{
+            fl_no_data.visibility=View.GONE
+        }
+
+    }
+
     private fun initRadioGroup() {
         replaceFragment(historicalPositionFragment)
         radioGroup.check(R.id.rb_history)
@@ -85,10 +98,10 @@ class TraderInfoActivity:BaseMvpActivity<TraderInfoContract.View,TraderInfoContr
 
     override fun onClick(v: View?) {
         when(v?.id){
-            R.id.iv_back,R.id.iv_back_2->{
+            R.id.iv_back,R.id.iv_back_2,R.id.iv_back_3->{
                 finish()
             }
-            R.id.iv_share->{
+            R.id.iv_share, R.id.iv_share_2->{
                 ShareLinkDialog.newInstance().setOnConfirmListener(object :ShareLinkDialog.OnConfirmListener{
                     override fun onConfirm() {
                         showToast("分享链接")
