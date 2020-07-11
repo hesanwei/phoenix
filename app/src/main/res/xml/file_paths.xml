@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <paths>
+        <!--<external-path
+            name="files_root"
+            path="Android/data/com.alick.appgrade/" />-->
+
+        <!--获取的Uri形如:content://包名.fileprovider/external_storage_root/cache/file/xxx.apk-->
+        <!--.代表任意目录-->
+        <!--<external-path-->
+        <!--name="external_storage_root"-->
+        <!--path="." />-->
+
+        <!--<external-path path="Android/data/com/pgyersdk" name="files_root" />-->
+
+        <external-path
+            name="download"
+            path="" />
+    </paths>
+</resources>

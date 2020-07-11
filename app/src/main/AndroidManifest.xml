@@ -50,6 +50,17 @@
         <activity android:name=".community.activity.HighQualityTraderActivity" />
         <activity android:name=".mine.activity.PersonalInfoActivity" />
 
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"
+                tools:replace="android:resource" />
+        </provider>
     </application>
 
 </manifest>

@@ -12,11 +12,9 @@ import com.fhhy.phoenix.community.fragment.HistoricalPositionFragment
 import com.fhhy.phoenix.community.presenter.TraderInfoPresenter
 import com.fhhy.phoenix.contractdetail.dialog.ShareLinkDialog
 import com.google.android.material.appbar.AppBarLayout
-import kotlinx.android.synthetic.main.activity_order.*
 import kotlinx.android.synthetic.main.activity_order.radioGroup
 import kotlinx.android.synthetic.main.activity_trader_info.*
 import kotlinx.android.synthetic.main.activity_trader_info.recyclerView
-import kotlinx.android.synthetic.main.fragment_order.*
 import setViewClickListener
 import showToast
 import kotlin.math.abs

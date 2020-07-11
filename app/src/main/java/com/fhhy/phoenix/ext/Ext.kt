@@ -10,11 +10,16 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import com.fhhy.phoenix.R
+import com.fhhy.phoenix.constants.Constants
 import com.fhhy.phoenix.toast.ToastUtil
 import com.fhhy.phoenix.utils.FormatUtil
+import com.fhhy.phoenix.utils.GlideEngine
+import com.fhhy.phoenix.utils.ManifestParser
+import com.huantansheng.easyphotos.EasyPhotos
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.disposables.Disposable
 import java.util.concurrent.TimeUnit
@@ -156,4 +161,30 @@ fun Any.getRequestMap(): MutableMap<String, String?> {
 //币价 上涨还是下跌判断
 val String.isUp: Boolean
     get() = "up" == this
+
+/**
+ * 从相册选图片
+ */
+fun AppCompatActivity.selectImageFromGallery(maxCount: Int = 1) {
+    EasyPhotos.createAlbum(
+        this,
+        false,
+        GlideEngine.getInstance()
+    )
+        .setCount(maxCount)
+        .start(Constants.SELECT_IMAGE_REQUEST_CODE)
+}
+
+/**
+ * 拍照
+ */
+fun AppCompatActivity.takePhoto() {
+    EasyPhotos.createCamera(this)
+        .setFileProviderAuthority(
+            ManifestParser.getFileProviderAuthorities(
+                this
+            )
+        )
+        .start(Constants.SELECT_IMAGE_REQUEST_CODE)
+}
 

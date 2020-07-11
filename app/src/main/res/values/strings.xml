@@ -279,5 +279,8 @@
     <string name="bind_mobile">绑定手机</string>
     <string name="personal_introduction">个人简介</string>
     <string name="personal_introduction_hint">一句精简的简介，让别人更懂你！</string>
+    <string name="take_photo">拍照</string>
+    <string name="select_from_photo_album">从手机中选择</string>
+    <string name="female">女</string>
 
 </resources>

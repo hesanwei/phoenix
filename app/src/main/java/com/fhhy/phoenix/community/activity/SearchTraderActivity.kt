@@ -1,10 +1,8 @@
 package com.fhhy.phoenix.community.activity
 
 import android.content.Intent
-import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpActivity
@@ -13,7 +11,6 @@ import com.fhhy.phoenix.community.contract.SearchTraderContract
 import com.fhhy.phoenix.community.presenter.SearchTraderPresenter
 import kotlinx.android.synthetic.main.activity_search_trader.*
 import kotlinx.android.synthetic.main.activity_search_trader.recyclerView
-import kotlinx.android.synthetic.main.fragment_order.*
 import setViewClickListener
 import showToast
 
