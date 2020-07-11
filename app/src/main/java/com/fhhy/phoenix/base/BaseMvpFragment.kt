@@ -38,7 +38,7 @@ abstract class BaseMvpFragment<in V : IView, P : IPresenter<V>> : BaseFragment()
     }
 
     override fun showLoading() {
-        LoadingDialog.show((activity as AppCompatActivity?)?.supportFragmentManager!!)
+        LoadingDialog.show(requireContext())
     }
 
     override fun hideLoading() {

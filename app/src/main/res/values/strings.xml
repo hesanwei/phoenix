@@ -267,5 +267,17 @@
     <string name="regain">重新获取</string>
     <string name="please_login">请登录</string>
     <string name="no_login_text">"- - "</string>
+    <string name="personal_info">个人信息</string>
+    <string name="save">保存</string>
+    <string name="click_modify_avatar">点击修改头像</string>
+    <string name="nick_name">昵称</string>
+    <string name="no_setting">未设置</string>
+    <string name="uid">UID</string>
+    <string name="gender">性别</string>
+    <string name="male">男</string>
+    <string name="location">所在地</string>
+    <string name="bind_mobile">绑定手机</string>
+    <string name="personal_introduction">个人简介</string>
+    <string name="personal_introduction_hint">一句精简的简介，让别人更懂你！</string>
 
 </resources>

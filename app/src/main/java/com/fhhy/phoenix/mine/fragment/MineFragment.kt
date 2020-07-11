@@ -9,11 +9,8 @@ import com.fhhy.phoenix.bean.UserInfoBean
 import com.fhhy.phoenix.dialog.CoinSelectDialog
 import com.fhhy.phoenix.login.LoginActivity
 import com.fhhy.phoenix.login.event.LoginSuccessEvent
-import com.fhhy.phoenix.mine.activity.AccountActivity
+import com.fhhy.phoenix.mine.activity.*
 import com.fhhy.phoenix.mine.activity.FundsAccountDetailActivity.Companion.FUNDS_NAME
-import com.fhhy.phoenix.mine.activity.MyBonusActivity
-import com.fhhy.phoenix.mine.activity.RechargeActivity
-import com.fhhy.phoenix.mine.activity.WithdrawActivity
 import com.fhhy.phoenix.mine.contract.MineContract
 import com.fhhy.phoenix.mine.presenter.MinePresenter
 import com.jaeger.library.StatusBarUtil
@@ -107,7 +104,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
             }
 
             R.id.llLogin -> {
-                //去个人中心页面
+                startActivity(Intent(requireContext(), PersonalInfoActivity::class.java))
             }
 
             R.id.ivEyes -> {//资产可见不可见
@@ -212,6 +209,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
             tvTotalFull.text = "*****"
         }
     }
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onLoginSuccess(event: LoginSuccessEvent) {

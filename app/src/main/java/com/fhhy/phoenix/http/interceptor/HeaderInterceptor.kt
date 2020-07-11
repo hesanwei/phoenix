@@ -1,3 +1,4 @@
+import android.util.Log
 import com.fhhy.phoenix.base.BaseApplication
 import com.fhhy.phoenix.constants.SPKeyConstants
 import com.fhhy.phoenix.utils.DeviceUtils
@@ -28,6 +29,7 @@ class HeaderInterceptor : Interceptor {
 //        if (requestUrl.contains(Regex("get_check_code"))) {
         builder.addHeader("cookie", SPUtils.getString(SPKeyConstants.SP_KEY_COOKIE))
 //        }
+        Log.e("token",SPUtils.getString(SPKeyConstants.SP_KEY_TOKEN))
         return chain.proceed(builder.build())
     }
 

@@ -30,7 +30,7 @@ abstract class BaseMvpActivity<in V : IView, P : IPresenter<V>> : BaseActivity()
     }
 
     override fun showLoading() {
-        LoadingDialog.show(supportFragmentManager)
+        LoadingDialog.show(this)
     }
 
     override fun hideLoading() {
