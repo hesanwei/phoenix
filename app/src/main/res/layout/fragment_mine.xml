@@ -59,7 +59,6 @@
                             android:id="@+id/tvUserName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Jones"
                             android:textColor="@color/black"
                             android:textSize="32sp"
                             android:textStyle="bold" />
@@ -129,7 +128,6 @@
                         android:id="@+id/tvTotalAssets"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0.00"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 

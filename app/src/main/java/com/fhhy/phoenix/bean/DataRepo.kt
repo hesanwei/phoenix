@@ -16,3 +16,13 @@ data class LoginBean(
     val need_sms_code: String?,//是否需要验证码 1需要
     val info: String?
 )
+
+data class UserInfoBean(
+    val avatar: String?,
+    val nick_name: String?,
+    val check_status: String?,
+    val money: String?,
+    val beginner_bonus: String?,
+    val idcard_auth: String?,
+    val help_center: String?
+)

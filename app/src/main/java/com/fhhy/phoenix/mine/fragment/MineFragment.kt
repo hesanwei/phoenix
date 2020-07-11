@@ -2,8 +2,10 @@ package com.fhhy.phoenix.mine.fragment
 
 import android.content.Intent
 import android.view.View
+import com.bumptech.glide.Glide
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
+import com.fhhy.phoenix.bean.UserInfoBean
 import com.fhhy.phoenix.dialog.CoinSelectDialog
 import com.fhhy.phoenix.login.LoginActivity
 import com.fhhy.phoenix.login.event.LoginSuccessEvent
@@ -23,6 +25,7 @@ import showToast
 
 // Created by admin on 2020/6/7.
 class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(),
+    MineContract.View,
     View.OnClickListener {
 
     private var isFundsVisible = true
@@ -77,6 +80,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
             tvTotalAssetsNoLogin.visibility = View.GONE
             tvFunds2U.visibility = View.VISIBLE
             tvFull2U.visibility = View.VISIBLE
+            mPresenter?.requestUserInfo()
         } else {
             llLogin.visibility = View.GONE
             tvLogin.visibility = View.VISIBLE
@@ -212,5 +216,15 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onLoginSuccess(event: LoginSuccessEvent) {
         lazyLoad()
+    }
+
+    override fun requestUserInfoSuccess(userInfoBean: UserInfoBean?) {
+        // TODO: 2020/7/11 缺少字段
+        userInfoBean?.apply {
+            Glide.with(requireContext()).load(avatar).error(R.mipmap.icon_default_avatar)
+                .into(civAvatar)
+            tvUserName?.text = nick_name
+            tvTotalAssets?.text = money
+        }
     }
 }
