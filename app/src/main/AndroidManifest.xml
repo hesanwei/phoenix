@@ -49,6 +49,7 @@
         <activity android:name=".community.activity.FollowOrderManagerActivity" />
         <activity android:name=".community.activity.HighQualityTraderActivity" />
         <activity android:name=".mine.activity.PersonalInfoActivity" />
+        <activity android:name=".mine.activity.ModifyNickNameActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

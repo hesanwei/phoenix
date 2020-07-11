@@ -282,5 +282,10 @@
     <string name="take_photo">拍照</string>
     <string name="select_from_photo_album">从手机中选择</string>
     <string name="female">女</string>
+    <string name="set_nick_name">昵称设置</string>
+    <string name="set_nick_name_tips">设置一个让人印象深刻的昵称吧。</string>
+    <string name="set_nick_name_tips2">昵称只能设置一次</string>
+    <string name="input_nick_name_hint">请输入2～12位昵称</string>
+    <string name="commit">提交</string>
 
 </resources>

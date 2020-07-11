@@ -9,6 +9,7 @@ import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpActivity
 import com.fhhy.phoenix.bean.UserInfoBean
 import com.fhhy.phoenix.constants.Constants
+import com.fhhy.phoenix.constants.SPKeyConstants
 import com.fhhy.phoenix.dialog.bottomSingleChoiceDialog.DialogItem
 import com.fhhy.phoenix.dialog.bottomSingleChoiceDialog.PersonalInfoSelectBean
 import com.fhhy.phoenix.dialog.bottomSingleChoiceDialog.PersonalInfoSelectDialog
@@ -35,7 +36,16 @@ class PersonalInfoActivity :
     override fun initView() {
         super.initView()
         mPresenter?.requestUserInfo()
-        setViewClickListener(this, llAvatar, clNickName, clUID, clGender, clLocation, tvSave)
+        setViewClickListener(
+            this,
+            llAvatar,
+            clNickName,
+            clUID,
+            clGender,
+            clLocation,
+            tvSave,
+            btnBack
+        )
     }
 
     override fun requestUserInfoSuccess(userInfoBean: UserInfoBean?) {
@@ -58,7 +68,10 @@ class PersonalInfoActivity :
             }
 
             R.id.clNickName -> {
-
+                startActivityForResult(
+                    Intent(this, ModifyNickNameActivity::class.java),
+                    Constants.MODIFY_NAME_REQUEST_CODE
+                )
             }
 
             R.id.clUID -> {
@@ -75,6 +88,10 @@ class PersonalInfoActivity :
 
             R.id.tvSave -> {
 
+            }
+
+            R.id.btnBack -> {
+                finish()
             }
         }
     }
@@ -152,7 +169,8 @@ class PersonalInfoActivity :
                 Constants.MODIFY_NAME_REQUEST_CODE -> {
                     val extras = data?.extras
                     if (extras != null) {
-//                        val name = extras[KeyConstants.KEY_NAME]
+                        val name = extras[SPKeyConstants.SP_KEY_NICKNAME]
+                        tvNickName.text = name?.toString()
 //                        userInfoBean?.name = name?.toString()
 //                        requestUpdateUserInfo(userInfoBean, isShowToast = false)
                     }
