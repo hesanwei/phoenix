@@ -63,4 +63,8 @@ interface ApiService {
     //我的 用户信息
     @POST("user/index")
     fun requestUserInfo(): Observable<HttpResult<UserInfoBean?>>
+
+    //个人信息
+    @POST("user/personal_info")
+    fun requestPersonalInfo(): Observable<HttpResult<UserInfoBean?>>
 }

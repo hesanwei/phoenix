@@ -55,10 +55,15 @@ class PersonalInfoActivity :
                 .load(avatar)
                 .error(R.mipmap.icon_default_avatar)
                 .into(civAvatar)
-            tvNickName.text =
-                if (TextUtils.isEmpty(nick_name)) resources.getString(R.string.no_setting) else nick_name
-
+            tvNickName.text = checkNull(nick_name)
+            tvUID.text = id
+            tvGender.text = checkNull(sex)
+            tvMobile.text = mobile
         }
+    }
+
+    private fun checkNull(string: String?): String {
+        return if (TextUtils.isEmpty(string)) resources.getString(R.string.no_setting) else string!!
     }
 
     override fun onClick(v: View?) {

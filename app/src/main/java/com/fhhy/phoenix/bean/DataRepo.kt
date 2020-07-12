@@ -24,5 +24,8 @@ data class UserInfoBean(
     val money: String?,
     val beginner_bonus: String?,
     val idcard_auth: String?,
-    val help_center: String?
+    val help_center: String?,
+    val id: String?,
+    val mobile: String?,
+    val sex: String?
 )

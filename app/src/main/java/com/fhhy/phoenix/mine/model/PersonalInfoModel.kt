@@ -10,7 +10,7 @@ import io.reactivex.Observable
 // Created by admin on 2020/7/11.
 class PersonalInfoModel : BaseModel(), PersonalInfoContract.Model {
     override fun requestUserInfo(): Observable<HttpResult<UserInfoBean?>> {
-        return RetrofitManager.apiService.requestUserInfo()
+        return RetrofitManager.apiService.requestPersonalInfo()
     }
 
 }
