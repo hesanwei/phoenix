@@ -81,4 +81,9 @@ interface ApiService {
     //获取国家列表
     @POST("")
     fun requestCountryList(): Observable<HttpResult<List<CountryListBean>?>>
+
+    //邀请记录
+    @FormUrlEncoded
+    @POST("user/my_invitation")
+    fun requestInviteRecord(@FieldMap map: Map<String, String?>): Observable<HttpResult<InviteRecordBean?>>
 }

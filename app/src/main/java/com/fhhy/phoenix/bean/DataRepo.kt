@@ -42,3 +42,32 @@ data class CountryListBean(
     val name: String?,
     val code: String?
 ) : Serializable
+
+//邀请记录bean
+data class InviteRecordBean(
+    val today: InviteRecordDayBean?,
+    val yesterday: InviteRecordDayBean?,
+    val total_invite_num: String?,//总邀请人数
+    val invitation_list: InviteListBean?
+)
+
+//邀请记录 昨天和今天
+data class InviteRecordDayBean(
+    val transactions_num: String?,//交易人数
+    val turnover: String?,//交易额
+    val invite_num: String?//新增邀请人数
+)
+
+data class InviteListBean(
+    val total: String?,
+    val per_page: String?,
+    val current_page: String?,
+    val last_page: String?,
+    val data: MutableList<InviteListDataBean>?
+)
+
+data class InviteListDataBean(
+    val mobile: String?,
+    val level_id: String?,
+    val create_time: String?
+)

@@ -77,6 +77,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tvTodayEstimate">
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTodayTransactionsNumber"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
@@ -104,6 +105,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tvTodayEstimate">
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTodayTurnover"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
@@ -131,6 +133,7 @@
                         app:layout_constraintTop_toBottomOf="@id/llTodayTurnover">
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTodayNewInviter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
@@ -184,6 +187,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tvYesterday">
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvYesterdayTransactionsNumber"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
@@ -211,6 +215,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tvYesterday">
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvYesterdayTurnover"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
@@ -238,6 +243,7 @@
                         app:layout_constraintTop_toBottomOf="@id/llYesterdayTurnover">
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvYesterdayNewInviter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
@@ -271,6 +277,7 @@
                     android:paddingBottom="24dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvTotalInviteNum"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#404350"
