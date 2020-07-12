@@ -7,6 +7,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpActivity
+import com.fhhy.phoenix.bean.UploadBean
 import com.fhhy.phoenix.bean.UserInfoBean
 import com.fhhy.phoenix.constants.Constants
 import com.fhhy.phoenix.constants.SPKeyConstants
@@ -58,6 +59,7 @@ class PersonalInfoActivity :
             Glide.with(this@PersonalInfoActivity)
                 .load(avatar)
                 .error(R.mipmap.icon_default_avatar)
+                .placeholder(R.mipmap.icon_default_avatar)
                 .into(civAvatar)
             tvNickName.text = checkNull(nick_name)
             tvUID.text = id
@@ -85,6 +87,11 @@ class PersonalInfoActivity :
         if (!TextUtils.isEmpty(country)) {
             tvLocation.text = country
         }
+    }
+
+    override fun requestUploadAvatarSuccess(message: String?, uploadBean: UploadBean?) {
+        showToast(message)
+        EventBus.getDefault().post(UpdatePersonalInfoSuccessEvent())
     }
 
     private fun checkNull(string: String?): String {
@@ -195,7 +202,7 @@ class PersonalInfoActivity :
                         if (resultPhotos != null && resultPhotos.isNotEmpty()) {
                             val photo = resultPhotos[0]
                             Glide.with(this).load(photo.path).into(civAvatar)
-//                            mPresenter?.requestUpload(photo.path)
+                            mPresenter?.requestUploadAvatar(photo.path)
                         }
                     }
                 }

@@ -29,3 +29,7 @@ data class UserInfoBean(
     val mobile: String?,
     val sex: String?
 )
+
+data class UploadBean(
+    val url: String?
+)

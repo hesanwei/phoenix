@@ -72,4 +72,9 @@ interface ApiService {
     @FormUrlEncoded
     @POST("user/set_personal_info")
     fun requestSerPersonalInfo(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
+
+    //文件的上传
+    @Multipart
+    @POST("user/upload_avatar")
+    fun requestUpload(@Part partList: List<MultipartBody.Part>): Observable<HttpResult<UploadBean?>>
 }

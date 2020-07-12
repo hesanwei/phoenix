@@ -30,4 +30,10 @@ class PersonalInfoPresenter :
         }
     }
 
+    override fun requestUploadAvatar(path: String) {
+        mModel?.requestUploadAvatar(path)?.request(mModel, mView) {
+            mView?.requestUploadAvatarSuccess(it.message,it.data)
+        }
+    }
+
 }

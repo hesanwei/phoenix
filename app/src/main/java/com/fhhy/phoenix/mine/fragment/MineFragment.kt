@@ -225,6 +225,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
         // TODO: 2020/7/11 缺少字段
         userInfoBean?.apply {
             Glide.with(requireContext()).load(avatar).error(R.mipmap.icon_default_avatar)
+                .placeholder(R.mipmap.icon_default_avatar)
                 .into(civAvatar)
             tvUserName?.text = nick_name
             tvTotalAssets?.text = money
