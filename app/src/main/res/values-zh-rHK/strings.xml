@@ -311,5 +311,17 @@
     <string name="inviter_account">被邀请人账号</string>
     <string name="level">等级</string>
     <string name="invite_time">邀请时间</string>
+    <string name="current_level2">当前等级</string>
+    <string name="commission_rate">分佣比例</string>
+    <string name="level_text1">升级至LV%s可享受%s分佣比例</string>
+    <string name="level_growth_progress">等级成长进度</string>
+    <string name="update_time">更新至：%s</string>
+    <string name="completed_people_number">已完成：%s人</string>
+    <string name="level_text2">达标后等级自动升级</string>
+    <string name="level_target">%s目标：%人</string>
+    <string name="limit_trading_people">有限交易人数 %s 人</string>
+    <string name="level_text3">"%s等级目标：有效交易%s人 "</string>
+    <string name="other">其他</string>
+    <string name="level_text4">1、等级越高享有的好友手续费分佣比例越高。\n2、升级方式：每个等级有等级目标，达标后自动升级。</string>
 
 </resources>

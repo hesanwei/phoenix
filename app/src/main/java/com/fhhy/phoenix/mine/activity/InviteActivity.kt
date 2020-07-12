@@ -53,7 +53,7 @@ class InviteActivity : BaseMvpActivity<InviteContract.View, InviteContract.Prese
                 startActivity(Intent(this, InviteRecordActivity::class.java))
             }
             R.id.clMyLevel -> {
-
+                startActivity(Intent(this, MyLevelActivity::class.java))
             }
 
             R.id.clInviteCode -> {
