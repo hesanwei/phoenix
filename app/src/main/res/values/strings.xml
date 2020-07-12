@@ -267,6 +267,7 @@
     <string name="regain">重新获取</string>
     <string name="please_login">请登录</string>
     <string name="no_login_text">"- - "</string>
+    <string name="setting">设置</string>
     <string name="personal_info">个人信息</string>
     <string name="save">保存</string>
     <string name="click_modify_avatar">点击修改头像</string>

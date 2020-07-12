@@ -171,13 +171,13 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
 
             }
             R.id.mivAuthentication -> {//身份认证
-
+             startActivity(Intent(requireContext(),AuthenticationActivity::class.java))
             }
             R.id.mivSecurityCenter -> {//安全中心
 
             }
             R.id.mivSettings -> {//设置
-
+                startActivity(Intent(requireContext(),SettingActivity::class.java))
             }
             R.id.mivAboutUs -> {//关于我们
 
