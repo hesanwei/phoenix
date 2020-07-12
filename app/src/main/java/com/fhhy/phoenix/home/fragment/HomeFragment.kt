@@ -18,9 +18,11 @@ import com.fhhy.phoenix.home.HomeContract
 import com.fhhy.phoenix.home.adapter.BannerAdapter
 import com.fhhy.phoenix.home.adapter.NoticeMarqueeAdapter
 import com.fhhy.phoenix.home.presenter.HomePresenter
+import com.fhhy.phoenix.message.MessageCenterActivity
 import com.jaeger.library.StatusBarUtil
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_home.*
+import noDoubleClick
 
 // Created by admin on 2020/6/7.
 class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(),
@@ -75,6 +77,9 @@ class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(
     }
 
     private fun initMarqueeView() {
+        ivMessage.noDoubleClick {
+            startActivity(Intent(requireContext(), MessageCenterActivity::class.java))
+        }
         xMarqueeContainer.isVisible = false
         homeNavContainer.isVisible = false
         xMarqueeView.setAdapter(marqueeAdapter)
