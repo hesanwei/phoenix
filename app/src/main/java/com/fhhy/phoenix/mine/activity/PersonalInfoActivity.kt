@@ -7,6 +7,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpActivity
+import com.fhhy.phoenix.bean.CountryListBean
 import com.fhhy.phoenix.bean.UploadBean
 import com.fhhy.phoenix.bean.UserInfoBean
 import com.fhhy.phoenix.constants.Constants
@@ -65,6 +66,8 @@ class PersonalInfoActivity :
             tvUID.text = id
             tvGender.text = checkNull(sex)
             tvMobile.text = mobile
+            etPersonalIntroduction.setText(profile)
+            tvLocation.text = country
         }
     }
 
@@ -120,7 +123,10 @@ class PersonalInfoActivity :
             }
 
             R.id.clLocation -> {
-
+                startActivityForResult(
+                    Intent(this, CountryListActivity::class.java),
+                    Constants.SELECT_COUNTRY_REQUEST_CODE
+                )
             }
 
             R.id.tvSave -> {
@@ -211,6 +217,16 @@ class PersonalInfoActivity :
                     if (extras != null) {
                         val name = extras[SPKeyConstants.SP_KEY_NICKNAME]
                         mPresenter?.requestSetPersonalInfo(nick_name = name?.toString())
+                    }
+                }
+
+                Constants.SELECT_COUNTRY_REQUEST_CODE -> {
+                    val extras = data?.extras
+                    if (extras != null) {
+                        val countryListBean =
+                            extras[SPKeyConstants.SP_KEY_COUNTRY] as CountryListBean
+                        tvLocation.text = countryListBean.name
+                        mPresenter?.requestSetPersonalInfo(country = countryListBean.name)
                     }
                 }
             }

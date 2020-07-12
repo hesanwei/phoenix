@@ -10,4 +10,5 @@ object Constants {
     //请求码
     const val SELECT_IMAGE_REQUEST_CODE = 0x101//拍照或者选照片
     const val MODIFY_NAME_REQUEST_CODE = 0x102//修改姓名
+    const val SELECT_COUNTRY_REQUEST_CODE = 0x103//选择国家地区
 }

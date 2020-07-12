@@ -6,12 +6,17 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.view.animation.LinearInterpolator
 import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatImageView
 import com.fhhy.phoenix.R
 
 // Created by admin on 2020/6/7.
-object LoadingDialog{
+object LoadingDialog {
     private var mDialog: Dialog? = null
+    private var loadingAnimation: Animation? = null
 
     fun show(context: Context) {
         // 判断是否可以显示dialog
@@ -35,18 +40,21 @@ object LoadingDialog{
         )
         mDialog!!.setCanceledOnTouchOutside(false)
         mDialog!!.show()
+        loadingAnimation = AnimationUtils.loadAnimation(context, R.anim.loading)
+        loadingAnimation?.interpolator = LinearInterpolator()
+        view.findViewById<AppCompatImageView>(R.id.ivLoading).startAnimation(loadingAnimation)
     }
 
     fun dismiss() {
         if (mDialog != null && mDialog!!.isShowing) {
+            loadingAnimation?.cancel()
             mDialog!!.dismiss()
             mDialog = null
         }
     }
 
     private fun checkCanShow(context: Context): Boolean {
-        val act: Activity
-        act = if (context is Activity) {
+        val act: Activity = if (context is Activity) {
             context
         } else {
             return true

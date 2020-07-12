@@ -1,6 +1,7 @@
 package com.fhhy.phoenix.bean
 
 import com.fhhy.phoenix.base.BaseBean
+import java.io.Serializable
 
 /**
  * DataDepo class
@@ -27,9 +28,17 @@ data class UserInfoBean(
     val help_center: String?,
     val id: String?,
     val mobile: String?,
-    val sex: String?
+    val sex: String,
+    val profile: String?,
+    val country: String?
 )
 
 data class UploadBean(
     val url: String?
 )
+
+//国家选择
+data class CountryListBean(
+    val name: String?,
+    val code: String?
+) : Serializable

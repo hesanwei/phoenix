@@ -77,4 +77,8 @@ interface ApiService {
     @Multipart
     @POST("user/upload_avatar")
     fun requestUpload(@Part partList: List<MultipartBody.Part>): Observable<HttpResult<UploadBean?>>
+
+    //获取国家列表
+    @POST("")
+    fun requestCountryList(): Observable<HttpResult<List<CountryListBean>?>>
 }

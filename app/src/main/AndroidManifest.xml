@@ -52,6 +52,7 @@
         <activity
             android:name=".mine.activity.PersonalInfoActivity" />
         <activity android:name=".mine.activity.ModifyNickNameActivity" />
+        <activity android:name=".mine.activity.CountryListActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
