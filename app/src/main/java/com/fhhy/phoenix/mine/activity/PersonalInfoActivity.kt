@@ -13,12 +13,16 @@ import com.fhhy.phoenix.constants.SPKeyConstants
 import com.fhhy.phoenix.dialog.bottomSingleChoiceDialog.DialogItem
 import com.fhhy.phoenix.dialog.bottomSingleChoiceDialog.PersonalInfoSelectBean
 import com.fhhy.phoenix.dialog.bottomSingleChoiceDialog.PersonalInfoSelectDialog
+import com.fhhy.phoenix.event.UpdatePersonalInfoSuccessEvent
 import com.fhhy.phoenix.mine.contract.PersonalInfoContract
 import com.fhhy.phoenix.mine.presenter.PersonalInfoPresenter
+import com.fhhy.phoenix.toast.ToastUtil
 import com.huantansheng.easyphotos.EasyPhotos
 import com.huantansheng.easyphotos.models.album.entity.Photo
+import copyText
 import kotlinx.android.synthetic.main.activity_personal_info.*
 import kotlinx.android.synthetic.main.fragment_mine.civAvatar
+import org.greenrobot.eventbus.EventBus
 import selectImageFromGallery
 import setViewClickListener
 import showToast
@@ -62,6 +66,27 @@ class PersonalInfoActivity :
         }
     }
 
+    override fun requestSetPersonalInfoSuccess(
+        message: String?, nick_name: String?,
+        sex: String?,
+        profile: String?,
+        country: String?
+    ) {
+        if (TextUtils.isEmpty(message)) {
+            ToastUtil.showOperateTip()
+        } else {
+            showToast(message)
+        }
+        if (!TextUtils.isEmpty(nick_name)) {
+            EventBus.getDefault().post(UpdatePersonalInfoSuccessEvent())
+            tvNickName.text = nick_name
+        }
+
+        if (!TextUtils.isEmpty(country)) {
+            tvLocation.text = country
+        }
+    }
+
     private fun checkNull(string: String?): String {
         return if (TextUtils.isEmpty(string)) resources.getString(R.string.no_setting) else string!!
     }
@@ -80,7 +105,7 @@ class PersonalInfoActivity :
             }
 
             R.id.clUID -> {
-
+                tvUID.text?.toString()?.copyText(this)
             }
 
             R.id.clGender -> {
@@ -92,7 +117,8 @@ class PersonalInfoActivity :
             }
 
             R.id.tvSave -> {
-
+                val profile = etPersonalIntroduction?.text?.toString()
+                mPresenter?.requestSetPersonalInfo(profile = profile)
             }
 
             R.id.btnBack -> {
@@ -150,6 +176,8 @@ class PersonalInfoActivity :
         PersonalInfoSelectDialog(list, object : PersonalInfoSelectDialog.OnItemClickListener {
             override fun onItemClick(bean: PersonalInfoSelectBean?) {
                 tvGender?.text = bean?.name
+                val sex = if (DialogItem.ITEM_GENDER_MALE == bean?.dialogItem) "1" else "2"
+                mPresenter?.requestSetPersonalInfo(sex = sex)
             }
         }).show(supportFragmentManager)
     }
@@ -175,9 +203,7 @@ class PersonalInfoActivity :
                     val extras = data?.extras
                     if (extras != null) {
                         val name = extras[SPKeyConstants.SP_KEY_NICKNAME]
-                        tvNickName.text = name?.toString()
-//                        userInfoBean?.name = name?.toString()
-//                        requestUpdateUserInfo(userInfoBean, isShowToast = false)
+                        mPresenter?.requestSetPersonalInfo(nick_name = name?.toString())
                     }
                 }
             }

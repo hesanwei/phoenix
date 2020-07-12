@@ -23,9 +23,8 @@ import com.fhhy.phoenix.constants.SPKeyConstants
 import com.fhhy.phoenix.dialog.ImgCheckCodeDialog
 import com.fhhy.phoenix.login.LoginContract
 import com.fhhy.phoenix.login.State
-import com.fhhy.phoenix.login.event.LoginSuccessEvent
+import com.fhhy.phoenix.event.LoginSuccessEvent
 import com.fhhy.phoenix.login.presenter.LoginPresenter
-import com.fhhy.phoenix.toast.ToastUtil
 import com.fhhy.phoenix.utils.SPUtils
 import com.jaeger.library.StatusBarUtil
 import com.jakewharton.rxbinding4.view.clicks

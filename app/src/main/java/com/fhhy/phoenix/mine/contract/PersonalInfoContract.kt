@@ -11,13 +11,32 @@ import io.reactivex.Observable
 interface PersonalInfoContract {
     interface View : IView {
         fun requestUserInfoSuccess(userInfoBean: UserInfoBean?)
+        fun requestSetPersonalInfoSuccess(
+            message: String?,
+            nick_name: String?,
+            sex: String?,
+            profile: String?,
+            country: String?
+        )
     }
 
     interface Model : IModel {
         fun requestUserInfo(): Observable<HttpResult<UserInfoBean?>>
+        fun requestSetPersonalInfo(
+            nick_name: String? = "",
+            sex: String? = "",
+            profile: String? = "",
+            country: String? = ""
+        ): Observable<HttpResult<Any?>>
     }
 
     interface Presenter : IPresenter<View> {
         fun requestUserInfo()
+        fun requestSetPersonalInfo(
+            nick_name: String? = "",
+            sex: String? = "",
+            profile: String? = "",
+            country: String? = ""
+        )
     }
 }

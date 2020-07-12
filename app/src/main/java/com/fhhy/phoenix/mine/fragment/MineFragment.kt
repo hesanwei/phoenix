@@ -8,7 +8,8 @@ import com.fhhy.phoenix.base.BaseMvpFragment
 import com.fhhy.phoenix.bean.UserInfoBean
 import com.fhhy.phoenix.dialog.CoinSelectDialog
 import com.fhhy.phoenix.login.LoginActivity
-import com.fhhy.phoenix.login.event.LoginSuccessEvent
+import com.fhhy.phoenix.event.LoginSuccessEvent
+import com.fhhy.phoenix.event.UpdatePersonalInfoSuccessEvent
 import com.fhhy.phoenix.mine.activity.*
 import com.fhhy.phoenix.mine.activity.FundsAccountDetailActivity.Companion.FUNDS_NAME
 import com.fhhy.phoenix.mine.contract.MineContract
@@ -18,7 +19,6 @@ import kotlinx.android.synthetic.main.fragment_mine.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import setViewClickListener
-import showToast
 
 // Created by admin on 2020/6/7.
 class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(),
@@ -213,6 +213,11 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onLoginSuccess(event: LoginSuccessEvent) {
+        lazyLoad()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onLoginSuccess(event: UpdatePersonalInfoSuccessEvent) {
         lazyLoad()
     }
 

@@ -287,5 +287,6 @@
     <string name="set_nick_name_tips2">昵称只能设置一次</string>
     <string name="input_nick_name_hint">请输入2～12位昵称</string>
     <string name="commit">提交</string>
+    <string name="copy_success">复制成功</string>
 
 </resources>

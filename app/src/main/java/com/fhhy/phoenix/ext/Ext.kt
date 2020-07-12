@@ -1,7 +1,7 @@
 import android.app.Activity
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.Paint
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextUtils
@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.constants.Constants
@@ -23,6 +24,7 @@ import com.huantansheng.easyphotos.EasyPhotos
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.disposables.Disposable
 import java.util.concurrent.TimeUnit
+
 
 /**
  * Created by admin on 2020/6/7.
@@ -126,7 +128,7 @@ fun Context.getTextColor(up: Boolean): Int =
 fun AppCompatTextView.underline() {
 //    paint.flags = Paint.UNDERLINE_TEXT_FLAG; //下划线
 //    paint.isAntiAlias = true;//抗锯齿
-    if (text.isNotEmpty()){
+    if (text.isNotEmpty()) {
         val spannableString = SpannableString(text.toString().trim())
         val underlineSpan = UnderlineSpan()
         spannableString.setSpan(
@@ -138,8 +140,9 @@ fun AppCompatTextView.underline() {
         text = spannableString
     }
 }
+
 fun TextView.underline() {
-    if (text.isNotEmpty()){
+    if (text.isNotEmpty()) {
         val spannableString = SpannableString(text.toString().trim())
         val underlineSpan = UnderlineSpan()
         spannableString.setSpan(
@@ -186,5 +189,22 @@ fun AppCompatActivity.takePhoto() {
             )
         )
         .start(Constants.SELECT_IMAGE_REQUEST_CODE)
+}
+
+fun String?.copyText(context: Context) {
+    // 从API11开始android推荐使用android.content.ClipboardManager
+// 为了兼容低版本我们这里使用旧版的android.text.ClipboardManager，虽然提示deprecated，但不影响使用。
+
+    // 从API11开始android推荐使用android.content.ClipboardManager
+// 为了兼容低版本我们这里使用旧版的android.text.ClipboardManager，虽然提示deprecated，但不影响使用。
+    if (TextUtils.isEmpty(this)) {
+        return
+    }
+    val cm: ClipboardManager? =
+        context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+// 将文本内容放到系统剪贴板里。
+// 将文本内容放到系统剪贴板里。
+    cm?.text = this
+    context.showToast(context.resources.getString(R.string.copy_success))
 }
 

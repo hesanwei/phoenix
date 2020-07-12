@@ -67,4 +67,9 @@ interface ApiService {
     //个人信息
     @POST("user/personal_info")
     fun requestPersonalInfo(): Observable<HttpResult<UserInfoBean?>>
+
+    //设置个人信息
+    @FormUrlEncoded
+    @POST("user/set_personal_info")
+    fun requestSerPersonalInfo(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
 }
