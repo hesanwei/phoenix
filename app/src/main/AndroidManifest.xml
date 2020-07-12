@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.fhhy.phoenix">
+    package="com.fhhy.phoenix" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -56,6 +56,8 @@
         <activity android:name=".mine.activity.InviteActivity" />
         <activity android:name=".mine.activity.InviteRecordActivity" />
         <activity android:name=".mine.activity.MyLevelActivity" />
+        <activity android:name=".message.MessageCenterActivity" />
+        <activity android:name=".message.MsgListActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
