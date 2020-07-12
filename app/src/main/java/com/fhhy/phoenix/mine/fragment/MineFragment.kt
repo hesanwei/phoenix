@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
 import com.fhhy.phoenix.bean.UserInfoBean
+import com.fhhy.phoenix.community.activity.FollowOrderManagerActivity
 import com.fhhy.phoenix.dialog.CoinSelectDialog
 import com.fhhy.phoenix.login.LoginActivity
 import com.fhhy.phoenix.event.LoginSuccessEvent
@@ -149,13 +150,13 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
 
             }
             R.id.ivInviteFriends -> {//邀请好友
-
+                startActivity(Intent(requireContext(), InviteActivity::class.java))
             }
             R.id.mivMyBonus -> {//我的赠金
                 startActivity(Intent(context, MyBonusActivity::class.java))
             }
             R.id.mivDocumentaryManagement -> {//跟单管理
-
+                startActivity(Intent(requireContext(), FollowOrderManagerActivity::class.java))
             }
             R.id.mivRecommendDocumentary -> {//推荐跟单
 

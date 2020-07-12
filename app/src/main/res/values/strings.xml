@@ -289,5 +289,19 @@
     <string name="commit">提交</string>
     <string name="copy_success">复制成功</string>
     <string name="select_country">选择国家或地区</string>
+    <string name="current_level">当前等级：LV%s</string>
+    <string name="USDT_earnings">USDT合约佣金收益</string>
+    <string name="yesterday_earnings_USDT">昨日分佣(USDT)</string>
+    <string name="total_earnings_USDT">累计分佣(USDT)</string>
+    <string name="btc_earnings">BTC合约佣金收益</string>
+    <string name="yesterday_earnings_btc">昨日分佣(BTC)</string>
+    <string name="total_earnings_btc">累计分佣(BTC)</string>
+    <string name="invite_record">邀请记录</string>
+    <string name="my_invite_code">我的邀请码</string>
+    <string name="my_level">我的等级</string>
+    <string name="exclusive_poster">专属海报</string>
+    <string name="invite_now">立即邀请</string>
+    <string name="save_img">保存图片</string>
+    <string name="face_to_face_scan_qr_code">面对面扫我接受邀请</string>
 
 </resources>
