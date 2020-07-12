@@ -286,5 +286,12 @@
     <string name="set_nick_name_tips2">昵称只能设置一次</string>
     <string name="input_nick_name_hint">请输入2～12位昵称</string>
     <string name="commit">提交</string>
+    <string name="msg_center_title">消息通知</string>
+    <string name="msg_center_top_tips">开启通知，不错过每一瞬间的交易</string>
+    <string name="msg_center_open_now">立即开启</string>
+    <string name="msg_center_type_customer">客服消息</string>
+    <string name="msg_center_type_system">系统消息</string>
+    <string name="msg_center_type_copy">跟单消息</string>
+    <string name="delete">删除</string>
 
 </resources>
