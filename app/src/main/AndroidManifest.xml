@@ -54,6 +54,7 @@
         <activity android:name=".mine.activity.ModifyNickNameActivity" />
         <activity android:name=".mine.activity.CountryListActivity" />
         <activity android:name=".mine.activity.InviteActivity" />
+        <activity android:name=".mine.activity.InviteRecordActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

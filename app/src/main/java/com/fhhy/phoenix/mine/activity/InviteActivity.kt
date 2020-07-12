@@ -1,5 +1,6 @@
 package com.fhhy.phoenix.mine.activity
 
+import android.content.Intent
 import android.view.View
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpActivity
@@ -49,7 +50,7 @@ class InviteActivity : BaseMvpActivity<InviteContract.View, InviteContract.Prese
         when (v?.id) {
             R.id.btnBack -> finish()
             R.id.clInviteRecord -> {
-
+                startActivity(Intent(this, InviteRecordActivity::class.java))
             }
             R.id.clMyLevel -> {
 

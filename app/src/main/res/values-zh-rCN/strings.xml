@@ -303,5 +303,14 @@
     <string name="invite_now">立即邀请</string>
     <string name="save_img">保存图片</string>
     <string name="face_to_face_scan_qr_code">面对面扫我接受邀请</string>
+    <string name="today_estimate">今日预估</string>
+    <string name="number_of_transactions">交易人数</string>
+    <string name="turnover">交易额</string>
+    <string name="number_of_new_invitation">新增邀请人数</string>
+    <string name="yesterday">昨日</string>
+    <string name="total_invite_people_number">总邀请人数(含间接邀请)：%s</string>
+    <string name="inviter_account">被邀请人账号</string>
+    <string name="level">等级</string>
+    <string name="invite_time">邀请时间</string>
 
 </resources>

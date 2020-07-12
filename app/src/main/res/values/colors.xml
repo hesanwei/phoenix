@@ -8,6 +8,7 @@
     <!--    //透明度50%-->
     <color name="white">#ffffff</color>
     <color name="white50">#80ffffff</color>
+    <color name="white40">#99ffffff</color>
     <color name="black">#000000</color>
     <color name="black50">#80000000</color>
     <color name="text_main_blue">#0578DC</color>
