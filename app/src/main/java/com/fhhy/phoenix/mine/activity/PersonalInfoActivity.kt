@@ -226,7 +226,7 @@ class PersonalInfoActivity :
                         val countryListBean =
                             extras[SPKeyConstants.SP_KEY_COUNTRY] as CountryListBean
                         tvLocation.text = countryListBean.name
-                        mPresenter?.requestSetPersonalInfo(country = countryListBean.name)
+                        mPresenter?.requestSetPersonalInfo(country = countryListBean.code)
                     }
                 }
             }

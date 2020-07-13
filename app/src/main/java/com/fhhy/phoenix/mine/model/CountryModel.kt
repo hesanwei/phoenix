@@ -9,7 +9,7 @@ import io.reactivex.Observable
 
 // Created by admin on 2020/7/12.
 class CountryModel : BaseModel(), CountryContract.Model {
-    override fun requestCountryList(): Observable<HttpResult<List<CountryListBean>?>> {
+    override fun requestCountryList(): Observable<HttpResult<MutableList<CountryListBean>?>> {
         return RetrofitManager.apiService.requestCountryList()
     }
 }

@@ -79,8 +79,8 @@ interface ApiService {
     fun requestUpload(@Part partList: List<MultipartBody.Part>): Observable<HttpResult<UploadBean?>>
 
     //获取国家列表
-    @POST("")
-    fun requestCountryList(): Observable<HttpResult<List<CountryListBean>?>>
+    @POST("user/get_country_list")
+    fun requestCountryList(): Observable<HttpResult<MutableList<CountryListBean>?>>
 
     //邀请记录
     @FormUrlEncoded
