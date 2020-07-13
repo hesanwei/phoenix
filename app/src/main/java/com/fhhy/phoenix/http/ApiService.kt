@@ -91,4 +91,16 @@ interface ApiService {
     @Multipart
     @POST("user/do_real_name")
     fun requestAuthenticationIdCard(@FieldMap map: Map<String, String?>, @Part partList: List<MultipartBody.Part>):Observable<HttpResult<Any?>>
+
+    //消息中心
+    @POST("user/message_center")
+    fun requestMsgCenterList(): Single<HttpResult<List<MsgCenterBean>>>
+
+    //消息列表
+    @FormUrlEncoded
+    @POST("user/message")
+    fun requestMsgList(@FieldMap map: Map<String, String?>): Single<HttpResult<MsgListPageBean>> //消息列表
+
+    @POST("user/unread_message_num")
+    fun requestMsgList(): Observable<HttpResult<UnReadNum>>
 }

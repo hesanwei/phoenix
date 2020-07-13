@@ -26,8 +26,17 @@ class HomePresenter : BasePresenter<HomeContract.Model, HomeContract.View>(),
             }
         }
     }
+
     override fun requestHomeData() {
         requestHomeTopData()
         requestHomeCurrencies()
+    }
+
+    override fun updateMsgUnReadNum() {
+        mModel?.let {
+            it.requestMsgUnReadNum().request(mModel, mView){httpResult ->
+                mView?.updateMsgUnReadNum(httpResult.data.unread)
+            }
+        }
     }
 }

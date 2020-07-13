@@ -3,16 +3,16 @@ package com.fhhy.phoenix.message.adapter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.fhhy.phoenix.R
-import com.fhhy.phoenix.test.MsgCenterBean
+import com.fhhy.phoenix.bean.MsgCenterBean
 
 class MsgCenterAdapter : BaseQuickAdapter<MsgCenterBean, BaseViewHolder>(R.layout.item_msg_center) {
 
     override fun convert(holder: BaseViewHolder, item: MsgCenterBean) {
         holder.setImageResource(R.id.iv_msg_type, getMsgTypeIcon(item.type))
             .setText(R.id.msg_title, item.title)
-            .setText(R.id.msg_date, item.date)
-            .setText(R.id.msg_des, item.des)
-            .setText(R.id.tv_unread_msg, "${item.unReadMsg}")
+            .setText(R.id.msg_date, item.sendTime)
+            .setText(R.id.msg_des, item.msg)
+            .setText(R.id.tv_unread_msg, "${item.unreadNum}")
             .setText(R.id.tv_msg_type, getMsgTypeIconDes(item.type))
     }
 

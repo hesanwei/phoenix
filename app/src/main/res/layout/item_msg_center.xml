@@ -78,6 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
+                    android:minWidth="24dp"
                     android:background="@drawable/bg_msg_center_unread_msg_count"
                     android:textColor="@color/white"
                     android:textSize="12sp"
