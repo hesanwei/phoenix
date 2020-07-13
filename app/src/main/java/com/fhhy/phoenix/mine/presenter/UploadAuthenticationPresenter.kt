@@ -12,6 +12,7 @@ import okhttp3.RequestBody
  */
 class UploadAuthenticationPresenter:BasePresenter<UploadAuthenticationContract.Model,UploadAuthenticationContract.View>(),UploadAuthenticationContract.Presenter {
     override fun createModel(): UploadAuthenticationContract.Model? =UploadAuthenticationModel()
+
     override fun requestAuthenticationIdCard(map: Map<String,String>,partList: List<MultipartBody.Part>) {
       mModel?.requestAuthenticationIdCard(map,partList)?.getRequestMap()
     }
