@@ -11,4 +11,8 @@ object Constants {
     const val SELECT_IMAGE_REQUEST_CODE = 0x101//拍照或者选照片
     const val MODIFY_NAME_REQUEST_CODE = 0x102//修改姓名
     const val SELECT_COUNTRY_REQUEST_CODE = 0x103//选择国家地区
+
+    const val RESPONSE_CODE_SUCCESS=200//成功状态码
+    const val RESPONSE_CODE_UNKNOWN = 2020//未知错误码
+
 }

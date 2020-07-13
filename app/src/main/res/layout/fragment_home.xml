@@ -32,12 +32,12 @@
             android:layout_marginTop="4dp"
             android:background="@drawable/message_count_bg"
             android:gravity="center"
-            android:text="3"
             android:textColor="@color/white"
             android:textSize="10sp"
             app:layout_constraintLeft_toLeftOf="@id/ivMessage"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SmallSp" />
+            tools:ignore="SmallSp"
+            tools:text="3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout

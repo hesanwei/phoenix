@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.fhhy.phoenix.constants.SPKeyConstants
+import com.fhhy.phoenix.dialog.LoadingDialog
+import com.fhhy.phoenix.utils.SPUtils
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 
@@ -56,6 +59,16 @@ abstract class BaseVBFragment<VB : ViewBinding> : Fragment() {
         mCompositeDisposable.clear()
     }
 
+    protected fun isLogin(): Boolean {
+        return SPUtils.getBoolean(SPKeyConstants.SP_KEY_IS_LOGIN)
+    }
 
+    protected fun showLoading() {
+        LoadingDialog.show(requireContext())
+    }
+
+    protected fun hideLoading() {
+        LoadingDialog.dismiss()
+    }
 }
 

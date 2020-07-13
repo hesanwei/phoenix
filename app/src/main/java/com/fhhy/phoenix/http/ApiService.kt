@@ -86,4 +86,16 @@ interface ApiService {
     @FormUrlEncoded
     @POST("user/my_invitation")
     fun requestInviteRecord(@FieldMap map: Map<String, String?>): Observable<HttpResult<InviteRecordBean?>>
+
+    //消息中心
+    @POST("user/message_center")
+    fun requestMsgCenterList(): Single<HttpResult<List<MsgCenterBean>>>
+
+    //消息列表
+    @FormUrlEncoded
+    @POST("user/message")
+    fun requestMsgList(@FieldMap map: Map<String, String?>): Single<HttpResult<MsgListPageBean>> //消息列表
+
+    @POST("user/unread_message_num")
+    fun requestMsgList(): Observable<HttpResult<UnReadNum>>
 }

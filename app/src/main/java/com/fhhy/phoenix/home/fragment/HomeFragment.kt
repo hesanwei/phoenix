@@ -13,16 +13,20 @@ import com.fhhy.phoenix.bean.CurrencyPrice
 import com.fhhy.phoenix.bean.HomeTopWrapBean
 import com.fhhy.phoenix.contract.adapter.ContractAdapter
 import com.fhhy.phoenix.contractdetail.ContractDetailActivity
+import com.fhhy.phoenix.event.UpdateMsgUnReadNumEvent
 import com.fhhy.phoenix.home.CurrencyPriceItemDiff
 import com.fhhy.phoenix.home.HomeContract
 import com.fhhy.phoenix.home.adapter.BannerAdapter
 import com.fhhy.phoenix.home.adapter.NoticeMarqueeAdapter
 import com.fhhy.phoenix.home.presenter.HomePresenter
+import com.fhhy.phoenix.login.LoginActivity
 import com.fhhy.phoenix.message.MessageCenterActivity
 import com.jaeger.library.StatusBarUtil
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_home.*
 import noDoubleClick
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 // Created by admin on 2020/6/7.
 class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(),
@@ -78,7 +82,12 @@ class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(
 
     private fun initMarqueeView() {
         ivMessage.noDoubleClick {
-            startActivity(Intent(requireContext(), MessageCenterActivity::class.java))
+            if (isLogin()) {
+                startActivity(Intent(requireContext(), MessageCenterActivity::class.java))
+            }else{
+                startActivity(Intent(requireContext(), LoginActivity::class.java))
+            }
+
         }
         xMarqueeContainer.isVisible = false
         homeNavContainer.isVisible = false
@@ -103,7 +112,20 @@ class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(
     override fun lazyLoad() {
         mPresenter?.run {
             requestHomeData()
+            if (isLogin()) {
+                updateMsgUnReadNum()
+            }
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onReceiveUpdateMsgEvent(updateMsgUnReadNumEvent: UpdateMsgUnReadNumEvent) {
+        mPresenter?.run {
+            updateMsgUnReadNum()
+        }
+    }
+    override fun useEventBus(): Boolean {
+        return true
     }
 
     companion object {
@@ -122,6 +144,9 @@ class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(
         homeBgWorker.onHideChanged(hidden)
     }
 
+    override fun updateMsgUnReadNum(num: Int) {
+        tvMessageCount.text = "$num"
+    }
     override fun showBannerAndNav(topWrapBean: HomeTopWrapBean) {
         smartRefreshLayout.finishRefresh()
         //绑定banner
