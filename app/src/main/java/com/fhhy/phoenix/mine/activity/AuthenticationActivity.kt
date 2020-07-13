@@ -15,7 +15,7 @@ class AuthenticationActivity :BaseActivity(), View.OnClickListener {
     override fun getLayoutId(): Int= R.layout.activity_authentication
 
     override fun initView() {
-         setViewClickListener(this,ll_id_card,ll_passport,tv_next)
+         setViewClickListener(this,ll_id_card,ll_passport,tv_next,btnBack)
     }
 
     override fun onClick(v: View?) {
@@ -45,6 +45,9 @@ class AuthenticationActivity :BaseActivity(), View.OnClickListener {
                    startActivity(Intent(this,UploadPassportActivity::class.java))
                }
 
+           }
+           R.id.btnBack->{
+               finish()
            }
        }
     }

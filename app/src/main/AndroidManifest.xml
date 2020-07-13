@@ -61,6 +61,7 @@
         <activity android:name=".mine.activity.UploadPassportActivity" />
         <activity android:name=".mine.activity.UploadAuthenticationActivity" />
         <activity android:name=".mine.activity.SecurityCenterActivity" />
+        <activity android:name=".mine.activity.ImageCheckCodeActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
