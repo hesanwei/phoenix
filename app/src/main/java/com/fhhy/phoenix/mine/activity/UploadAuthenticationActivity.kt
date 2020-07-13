@@ -7,11 +7,14 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseActivity
+import com.fhhy.phoenix.base.BaseMvpActivity
 import com.fhhy.phoenix.constants.Constants
 import com.fhhy.phoenix.dialog.UploadTipDialog
 import com.fhhy.phoenix.dialog.bottomSingleChoiceDialog.DialogItem
 import com.fhhy.phoenix.dialog.bottomSingleChoiceDialog.PersonalInfoSelectBean
 import com.fhhy.phoenix.dialog.bottomSingleChoiceDialog.PersonalInfoSelectDialog
+import com.fhhy.phoenix.mine.contract.UploadAuthenticationContract
+import com.fhhy.phoenix.mine.presenter.UploadAuthenticationPresenter
 import com.huantansheng.easyphotos.EasyPhotos
 import com.huantansheng.easyphotos.models.album.entity.Photo
 import kotlinx.android.synthetic.main.activity_upload_authentication.*
@@ -24,10 +27,10 @@ import java.util.ArrayList
 /**
  * Created by heCunCun on 2020/7/13
  */
-class UploadAuthenticationActivity:BaseActivity(), View.OnClickListener {
+class UploadAuthenticationActivity: BaseMvpActivity<UploadAuthenticationContract.View,UploadAuthenticationContract.Presenter>(), UploadAuthenticationContract.View,View.OnClickListener {
     private var currentClick=0 //点击那个图片 0 id前 2id 后  3手持idCard
     private var currentPic:ImageView?=null//当前图片
-
+    override fun createPresenter(): UploadAuthenticationContract.Presenter=UploadAuthenticationPresenter()
     override fun getLayoutId(): Int = R.layout.activity_upload_authentication
 
     override fun initView() {
@@ -114,4 +117,6 @@ class UploadAuthenticationActivity:BaseActivity(), View.OnClickListener {
         }
 
     }
+
+
 }

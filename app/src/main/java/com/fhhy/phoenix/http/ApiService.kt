@@ -79,13 +79,18 @@ interface ApiService {
     fun requestUpload(@Part partList: List<MultipartBody.Part>): Observable<HttpResult<UploadBean?>>
 
     //获取国家列表
-    @POST("")
+    @POST("user/get_country_list")
     fun requestCountryList(): Observable<HttpResult<List<CountryListBean>?>>
 
     //邀请记录
     @FormUrlEncoded
     @POST("user/my_invitation")
     fun requestInviteRecord(@FieldMap map: Map<String, String?>): Observable<HttpResult<InviteRecordBean?>>
+
+    //身份idCard认证
+    @Multipart
+    @POST("user/do_real_name")
+    fun requestAuthenticationIdCard(@FieldMap map: Map<String, String?>, @Part partList: List<MultipartBody.Part>):Observable<HttpResult<Any?>>
 
     //消息中心
     @POST("user/message_center")

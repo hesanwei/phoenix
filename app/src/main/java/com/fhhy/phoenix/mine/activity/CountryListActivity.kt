@@ -27,20 +27,13 @@ class CountryListActivity : BaseMvpActivity<CountryContract.View, CountryContrac
     override fun initView() {
         super.initView()
         initRecyclerView()
+        mPresenter?.requestCountryList()
     }
 
     private fun initRecyclerView() {
         recyclerView?.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@CountryListActivity)
-            val list = mutableListOf(
-                CountryListBean("中国大陆", "+86"),
-                CountryListBean("中国台湾", "+886"),
-                CountryListBean("中国香港", "+852"),
-                CountryListBean("日本", "+81"),
-                CountryListBean("美国", "+8688")
-            )
-            countryListAdapter.addData(list)
             adapter = countryListAdapter
         }
 
@@ -54,5 +47,6 @@ class CountryListActivity : BaseMvpActivity<CountryContract.View, CountryContrac
     }
 
     override fun requestCountryListSuccess(dataList: List<CountryListBean>?) {
+        countryListAdapter.setList(dataList)
     }
 }
