@@ -3,25 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.fhhy.phoenix" >
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
-    <uses-permission
-        android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
-        android:name=".base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:networkSecurityConfig="@xml/network_security_config"
+        android:name=".base.BaseApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,8 +48,8 @@
         <activity android:name=".community.activity.TraderInfoActivity" />
         <activity android:name=".community.activity.FollowOrderManagerActivity" />
         <activity android:name=".community.activity.HighQualityTraderActivity" />
-        <activity
-            android:name=".mine.activity.PersonalInfoActivity" />
+        <activity android:name=".mine.activity.SettingActivity" />
+        <activity android:name=".mine.activity.PersonalInfoActivity" />
         <activity android:name=".mine.activity.ModifyNickNameActivity" />
         <activity android:name=".mine.activity.CountryListActivity" />
         <activity android:name=".mine.activity.InviteActivity" />
@@ -58,6 +57,11 @@
         <activity android:name=".mine.activity.MyLevelActivity" />
         <activity android:name=".message.MessageCenterActivity" />
         <activity android:name=".message.MsgListActivity" />
+        <activity android:name=".mine.activity.AuthenticationActivity" />
+        <activity android:name=".mine.activity.UploadPassportActivity" />
+        <activity android:name=".mine.activity.UploadAuthenticationActivity" />
+        <activity android:name=".mine.activity.SecurityCenterActivity" />
+        <activity android:name=".mine.activity.ImageCheckCodeActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
