@@ -80,7 +80,7 @@ interface ApiService {
 
     //获取国家列表
     @POST("user/get_country_list")
-    fun requestCountryList(): Observable<HttpResult<MutableList<CountryListBean>?>>
+    fun requestCountryList(): Observable<HttpResult<List<CountryListBean>?>>
 
     //邀请记录
     @FormUrlEncoded

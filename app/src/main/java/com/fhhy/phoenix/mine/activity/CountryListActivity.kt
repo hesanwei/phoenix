@@ -46,7 +46,7 @@ class CountryListActivity : BaseMvpActivity<CountryContract.View, CountryContrac
         }
     }
 
-    override fun requestCountryListSuccess(dataList: MutableList<CountryListBean>?) {
-        countryListAdapter.setNewData(dataList)
+    override fun requestCountryListSuccess(dataList: List<CountryListBean>?) {
+        countryListAdapter.setList(dataList)
     }
 }

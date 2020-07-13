@@ -1,5 +1,7 @@
 package com.fhhy.phoenix.bean
 
+import android.text.TextUtils
+import com.fhhy.phoenix.constants.Constants
 import com.google.gson.annotations.SerializedName
 import com.stx.xhb.xbanner.entity.SimpleBannerInfo
 
@@ -22,7 +24,9 @@ data class BannerBean(
     @SerializedName("ad_link")
     val link: String
 ) : SimpleBannerInfo() {
-    override fun getXBannerUrl(): String = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592038610007&di=d0831bd19797c6d62bbb330ed1d0c43f&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F14%2F75%2F01300000164186121366756803686.jpg"
+        override fun getXBannerUrl(): String = "http://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592038610007&di=d0831bd19797c6d62bbb330ed1d0c43f&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F14%2F75%2F01300000164186121366756803686.jpg"
+//    override fun getXBannerUrl(): String =
+//        if (!TextUtils.isEmpty(image) && image.contains(Regex("http"))) image else Constants.BASE_IMAGE_URL + image
 }
 
 data class Notice(

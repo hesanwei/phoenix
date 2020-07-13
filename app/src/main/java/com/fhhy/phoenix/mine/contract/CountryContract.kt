@@ -10,11 +10,11 @@ import io.reactivex.Observable
 // Created by admin on 2020/7/12.
 interface CountryContract {
     interface View : IView {
-        fun requestCountryListSuccess(dataList: MutableList<CountryListBean>?)
+        fun requestCountryListSuccess(dataList: List<CountryListBean>?)
     }
 
     interface Model : IModel {
-        fun requestCountryList(): Observable<HttpResult<MutableList<CountryListBean>?>>
+        fun requestCountryList(): Observable<HttpResult<List<CountryListBean>?>>
     }
 
     interface Presenter : IPresenter<View> {
