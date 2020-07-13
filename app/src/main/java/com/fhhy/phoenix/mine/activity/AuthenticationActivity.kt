@@ -1,5 +1,6 @@
 package com.fhhy.phoenix.mine.activity
 
+import android.content.Intent
 import android.view.View
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseActivity
@@ -38,6 +39,11 @@ class AuthenticationActivity :BaseActivity(), View.OnClickListener {
                }
            }
            R.id.tv_next->{
+               if (checked==0){
+                   startActivity(Intent(this,UploadAuthenticationActivity::class.java))
+               }else{
+                   startActivity(Intent(this,UploadPassportActivity::class.java))
+               }
 
            }
        }

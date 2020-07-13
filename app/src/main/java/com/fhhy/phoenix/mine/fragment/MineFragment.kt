@@ -7,6 +7,7 @@ import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpFragment
 import com.fhhy.phoenix.bean.UserInfoBean
 import com.fhhy.phoenix.community.activity.FollowOrderManagerActivity
+import com.fhhy.phoenix.community.activity.HighQualityTraderActivity
 import com.fhhy.phoenix.dialog.CoinSelectDialog
 import com.fhhy.phoenix.login.LoginActivity
 import com.fhhy.phoenix.event.LoginSuccessEvent
@@ -159,7 +160,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
                 startActivity(Intent(requireContext(), FollowOrderManagerActivity::class.java))
             }
             R.id.mivRecommendDocumentary -> {//推荐跟单
-
+                startActivity(Intent(requireContext(), HighQualityTraderActivity::class.java))
             }
             R.id.mivContactCustomerService -> {//联系客服
 
@@ -174,7 +175,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
              startActivity(Intent(requireContext(),AuthenticationActivity::class.java))
             }
             R.id.mivSecurityCenter -> {//安全中心
-
+                startActivity(Intent(requireContext(),SecurityCenterActivity::class.java))
             }
             R.id.mivSettings -> {//设置
                 startActivity(Intent(requireContext(),SettingActivity::class.java))

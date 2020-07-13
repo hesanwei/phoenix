@@ -20,7 +20,8 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
             ll_personal_info_setting,
             ll_app_version_update,
             ll_language,
-            ll_advanced_setting
+            ll_advanced_setting,
+            btnBack
         )
     }
 
@@ -37,6 +38,9 @@ class SettingActivity : BaseActivity(), View.OnClickListener {
             }
             R.id.ll_advanced_setting -> {//高级设置
 
+            }
+            R.id.btnBack->{
+                finish()
             }
         }
     }

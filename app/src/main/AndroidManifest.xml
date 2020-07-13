@@ -50,8 +50,6 @@
         <activity android:name=".community.activity.HighQualityTraderActivity" />
         <activity android:name=".mine.activity.SettingActivity" />
         <activity android:name=".mine.activity.PersonalInfoActivity" />
-        <activity
-            android:name=".mine.activity.PersonalInfoActivity" />
         <activity android:name=".mine.activity.ModifyNickNameActivity" />
         <activity android:name=".mine.activity.CountryListActivity" />
         <activity android:name=".mine.activity.InviteActivity" />
@@ -60,6 +58,9 @@
         <activity android:name=".message.MessageCenterActivity" />
         <activity android:name=".message.MsgListActivity" />
         <activity android:name=".mine.activity.AuthenticationActivity" />
+        <activity android:name=".mine.activity.UploadPassportActivity" />
+        <activity android:name=".mine.activity.UploadAuthenticationActivity" />
+        <activity android:name=".mine.activity.SecurityCenterActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

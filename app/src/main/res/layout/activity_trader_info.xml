@@ -438,7 +438,7 @@
     <FrameLayout
 
         android:id="@+id/fl_no_data"
-        android:visibility="visible"
+        android:visibility="gone"
         android:clickable="true"
         android:focusable="true"
         android:background="@color/transparent"

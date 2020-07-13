@@ -55,7 +55,6 @@
     <string name="contact_customer_service">联系客服</string>
     <string name="help_center">帮助中心</string>
     <string name="my_inviter">我的邀请人</string>
-    <string name="authentication">身份认证</string>
     <string name="security_center">安全中心</string>
     <string name="settings">设置</string>
     <string name="about_us">关于我们</string>
@@ -331,6 +330,15 @@
     <string name="msg_center_type_system">系统消息</string>
     <string name="msg_center_type_copy">跟单消息</string>
     <string name="delete">删除</string>
+    <string name="authentication">身份认证</string>
+    <string name="submit">提交</string>
+    <string name="see_example">查看示例</string>
+    <string name="upload_tip">上传手持身份证+手写凤凰合约的图片</string>
+    <string name="id_card_back">身份证反面</string>
+    <string name="id_Card_front">身份证正面</string>
+    <string name="passport_auth">护照认证</string>
+    <string name="passport_info_photo">护照基本信息照片</string>
+    <string name="upload_passport_tip">上传手持护照+手写凤凰合约的图片</string>
 
 
 </resources>
