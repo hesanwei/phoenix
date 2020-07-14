@@ -71,3 +71,7 @@ data class InviteListDataBean(
     val level_id: String?,
     val create_time: String?
 )
+//身份认证
+data class AuthenticationBean(
+    val urlList :MutableList<String>?
+)
