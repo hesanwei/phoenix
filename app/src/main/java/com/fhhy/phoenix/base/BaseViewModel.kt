@@ -1,14 +1,15 @@
 package com.fhhy.phoenix.base
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.fhhy.phoenix.bean.HttpResult
 import com.fhhy.phoenix.constants.Constants.RESPONSE_CODE_SUCCESS
-import com.fhhy.phoenix.constants.Constants.RESPONSE_CODE_UNKNOWN
 import com.fhhy.phoenix.http.ExceptionWrapper
 import com.fhhy.phoenix.http.ExceptionWrapper.Companion.ERROR_CODE_UNKNOWN
-import com.fhhy.phoenix.http.scheduler.SingleErrorConsumer
+import com.fhhy.phoenix.http.transform.ExceptionTransform
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+import resolve
 
 abstract class BaseViewModel : ViewModel() {
     protected val mDisposables by lazy {
@@ -22,10 +23,8 @@ abstract class BaseViewModel : ViewModel() {
         empty: (() -> Unit)? = null
     ) {
         val subscribe = api.invoke()
-            .compose(SingleErrorConsumer())
-            .doOnError {
-
-            }
+            .subscribeOn(Schedulers.io())
+            .compose(ExceptionTransform.singleErrorTransform())
             .doOnSuccess {
                 if (it.code?.toInt() == RESPONSE_CODE_SUCCESS) {
                     success.invoke(it)
@@ -38,6 +37,10 @@ abstract class BaseViewModel : ViewModel() {
                     )
                 }
             }
+            .doOnError {
+                Log.d(TAG, "simpleRequest: ${it.message}")
+                error.invoke(it.resolve())
+            }
             .subscribe()
         mDisposables.add(subscribe)
     }
@@ -45,5 +48,9 @@ abstract class BaseViewModel : ViewModel() {
     override fun onCleared() {
         mDisposables.clear()
         super.onCleared()
+    }
+
+    companion object {
+        const val TAG = "BaseViewModel"
     }
 }

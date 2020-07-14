@@ -2,10 +2,12 @@ package com.fhhy.phoenix.base
 
 import android.content.Context
 import androidx.multidex.MultiDexApplication
+import com.fhhy.phoenix.BuildConfig
 import com.fhhy.phoenix.R
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import io.reactivex.plugins.RxJavaPlugins
 
 // Created by admin on 2020/6/7.
 class BaseApplication : MultiDexApplication() {
@@ -16,6 +18,11 @@ class BaseApplication : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
+        RxJavaPlugins.setErrorHandler {
+            if (BuildConfig.DEBUG) {
+                it.printStackTrace()
+            }
+        }
         sContext = applicationContext
     }
 

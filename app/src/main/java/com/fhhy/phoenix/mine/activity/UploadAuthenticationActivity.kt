@@ -118,5 +118,9 @@ class UploadAuthenticationActivity: BaseMvpActivity<UploadAuthenticationContract
 
     }
 
+    override fun requestAuthenticationIdCardSuccess(bean: Any?) {
+
+    }
+
 
 }
