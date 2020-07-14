@@ -173,6 +173,7 @@ class UploadAuthenticationActivity: BaseMvpActivity<UploadAuthenticationContract
     override fun requestAuthenticationIdCardSuccess(authenticationBean: AuthenticationBean?) {
            Log.e("hcc","url1=${authenticationBean?.urlList?.get(0)}")
         showToast("提交成功")
+        finish()
     }
 
 }

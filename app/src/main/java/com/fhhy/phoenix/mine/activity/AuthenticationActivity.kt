@@ -48,11 +48,13 @@ class AuthenticationActivity : BaseActivity(), View.OnClickListener {
                         intent1.putExtra("name", name)
                         intent1.putExtra("number", number)
                         startActivity(intent1)
+                        finish()
                     } else {
                         val intent2=Intent(this, UploadPassportActivity::class.java)
                         intent2.putExtra("name", name)
                         intent2.putExtra("number", number)
                         startActivity(intent2)
+                        finish()
                     }
                 }else{
                     showToast("请把信息填写完整")
