@@ -339,5 +339,9 @@
     <string name="passport_auth">护照认证</string>
     <string name="passport_info_photo">护照基本信息照片</string>
     <string name="upload_passport_tip">上传手持护照+手写凤凰合约的图片</string>
+    <string name="reset">重置</string>
+    <string name="login_pwd">登录密码</string>
+    <string name="cost_pwd">资金密码</string>
+    <string name="now_set">立即设置</string>
 
 </resources>
