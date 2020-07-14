@@ -103,4 +103,13 @@ interface ApiService {
 
     @POST("user/unread_message_num")
     fun requestMsgList(): Observable<HttpResult<UnReadNum>>
+
+    //重置/忘记登录密码获取验证码
+    @POST("user/get_update_password_code")
+    fun requestUpdatePwdCode(@FieldMap map: Map<String, String?>):Observable<HttpResult<Any?>>
+
+    //重置登录密码
+    @POST("user/update_password")
+    fun requestResetLoginPwd(@FieldMap map: Map<String, String?>):Observable<HttpResult<Any?>>
+
 }
