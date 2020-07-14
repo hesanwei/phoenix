@@ -88,10 +88,9 @@ interface ApiService {
     fun requestInviteRecord(@FieldMap map: Map<String, String?>): Observable<HttpResult<InviteRecordBean?>>
 
     //身份idCard认证
-    @FormUrlEncoded
     @Multipart
     @POST("user/do_real_name")
-    fun requestAuthenticationIdCard(@FieldMap map: Map<String, String?>, @Part partList: List<MultipartBody.Part>) : Observable<HttpResult<AuthenticationBean?>>
+    fun requestAuthenticationIdCard(@PartMap map: Map<String, String?>, @Part partList: List<MultipartBody.Part>) : Observable<HttpResult<AuthenticationBean?>>
 
     //消息中心
     @POST("user/message_center")

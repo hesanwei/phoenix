@@ -45,6 +45,7 @@ class UploadAuthenticationActivity: BaseMvpActivity<UploadAuthenticationContract
     override fun getLayoutId(): Int = R.layout.activity_upload_authentication
 
     override fun initView() {
+        super.initView()
         name = intent.getStringExtra("name")!!
         number= intent.getStringExtra("number")!!
         setViewClickListener(this,btnBack,tv_upload_tip,fl_upload_front,fl_upload_back,fl_upload,tv_submit)
