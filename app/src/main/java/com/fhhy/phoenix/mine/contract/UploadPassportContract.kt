@@ -11,7 +11,7 @@ import okhttp3.MultipartBody
 /**
  * Created by hecuncun on 2020/7/13
  */
-interface UploadAuthenticationContract {
+interface UploadPassportContract {
     interface View:IView{
         fun requestAuthenticationIdCardSuccess(authenticationBean: AuthenticationBean?)
     }

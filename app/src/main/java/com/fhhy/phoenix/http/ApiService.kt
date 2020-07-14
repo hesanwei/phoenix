@@ -90,7 +90,7 @@ interface ApiService {
     //身份idCard认证
     @Multipart
     @POST("user/do_real_name")
-    fun requestAuthenticationIdCard(@FieldMap map: Map<String, String?>, @Part partList: List<MultipartBody.Part>):Observable<HttpResult<Any?>>
+    fun requestAuthenticationIdCard(@PartMap map: Map<String, String?>, @Part partList: List<MultipartBody.Part>) : Observable<HttpResult<AuthenticationBean?>>
 
     //消息中心
     @POST("user/message_center")

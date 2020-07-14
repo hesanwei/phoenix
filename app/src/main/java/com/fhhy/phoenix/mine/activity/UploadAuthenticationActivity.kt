@@ -2,12 +2,13 @@ package com.fhhy.phoenix.mine.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.fhhy.phoenix.R
-import com.fhhy.phoenix.base.BaseActivity
 import com.fhhy.phoenix.base.BaseMvpActivity
+import com.fhhy.phoenix.bean.AuthenticationBean
 import com.fhhy.phoenix.constants.Constants
 import com.fhhy.phoenix.dialog.UploadTipDialog
 import com.fhhy.phoenix.dialog.bottomSingleChoiceDialog.DialogItem
@@ -17,11 +18,16 @@ import com.fhhy.phoenix.mine.contract.UploadAuthenticationContract
 import com.fhhy.phoenix.mine.presenter.UploadAuthenticationPresenter
 import com.huantansheng.easyphotos.EasyPhotos
 import com.huantansheng.easyphotos.models.album.entity.Photo
+import getRequestMap
 import kotlinx.android.synthetic.main.activity_upload_authentication.*
-import kotlinx.android.synthetic.main.fragment_mine.*
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import selectImageFromGallery
 import setViewClickListener
+import showToast
 import takePhoto
+import java.io.File
 import java.util.ArrayList
 
 /**
@@ -30,11 +36,19 @@ import java.util.ArrayList
 class UploadAuthenticationActivity: BaseMvpActivity<UploadAuthenticationContract.View,UploadAuthenticationContract.Presenter>(), UploadAuthenticationContract.View,View.OnClickListener {
     private var currentClick=0 //点击那个图片 0 id前 2id 后  3手持idCard
     private var currentPic:ImageView?=null//当前图片
+    private var picFront=""
+    private var picBack=""
+    private var picHold=""
+    private var name =""
+    private var number =""
     override fun createPresenter(): UploadAuthenticationContract.Presenter=UploadAuthenticationPresenter()
     override fun getLayoutId(): Int = R.layout.activity_upload_authentication
 
     override fun initView() {
-             setViewClickListener(this,btnBack,tv_upload_tip,fl_upload_front,fl_upload_back,fl_upload)
+        super.initView()
+        name = intent.getStringExtra("name")!!
+        number= intent.getStringExtra("number")!!
+        setViewClickListener(this,btnBack,tv_upload_tip,fl_upload_front,fl_upload_back,fl_upload,tv_submit)
     }
 
     override fun onClick(v: View?) {
@@ -56,6 +70,35 @@ class UploadAuthenticationActivity: BaseMvpActivity<UploadAuthenticationContract
             R.id.fl_upload->{
                 currentClick=2
                 clickAvatar()
+            }
+            R.id.tv_submit->{
+                if (picFront.isNotEmpty() && picBack.isNotEmpty() && picHold.isNotEmpty()){
+                    //全部选完图片
+                    val requestMap = getRequestMap()
+                    requestMap["idcard_name"] = name
+                    requestMap["idcard_number"] = number
+                    requestMap["type"] = "1"
+
+                    val builder = MultipartBody.Builder()
+                    builder.setType(MultipartBody.FORM)
+
+                    val fileFront = File(picFront)
+                    val requestFile1: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), fileFront)
+                    builder.addFormDataPart("idcard_font", fileFront.name, requestFile1)
+
+                    val fileBack = File(picBack)
+                    val requestFile2: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), fileBack)
+                    builder.addFormDataPart("idcard_back", fileBack.name, requestFile2)
+
+                    val fileHold= File(picHold)
+                    val requestFile3: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), fileHold)
+                    builder.addFormDataPart("idcard_hold", fileHold.name, requestFile3)
+
+                    mPresenter?.requestAuthenticationIdCard(requestMap,builder.build().parts())
+                }else{
+                    showToast("请上传图片")
+                }
+
             }
         }
     }
@@ -104,9 +147,18 @@ class UploadAuthenticationActivity: BaseMvpActivity<UploadAuthenticationContract
                         if (resultPhotos != null && resultPhotos.isNotEmpty()) {
                             val photo = resultPhotos[0]
                             when(currentClick){
-                                0->{ currentPic=iv_front}
-                                1->{currentPic=iv_back}
-                                2->{currentPic=iv_upload}
+                                0->{
+                                    currentPic=iv_front
+                                    picFront=photo.path
+                                }
+                                1->{
+                                    currentPic=iv_back
+                                    picBack=photo.path
+                                }
+                                2->{
+                                    currentPic=iv_upload
+                                    picHold=photo.path
+                                }
                             }
                             Glide.with(this).load(photo.path).into(currentPic!!)
                             //mPresenter?.requestUploadAvatar(photo.path)
@@ -118,9 +170,10 @@ class UploadAuthenticationActivity: BaseMvpActivity<UploadAuthenticationContract
 
     }
 
-    override fun requestAuthenticationIdCardSuccess(bean: Any?) {
-
+    override fun requestAuthenticationIdCardSuccess(authenticationBean: AuthenticationBean?) {
+           Log.e("hcc","url1=${authenticationBean?.urlList?.get(0)}")
+        showToast("提交成功")
+        finish()
     }
-
 
 }
