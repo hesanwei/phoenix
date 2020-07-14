@@ -31,6 +31,15 @@ class MsgCenterViewModel : BaseViewModel() {
         })
     }
 
+    fun updateMsgCenterItems() {
+        simpleRequest(api = {
+            RetrofitManager.apiService.requestMsgCenterList()
+        }, error = { e ->
+        }, success = {
+            _msgCenterBeans.onNext(ResultData.success(it.data))
+        })
+    }
+
     internal class Factory() : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(MsgCenterViewModel::class.java)) {

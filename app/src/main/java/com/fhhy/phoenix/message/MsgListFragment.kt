@@ -1,6 +1,7 @@
 package com.fhhy.phoenix.message
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
@@ -11,12 +12,14 @@ import com.fhhy.phoenix.bean.MsgItem
 import com.fhhy.phoenix.bean.RequestStatus
 import com.fhhy.phoenix.bean.ResultData
 import com.fhhy.phoenix.databinding.FragmentMsgListBinding
+import com.fhhy.phoenix.event.UpdateMsgUnReadNumEvent
 import com.fhhy.phoenix.message.adapter.MsgItemAdapter
 import com.fhhy.phoenix.message.viewmodel.MsgListViewModel
 import com.fhhy.phoenix.test.MsgCenterBean
 import com.jaeger.library.StatusBarUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import noDoubleClick
+import org.greenrobot.eventbus.EventBus
 import showToast
 
 class MsgListFragment : BaseVBFragment<FragmentMsgListBinding>() {
@@ -56,23 +59,51 @@ class MsgListFragment : BaseVBFragment<FragmentMsgListBinding>() {
             }
         }
 
-        mAdapter.addChildClickViewIds(R.id.delete, R.id.content)
+        mAdapter.apply {
+            addChildClickViewIds(R.id.content)
 
-        mAdapter.setOnItemChildClickListener { adapter, view, position ->
-           when(view.id) {
-               R.id.content -> {
-               }
-           }
+            setOnItemChildClickListener { adapter, view, position ->
+                when(view.id) {
+                    R.id.content -> {
+                        responseClickEvent(mAdapter.data[position])
+                    }
+                }
+            }
+            loadMoreModule.setOnLoadMoreListener {
+                mViewModel.requestMorePage()
+            }
         }
+
+    }
+
+    private fun responseClickEvent(msgItem: MsgItem) {
+        //TODO 点击后打开消息h5页面
+
+        if (msgItem.status == 0) {
+            Log.d(TAG, "responseClickEvent: id--> $id")
+            mViewModel.consumeMsgRead(msgItem.id)
+        }
+
     }
 
     override fun setupObservers() {
-        mViewModel.msgList
+        val msgList = mViewModel.msgList
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext {
                 setupData(it)
             }
             .subscribe()
+
+        mDisposables.add(msgList)
+
+        val consumeMsgSuccess = mViewModel.consumeMsgSuccess
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe {
+                Log.d(TAG, "setupObservers: -->")
+                EventBus.getDefault().post(UpdateMsgUnReadNumEvent())
+            }
+            .subscribe()
+        mDisposables.add(consumeMsgSuccess)
     }
 
     private fun setupData(data: ResultData<List<MsgItem>>) {
@@ -92,7 +123,11 @@ class MsgListFragment : BaseVBFragment<FragmentMsgListBinding>() {
                 hideLoading()
             }
             RequestStatus.ERROR -> {
-                showToast(data.errorMsg)
+                if (mAdapter.data.isEmpty()) {
+                    showToast(data.errorMsg)
+                }else{
+                    mAdapter.loadMoreModule.loadMoreFail()
+                }
                 hideLoading()
             }
             RequestStatus.COMPLETE -> {
@@ -100,6 +135,7 @@ class MsgListFragment : BaseVBFragment<FragmentMsgListBinding>() {
                 hideLoading()
             }
             RequestStatus.EMPTY -> {
+                //TODO show empty page
                 hideLoading()
             }
         }

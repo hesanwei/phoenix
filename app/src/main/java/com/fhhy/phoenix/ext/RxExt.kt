@@ -4,6 +4,9 @@ import com.fhhy.phoenix.base.BaseBean
 import com.fhhy.phoenix.base.IModel
 import com.fhhy.phoenix.base.IView
 import com.fhhy.phoenix.constants.Constants
+import com.fhhy.phoenix.http.ExceptionWrapper
+import com.fhhy.phoenix.http.ExceptionWrapper.Companion.ERROR_CODE_UNKNOWN
+import com.fhhy.phoenix.http.ExceptionWrapper.Companion.ERROR_MSG_UNKNOWN
 import com.google.gson.Gson
 import io.reactivex.Observable
 import io.reactivex.Observer
@@ -57,3 +60,10 @@ fun <T : BaseBean> Observable<T>.request(
         })
 }
 
+fun Throwable.resolve() :ExceptionWrapper {
+    return if (this is ExceptionWrapper) {
+        this
+    }else {
+        ExceptionWrapper(ERROR_MSG_UNKNOWN, ERROR_CODE_UNKNOWN)
+    }
+}

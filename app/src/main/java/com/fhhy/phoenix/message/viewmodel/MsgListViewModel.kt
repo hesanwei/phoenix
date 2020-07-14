@@ -8,15 +8,21 @@ import com.fhhy.phoenix.bean.ResultData
 import com.fhhy.phoenix.http.RetrofitManager
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.PublishSubject
 
 class MsgListViewModel(private val msgType: Int) : BaseViewModel() {
     private val _msgList = BehaviorSubject.create<ResultData<List<MsgItem>>>()
+    private val _consumeMsgSuccess = BehaviorSubject.create<Int>()
 
     val msgList: Observable<ResultData<List<MsgItem>>>
         get() = _msgList.hide()
 
+    val consumeMsgSuccess: Observable<Int>
+        get() = _consumeMsgSuccess.hide()
+
     private var mCurPage: Int = 0
     private var mTotalPage: Int = 0
+
     init {
         requestMsgList()
     }
@@ -24,25 +30,60 @@ class MsgListViewModel(private val msgType: Int) : BaseViewModel() {
     private fun requestMsgList() {
         _msgList.onNext(ResultData.loading())
         simpleRequest(api = {
-            RetrofitManager.apiService.requestMsgList(mapOf("type" to  "$msgType"))
+            RetrofitManager.apiService.requestMsgList(
+                mapOf(
+                    "type" to "$msgType",
+                    "page" to "$mCurPage"
+                )
+            )
         }, error = { e ->
             _msgList.onNext(ResultData.error(e.errorMsg, e.errorCode))
         }, success = {
             val data = it.data
             mCurPage = data.currentPage
             mTotalPage = data.lastPage
+            if (data.msgList.isEmpty()) {
+                _msgList.onNext(ResultData.empty())
+            } else {
+                _msgList.onNext(ResultData.success(data = data.msgList))
+            }
             if (mCurPage == mTotalPage) {
-                _msgList.onNext(ResultData.success(data = data.msgList))
                 _msgList.onComplete()
-            }else {
-                _msgList.onNext(ResultData.success(data = data.msgList))
             }
         })
     }
 
     fun requestMorePage() {
-        //TODO  分页查询需要传入当前page
+        simpleRequest(api = {
+            RetrofitManager.apiService.requestMsgList(
+                mapOf(
+                    "type" to "$msgType",
+                    "page" to "$mCurPage"
+                )
+            )
+        }, error = { e ->
+            _msgList.onNext(ResultData.error(e.errorMsg, e.errorCode))
+        }, success = {
+            val data = it.data
+            mCurPage = data.currentPage
+            mTotalPage = data.lastPage
+            _msgList.onNext(ResultData.success(data = data.msgList))
+            if (mCurPage == mTotalPage || data.msgList.isEmpty()) {
+                _msgList.onComplete()
+            }
+        })
+    }
 
+    fun consumeMsgRead(id: Int) {
+        simpleRequest(api = {
+            RetrofitManager.apiService.consumeMsgRead(
+                mapOf(
+                    "id" to "$id"
+                )
+            )
+        }, error = {}, success = {
+            _consumeMsgSuccess.onNext(0)
+        })
     }
 
     internal class Factory(val msgType: Int) : ViewModelProvider.Factory {
