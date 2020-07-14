@@ -106,6 +106,9 @@ class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(
         homeContractAdapter.setDiffCallback(CurrencyPriceItemDiff())
         smartRefreshLayout.setOnRefreshListener {
             mPresenter?.requestHomeData()
+            if (isLogin()) {
+                mPresenter?.updateMsgUnReadNum()
+            }
         }
     }
 
@@ -145,6 +148,7 @@ class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(
     }
 
     override fun updateMsgUnReadNum(num: Int) {
+        tvMessageCount.isVisible = num != 0
         tvMessageCount.text = "$num"
     }
     override fun showBannerAndNav(topWrapBean: HomeTopWrapBean) {

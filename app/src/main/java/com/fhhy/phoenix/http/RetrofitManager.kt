@@ -6,6 +6,7 @@ import SaveCookieInterceptor
 import com.fhhy.phoenix.BuildConfig
 import com.fhhy.phoenix.constants.Constants
 import com.google.gson.GsonBuilder
+import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -34,7 +35,7 @@ object RetrofitManager {
                 .client(getOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
 //                .addConverterFactory(MoshiConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .build()
         }
         return retrofit!!
@@ -54,7 +55,7 @@ object RetrofitManager {
             addInterceptor(HeaderInterceptor())
             addInterceptor(HttpLoggingInterceptor().apply {
                 level =
-                    if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BASIC else HttpLoggingInterceptor.Level.NONE
+                    if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
             })
             addInterceptor(QueryParameterInterceptor())
             addInterceptor(SaveCookieInterceptor())

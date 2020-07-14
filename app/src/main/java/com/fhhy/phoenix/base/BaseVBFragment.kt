@@ -13,6 +13,7 @@ import com.fhhy.phoenix.dialog.LoadingDialog
 import com.fhhy.phoenix.utils.SPUtils
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.disposables.CompositeDisposable as Composite2
 
 typealias Block = () -> Disposable
 
@@ -20,7 +21,12 @@ abstract class BaseVBFragment<VB : ViewBinding> : Fragment() {
 
     private var _binding: VB? = null
     protected val mBinding get() = _binding!!
-    protected val mCompositeDisposable = CompositeDisposable()
+    protected val mCompositeDisposable by lazy {
+        CompositeDisposable()
+    }
+    protected val mDisposables by lazy {
+        Composite2()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,6 +62,7 @@ abstract class BaseVBFragment<VB : ViewBinding> : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        mDisposables.clear()
         mCompositeDisposable.clear()
     }
 

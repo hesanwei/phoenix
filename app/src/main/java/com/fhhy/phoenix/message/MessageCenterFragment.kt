@@ -3,28 +3,25 @@ package com.fhhy.phoenix.message
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseVBFragment
 import com.fhhy.phoenix.bean.MsgCenterBean
 import com.fhhy.phoenix.bean.RequestStatus
 import com.fhhy.phoenix.bean.ResultData
 import com.fhhy.phoenix.databinding.FragmentMsgCenterBinding
-import com.fhhy.phoenix.message.adapter.MsgCenterAdapter
+import com.fhhy.phoenix.event.UpdateMsgUnReadNumEvent
 import com.fhhy.phoenix.message.viewmodel.MsgCenterViewModel
 import com.jaeger.library.StatusBarUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import noDoubleClick
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import showToast
 
 class MessageCenterFragment : BaseVBFragment<FragmentMsgCenterBinding>() {
-    private val mAdapter: MsgCenterAdapter by lazy {
-        MsgCenterAdapter()
-    }
-
     private val mViewModel: MsgCenterViewModel by lazy {
         ViewModelProvider(
             this,
@@ -41,19 +38,7 @@ class MessageCenterFragment : BaseVBFragment<FragmentMsgCenterBinding>() {
     override fun setupViews() {
         StatusBarUtil.setTransparentForImageView(activity, mBinding.appBar.root)
         StatusBarUtil.setLightMode(activity)
-
-        mBinding.rvMsg.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = mAdapter
-        }
-
-        val customMsg = LayoutInflater.from(requireContext())
-            .inflate(R.layout.item_msg_center_head, mBinding.rvMsg.parent as ViewGroup, false)
-        mAdapter.addHeaderView(customMsg)
-        customMsg.findViewById<View>(R.id.container).setOnClickListener {
-            //TODO 跳转三方客服
-
-        }
+        EventBus.getDefault().register(this)
     }
 
     override fun setupListeners() {
@@ -63,10 +48,24 @@ class MessageCenterFragment : BaseVBFragment<FragmentMsgCenterBinding>() {
             }
         }
 
-        mAdapter.setOnItemClickListener { adapter, view, position ->
-            startActivity(Intent(requireContext(), MsgListActivity::class.java).apply {
-                putExtra(TYPE_MSG, mAdapter.getItem(position).type)
-            })
+        addDisposable {
+            mBinding.msgCustomer.noDoubleClick {
+                //TODO
+            }
+        }
+        addDisposable {
+            mBinding.msgSystem.noDoubleClick {
+                startActivity(Intent(requireContext(), MsgListActivity::class.java).apply {
+                    putExtra(TYPE_MSG, 1)
+                })
+            }
+        }
+        addDisposable {
+            mBinding.msgCopy.noDoubleClick {
+                startActivity(Intent(requireContext(), MsgListActivity::class.java).apply {
+                    putExtra(TYPE_MSG, 2)
+                })
+            }
         }
     }
 
@@ -82,7 +81,16 @@ class MessageCenterFragment : BaseVBFragment<FragmentMsgCenterBinding>() {
     private fun setupData(data: ResultData<List<MsgCenterBean>>) {
         when (data.status) {
             RequestStatus.SUCCESS -> {
-                mAdapter.setList(data.data)
+                data.data?.onEach {
+                    when (it.type) {
+                        1 -> {
+                            updateMsgSysItem(it)
+                        }
+                        2 -> {
+                            updateMsgCopyItem(it)
+                        }
+                    }
+                }
                 hideLoading()
             }
             RequestStatus.LOADING -> {
@@ -93,6 +101,27 @@ class MessageCenterFragment : BaseVBFragment<FragmentMsgCenterBinding>() {
                 hideLoading()
             }
         }
+    }
+
+    private fun updateMsgSysItem(msg: MsgCenterBean) {
+        mBinding.tvUnreadMsgSys.isVisible = msg.unreadNum != 0
+        mBinding.tvUnreadMsgSys.text = "${msg.unreadNum}"
+    }
+
+    private fun updateMsgCopyItem(msg: MsgCenterBean) {
+        mBinding.tvUnreadMsgCopy.isVisible = msg.unreadNum != 0
+        mBinding.tvUnreadMsgCopy.text = "${msg.unreadNum}"
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onReceiveUpdateMsgEvent(event: UpdateMsgUnReadNumEvent) {
+        Log.d(TAG, "onReceiveUpdateMsgEvent: -->")
+        mViewModel.updateMsgCenterItems()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        EventBus.getDefault().unregister(this)
     }
 
     companion object {

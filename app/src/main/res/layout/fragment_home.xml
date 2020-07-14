@@ -34,10 +34,12 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="10sp"
+            android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="@id/ivMessage"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SmallSp"
-            tools:text="3" />
+            tools:text="13"
+            tools:visibility="visible"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout

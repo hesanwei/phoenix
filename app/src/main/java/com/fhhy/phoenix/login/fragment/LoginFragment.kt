@@ -24,6 +24,7 @@ import com.fhhy.phoenix.dialog.ImgCheckCodeDialog
 import com.fhhy.phoenix.login.LoginContract
 import com.fhhy.phoenix.login.State
 import com.fhhy.phoenix.event.LoginSuccessEvent
+import com.fhhy.phoenix.event.UpdateMsgUnReadNumEvent
 import com.fhhy.phoenix.login.presenter.LoginPresenter
 import com.fhhy.phoenix.utils.SPUtils
 import com.jaeger.library.StatusBarUtil
@@ -606,6 +607,7 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
                 )
                 SPUtils.setBoolean(SPKeyConstants.SP_KEY_IS_LOGIN, true)
                 EventBus.getDefault().post(LoginSuccessEvent())
+                EventBus.getDefault().post(UpdateMsgUnReadNumEvent())
                 requireActivity().finish()
             }
         }

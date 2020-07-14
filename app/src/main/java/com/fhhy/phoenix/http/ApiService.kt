@@ -101,6 +101,11 @@ interface ApiService {
     @POST("user/message")
     fun requestMsgList(@FieldMap map: Map<String, String?>): Single<HttpResult<MsgListPageBean>> //消息列表
 
+    //未读消息数量
     @POST("user/unread_message_num")
     fun requestMsgList(): Observable<HttpResult<UnReadNum>>
+
+    @FormUrlEncoded
+    @POST("user/message_read_tag")
+    fun consumeMsgRead(@FieldMap map: Map<String, String?>): Single<HttpResult<UnReadNum>>
 }

@@ -19,8 +19,7 @@ abstract class BaseViewModel : ViewModel() {
     protected fun <T : BaseBean> simpleRequest(
         api: () -> Single<T>,
         error: (e: ExceptionWrapper) -> Unit,
-        success: (data: T) -> Unit,
-        empty: (() -> Unit)? = null
+        success: (data: T) -> Unit
     ) {
         val subscribe = api.invoke()
             .subscribeOn(Schedulers.io())
