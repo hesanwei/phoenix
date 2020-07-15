@@ -529,12 +529,12 @@ class LoginFragment : BaseMvpFragment<LoginContract.View, LoginContract.Presente
         if (showPwd) {
             //否则隐藏密码、
             etPwd.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-            btnPwdEye.setImageResource(R.drawable.ic_login_eye_open)
+            btnPwdEye.setImageResource(R.drawable.ic_login_eye_close)
             etPwd.transformationMethod = PasswordTransformationMethod.getInstance()
             //光标最后
             etPwd.setSelection(etPwd.text.toString().length)
         } else {
-            btnPwdEye.setImageResource(R.drawable.ic_login_eye_close)
+            btnPwdEye.setImageResource(R.drawable.ic_login_eye_open)
             etPwd.transformationMethod = HideReturnsTransformationMethod.getInstance()
             //光标最后
             etPwd.setSelection(etPwd.text.toString().length)

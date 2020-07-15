@@ -111,12 +111,22 @@ interface ApiService {
     fun consumeMsgRead(@FieldMap map: Map<String, String?>): Single<HttpResult<UnReadNum>>
 
     //重置/忘记登录密码获取验证码
+    @FormUrlEncoded
     @POST("user/get_update_password_code")
     fun requestUpdatePwdCode(@FieldMap map: Map<String, String?>):Observable<HttpResult<Any?>>
 
-    //重置登录密码
-    @POST("user/update_password")
-    fun requestResetLoginPwd(@FieldMap map: Map<String, String?>):Observable<HttpResult<Any?>>
+    //设置资金密码
+    @FormUrlEncoded
+    @POST("user/set_pay_password")
+    fun requestSetCostPwd(@FieldMap map: Map<String, String?>):Observable<HttpResult<Any?>>
 
+    //重置资金密码获取验证码
+    @FormUrlEncoded
+    @POST("user/get_forget_pay_code")
+    fun requestUpdateCostPwdCode(@FieldMap map: Map<String, String?>):Observable<HttpResult<Any?>>
 
+    //重置资金密码
+    @FormUrlEncoded
+    @POST("user/forget_pay_password")
+    fun requestResetCostPwd(@FieldMap map: Map<String, String?>):Observable<HttpResult<Any?>>
 }

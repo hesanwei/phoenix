@@ -10,11 +10,14 @@ import io.reactivex.Observable
 interface ImageCheckCodeContract {
     interface View : IView{
       fun requestUpdatePwdCheckCodeSuccess()
+        fun requestUpdateCostPwdCheckCodeSuccess()
     }
     interface Model : IModel{
         fun requestUpdatePwdCheckCode(mobile: String, imgCheckCode: String): Observable<HttpResult<Any?>>
+        fun requestUpdateCostPwdCheckCode(imgCheckCode: String): Observable<HttpResult<Any?>>
     }
     interface Presenter : IPresenter<View> {
         fun requestUpdatePwdCheckCode(mobile: String, imgCheckCode: String)
+        fun requestUpdateCostPwdCheckCode(imgCheckCode: String)
     }
 }

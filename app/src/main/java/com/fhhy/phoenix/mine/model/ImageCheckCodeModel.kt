@@ -18,4 +18,10 @@ class ImageCheckCodeModel: BaseModel(),ImageCheckCodeContract.Model {
         requestMap["captcha"]=imgCheckCode
         return RetrofitManager.apiService.requestUpdatePwdCode(requestMap)
     }
+
+    override fun requestUpdateCostPwdCheckCode(imgCheckCode: String): Observable<HttpResult<Any?>> {
+        val requestMap = getRequestMap()
+        requestMap["captcha"]=imgCheckCode
+        return RetrofitManager.apiService.requestUpdateCostPwdCode(requestMap)
+    }
 }

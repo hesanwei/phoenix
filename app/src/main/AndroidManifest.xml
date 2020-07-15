@@ -62,6 +62,9 @@
         <activity android:name=".mine.activity.UploadAuthenticationActivity" />
         <activity android:name=".mine.activity.SecurityCenterActivity" />
         <activity android:name=".mine.activity.ImageCheckCodeActivity" />
+        <activity android:name=".mine.activity.ResetLoginPwdActivity" />
+        <activity android:name=".mine.activity.SetCostPwdActivity" />
+        <activity android:name=".mine.activity.ResetCostPwdActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

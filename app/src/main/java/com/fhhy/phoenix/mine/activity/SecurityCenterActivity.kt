@@ -24,13 +24,17 @@ class SecurityCenterActivity : BaseActivity(), View.OnClickListener {
             }
             R.id.ll_login_pwd -> {
                 val intent = Intent(this, ImageCheckCodeActivity::class.java)
-                intent.putExtra("type",0)
+                intent.putExtra("type","1")
                 startActivity(intent)
             }
             R.id.ll_cost_pwd -> {
+                //todo 已设置了资金密码  进入图形验证  然后进入重新设置
                 val intent = Intent(this, ImageCheckCodeActivity::class.java)
-                intent.putExtra("type",1)
+                intent.putExtra("type","2")
                 startActivity(intent)
+                //todo 未设置密码 进入设置页面
+//                val intent = Intent(this, SetCostPwdActivity::class.java)
+//                startActivity(intent)
             }
         }
     }

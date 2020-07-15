@@ -343,6 +343,10 @@
     <string name="login_pwd">登录密码</string>
     <string name="cost_pwd">资金密码</string>
     <string name="now_set">立即设置</string>
+    <string name="set_cost_pwd">设置资金密码</string>
+    <string name="input_6_number_pwd">请输入6位数字密码</string>
+    <string name="input_pwd_again">请再次输入确认密码</string>
+    <string name="reset_cost_pwd">重置资金密码</string>
 
 
 </resources>

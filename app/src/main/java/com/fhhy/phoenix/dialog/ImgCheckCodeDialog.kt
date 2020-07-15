@@ -64,4 +64,6 @@ class ImgCheckCodeDialog(private val listener: OnOkListener) : BaseDialog() {
     interface OnOkListener {
         fun onOkClick(imgCheckCode: String)
     }
+
+
 }

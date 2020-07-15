@@ -15,4 +15,10 @@ class ImageCheckCodePresenter :
            mView?.requestUpdatePwdCheckCodeSuccess()
        }
     }
+
+    override fun requestUpdateCostPwdCheckCode(imgCheckCode: String) {
+        mModel?.requestUpdateCostPwdCheckCode(imgCheckCode)?.request(mModel,mView){
+            mView?.requestUpdateCostPwdCheckCodeSuccess()
+        }
+    }
 }
