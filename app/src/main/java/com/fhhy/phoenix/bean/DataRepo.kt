@@ -75,3 +75,10 @@ data class InviteListDataBean(
 data class AuthenticationBean(
     val urlList :MutableList<String>?
 )
+
+//安全设置
+data class SecuritySettingStateBean(
+    val google_auth_status:Int,
+    val login_password_status:Int,
+    val pay_password_status:Int
+)

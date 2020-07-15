@@ -33,7 +33,7 @@ class ResetCostPwdActivity:BaseMvpActivity<ResetCostPwdContract.View,ResetCostPw
         super.initView()
         val  mobile = SPUtils.getString(SPKeyConstants.SP_KEY_USER_PHONE)
         tvSmsCodeTipForgotPwd.text="验证码已发送至+86 $mobile"
-        setViewClickListener(this,btnResetPwd)
+        setViewClickListener(this,btnResetPwd,btnBack)
         val smsCodeForgotPwd = etSmsCodeForgotPwd.textChanges()
             .subscribe {
                 setButtonClickable(
@@ -103,6 +103,9 @@ class ResetCostPwdActivity:BaseMvpActivity<ResetCostPwdContract.View,ResetCostPw
                     return
                 }
                 doUpdatePwd(smsCheckCode, pwd)
+            }
+            R.id.btnBack->{
+                finish()
             }
         }
 

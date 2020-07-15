@@ -1,8 +1,6 @@
 package com.fhhy.phoenix.mine.activity
 
 import android.content.Intent
-import android.util.Log
-import android.view.KeyEvent
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpActivity
 import com.fhhy.phoenix.constants.SPKeyConstants
@@ -10,8 +8,7 @@ import com.fhhy.phoenix.dialog.ImgCheckCodeDialog
 import com.fhhy.phoenix.mine.contract.ImageCheckCodeContract
 import com.fhhy.phoenix.mine.presenter.ImageCheckCodePresenter
 import com.fhhy.phoenix.utils.SPUtils
-import loge
-import java.util.logging.Logger
+
 
 /**
  * Created by heCunCun on 2020/7/13
@@ -48,7 +45,4 @@ class ImageCheckCodeActivity : BaseMvpActivity<ImageCheckCodeContract.View,Image
          startActivity(Intent(this,ResetCostPwdActivity::class.java))
     }
 
-    override fun onBackPressed() {
-        finish()
-    }
 }

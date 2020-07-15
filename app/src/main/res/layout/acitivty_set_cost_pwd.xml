@@ -6,12 +6,22 @@
     android:fitsSystemWindows="true"
     android:background="@color/color_bg_login"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.appcompat.widget.AppCompatImageButton
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_back_white" />
     <androidx.cardview.widget.CardView
         android:id="@+id/forgotPwdContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="100dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="6dp"
         app:layout_constraintEnd_toEndOf="parent"

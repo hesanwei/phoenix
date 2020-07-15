@@ -39,7 +39,7 @@ class ResetLoginPwdActivity:BaseMvpActivity<ResetLoginPwdContract.View,ResetLogi
         super.initView()
         val  mobile = SPUtils.getString(SPKeyConstants.SP_KEY_USER_PHONE)
         tvSmsCodeTipForgotPwd.text="验证码已发送至+86 $mobile"
-        setViewClickListener(this,btnResetPwd)
+        setViewClickListener(this,btnResetPwd,btnBack)
         val smsCodeForgotPwd = etSmsCodeForgotPwd.textChanges()
             .subscribe {
                 setButtonClickable(
@@ -111,6 +111,9 @@ class ResetLoginPwdActivity:BaseMvpActivity<ResetLoginPwdContract.View,ResetLogi
                     return
                 }
                 doUpdatePwd(smsCheckCode, pwd)
+            }
+            R.id.btnBack->{
+                finish()
             }
         }
 

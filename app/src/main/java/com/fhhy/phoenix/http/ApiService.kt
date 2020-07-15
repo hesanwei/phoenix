@@ -129,4 +129,8 @@ interface ApiService {
     @FormUrlEncoded
     @POST("user/forget_pay_password")
     fun requestResetCostPwd(@FieldMap map: Map<String, String?>):Observable<HttpResult<Any?>>
+
+    //安全设置状态
+    @POST("user/security_setting")
+    fun requestSecuritySettingState():Observable<HttpResult<SecuritySettingStateBean?>>
 }

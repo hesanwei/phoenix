@@ -32,7 +32,7 @@ class SetCostPwdActivity : BaseMvpActivity<SetCostPwdContract.View, SetCostPwdCo
 
     override fun initView() {
         super.initView()
-        setViewClickListener(this, btnResetPwd)
+        setViewClickListener(this, btnResetPwd,btnBack)
         val smsCodeForgotPwd = etCostPwd.textChanges()
             .subscribe {
                 setButtonClickable(
@@ -70,6 +70,9 @@ class SetCostPwdActivity : BaseMvpActivity<SetCostPwdContract.View, SetCostPwdCo
             R.id.btnResetPwd -> {
                 //开始下一步
                 mPresenter?.requestSetCostPwd(etCostPwd.text.toString(), etCostPwd2.text.toString())
+            }
+            R.id.btnBack->{
+                finish()
             }
         }
     }
