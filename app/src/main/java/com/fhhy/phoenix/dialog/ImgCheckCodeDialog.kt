@@ -1,5 +1,7 @@
 package com.fhhy.phoenix.dialog
 
+import SchedulerUtils
+import android.content.DialogInterface
 import android.graphics.BitmapFactory
 import android.graphics.Paint
 import android.text.TextUtils
@@ -63,6 +65,16 @@ class ImgCheckCodeDialog(private val listener: OnOkListener) : BaseDialog() {
 
     interface OnOkListener {
         fun onOkClick(imgCheckCode: String)
+    }
+    //设置消息监听
+    private var mOnClickListener: DialogInterface.OnDismissListener? = null
+    fun setOnDismissListener(listener: DialogInterface.OnDismissListener) {
+        mOnClickListener = listener
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        mOnClickListener?.onDismiss(dialog)
     }
 
 

@@ -82,3 +82,10 @@ data class SecuritySettingStateBean(
     val login_password_status:Int,
     val pay_password_status:Int
 )
+
+//APP版本信息
+data class AppVersionBean(
+    val app_clues:String,
+    val app_downurls:String,
+    val app_version:String
+)

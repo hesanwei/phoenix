@@ -1,5 +1,6 @@
 package com.fhhy.phoenix.mine.activity
 
+import android.content.DialogInterface
 import android.content.Intent
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpActivity
@@ -20,7 +21,7 @@ class ImageCheckCodeActivity : BaseMvpActivity<ImageCheckCodeContract.View,Image
     override fun initView() {
         super.initView()
         val type = intent.getStringExtra("type")!!
-         ImgCheckCodeDialog(object : ImgCheckCodeDialog.OnOkListener {
+        val imgCheckCodeDialog = ImgCheckCodeDialog(object : ImgCheckCodeDialog.OnOkListener {
             override fun onOkClick(imgCheckCode: String) {
                 if (type == "1") {
                     val mobile = SPUtils.getString(SPKeyConstants.SP_KEY_USER_PHONE)
@@ -30,8 +31,9 @@ class ImageCheckCodeActivity : BaseMvpActivity<ImageCheckCodeContract.View,Image
                 }
 
             }
-        }).show(supportFragmentManager)
-
+        })
+        imgCheckCodeDialog.show(supportFragmentManager)
+        imgCheckCodeDialog.setOnDismissListener(DialogInterface.OnDismissListener {  finish() })
     }
 
     override fun createPresenter(): ImageCheckCodeContract.Presenter =ImageCheckCodePresenter()

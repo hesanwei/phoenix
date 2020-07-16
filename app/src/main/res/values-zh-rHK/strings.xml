@@ -347,5 +347,7 @@
     <string name="input_6_number_pwd">请输入6位数字密码</string>
     <string name="input_pwd_again">请再次输入确认密码</string>
     <string name="reset_cost_pwd">重置资金密码</string>
+    <string name="personal_info_set">个人信息设置</string>
+    <string name="app_update">版本更新</string>
 
 </resources>

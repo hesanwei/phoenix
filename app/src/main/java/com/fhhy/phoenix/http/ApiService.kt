@@ -133,4 +133,8 @@ interface ApiService {
     //安全设置状态
     @POST("user/security_setting")
     fun requestSecuritySettingState():Observable<HttpResult<SecuritySettingStateBean?>>
+
+    //获取APP版本
+     @POST("index/get_app_version")
+     fun requestAppVersion():Observable<HttpResult<AppVersionBean?>>
 }
