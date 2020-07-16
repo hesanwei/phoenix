@@ -32,9 +32,16 @@ class ImgCheckCodeDialog(private val listener: OnOkListener) : BaseDialog() {
             val imgCheckCode = etImgCheckCode.text.toString()
             if (!TextUtils.isEmpty(imgCheckCode)) {
                 listener.onOkClick(imgCheckCode)
-                dismiss()
+                if (mDismiss){//可以消失就消失
+                    dismiss()
+                }
+
             }
         }
+    }
+    private var mDismiss =true
+    fun setConfirmDismiss(dismiss:Boolean){
+        mDismiss=dismiss
     }
 
     private fun loadImgCheckCode() {
@@ -66,7 +73,7 @@ class ImgCheckCodeDialog(private val listener: OnOkListener) : BaseDialog() {
     interface OnOkListener {
         fun onOkClick(imgCheckCode: String)
     }
-    //设置消息监听
+    //设置消失监听
     private var mOnClickListener: DialogInterface.OnDismissListener? = null
     fun setOnDismissListener(listener: DialogInterface.OnDismissListener) {
         mOnClickListener = listener

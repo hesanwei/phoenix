@@ -15,13 +15,13 @@ import com.fhhy.phoenix.utils.SPUtils
  * Created by heCunCun on 2020/7/13
  */
 class ImageCheckCodeActivity : BaseMvpActivity<ImageCheckCodeContract.View,ImageCheckCodeContract.Presenter>(),ImageCheckCodeContract.View {
-
+    private   var imgCheckCodeDialog:ImgCheckCodeDialog?=null
     override fun getLayoutId(): Int = R.layout.activity_image_check_code
 
     override fun initView() {
         super.initView()
         val type = intent.getStringExtra("type")!!
-        val imgCheckCodeDialog = ImgCheckCodeDialog(object : ImgCheckCodeDialog.OnOkListener {
+        imgCheckCodeDialog = ImgCheckCodeDialog(object : ImgCheckCodeDialog.OnOkListener {
             override fun onOkClick(imgCheckCode: String) {
                 if (type == "1") {
                     val mobile = SPUtils.getString(SPKeyConstants.SP_KEY_USER_PHONE)
@@ -32,8 +32,12 @@ class ImageCheckCodeActivity : BaseMvpActivity<ImageCheckCodeContract.View,Image
 
             }
         })
-        imgCheckCodeDialog.show(supportFragmentManager)
-        imgCheckCodeDialog.setOnDismissListener(DialogInterface.OnDismissListener {  finish() })
+        imgCheckCodeDialog?.setConfirmDismiss(false)
+        imgCheckCodeDialog?.show(supportFragmentManager)
+        imgCheckCodeDialog?.setOnDismissListener(DialogInterface.OnDismissListener {
+            hideLoading()
+            finish()
+        })
     }
 
     override fun createPresenter(): ImageCheckCodeContract.Presenter =ImageCheckCodePresenter()
@@ -45,6 +49,8 @@ class ImageCheckCodeActivity : BaseMvpActivity<ImageCheckCodeContract.View,Image
     override fun requestUpdateCostPwdCheckCodeSuccess() {
         //跳到重置登录资金密码页
          startActivity(Intent(this,ResetCostPwdActivity::class.java))
+         finish()
+
     }
 
 }

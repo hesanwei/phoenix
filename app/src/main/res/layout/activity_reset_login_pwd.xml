@@ -13,8 +13,8 @@
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
         android:background="?selectableItemBackgroundBorderless"
         android:src="@drawable/ic_back_white" />
     <androidx.appcompat.widget.AppCompatTextView
@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="100dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="6dp"
         app:layout_constraintEnd_toEndOf="parent"
