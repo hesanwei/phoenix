@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="15dp"
+        android:background="@drawable/dialog_circle_bg_dp10"
+        android:orientation="vertical"
+        android:paddingHorizontal="15dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/dialog_circle_blue_bg_dp5">
+
+            <TextView
+                android:id="@+id/tv_capital"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/text_black_2E2E47"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="100.00" />
+
+            <TextView
+                android:id="@+id/tv_make_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="做多"
+                android:textColor="@color/currency_up_color"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_capital" />
+
+            <TextView
+                android:id="@+id/tv_current_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:textColor="@color/text_black_2E2E47"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_capital"
+                tools:text="9277.42" />
+
+            <TextView
+                android:id="@+id/capital"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="本金"
+                android:textColor="@color/text_main_gray"
+                android:textSize="13sp"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_capital"
+                app:layout_constraintTop_toBottomOf="@+id/tv_capital" />
+
+            <TextView
+                android:id="@+id/curr_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前价"
+                android:textColor="@color/text_main_gray"
+                android:textSize="13sp"
+                app:layout_constraintRight_toRightOf="@id/tv_current_price"
+                app:layout_constraintTop_toTopOf="@id/capital" />
+
+            <TextView
+                android:id="@+id/tv_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_main_gray"
+                android:textSize="13sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/capital"
+                tools:text="1x" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:id="@+id/stop_profit"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="止盈"
+                android:textColor="@color/text_black_2E2E47"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/iv_stop_profit"
+                app:layout_constraintTop_toTopOf="@+id/stop_profit"
+                app:layout_constraintLeft_toRightOf="@+id/stop_profit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:src="@mipmap/icon_switch_on" />
+            <TextView
+                app:layout_constraintTop_toTopOf="@id/stop_profit"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="按比例"
+                android:drawableStart="@drawable/ic_change"
+                android:drawablePadding="5dp"
+                android:textSize="16sp"
+                android:textColor="@color/blue_button_color"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/container_stop_profit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_create_order_trigger_edit"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_trigger_minus_profit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_create_order_minus"
+                android:background="?selectableItemBackgroundBorderless"
+                android:layout_gravity="center_vertical"
+                android:padding="6dp"/>
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="0.5dp"
+                android:background="@color/color_divider_gray"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_trigger_price_profit"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/text_main_black"
+                android:inputType="numberDecimal"
+                android:hint="请输入止盈比例"
+                android:background="@null"
+                android:textColorHint="@color/text_main_black"
+                android:textSize="13sp"/>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="0.5dp"
+                android:background="@color/color_divider_gray"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_trigger_plus_profit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_create_order_plus"
+                android:background="?selectableItemBackgroundBorderless"
+                android:layout_gravity="center_vertical"
+                android:padding="6dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <RadioGroup
+            android:id="@+id/leverage_container_rg_profit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_create_order_rg">
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/leverage_5_profit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="5%"
+                android:button="@null"
+                android:paddingVertical="7dp"
+                android:gravity="center"
+                android:checked="true"
+                android:background="@drawable/bg_create_order_leverage_item"
+                android:textColor="@color/withdraw_way_text_color_selector"
+                android:textSize="@dimen/create_order_rb_text_size"/>
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/leverage_10_profit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="10%"
+                android:button="@null"
+                android:paddingVertical="7dp"
+                android:gravity="center"
+                android:background="@drawable/bg_create_order_leverage_item"
+                android:textColor="@color/withdraw_way_text_color_selector"
+                android:textSize="@dimen/create_order_rb_text_size"/>
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/leverage_20_profit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="20%"
+                android:button="@null"
+                android:paddingVertical="7dp"
+                android:gravity="center"
+                android:background="@drawable/bg_create_order_leverage_item"
+                android:textColor="@color/withdraw_way_text_color_selector"
+                android:textSize="@dimen/create_order_rb_text_size"/>
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/leverage_50_profit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="50%"
+                android:button="@null"
+                android:paddingVertical="7dp"
+                android:gravity="center"
+                android:background="@drawable/bg_create_order_leverage_item"
+                android:textColor="@color/withdraw_way_text_color_selector"
+                android:textSize="@dimen/create_order_rb_text_size"/>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/leverage_100_profit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="100%"
+                android:button="@null"
+                android:paddingVertical="7dp"
+                android:gravity="center"
+                android:background="@drawable/bg_create_order_leverage_item"
+                android:textColor="@color/withdraw_way_text_color_selector"
+                android:textSize="@dimen/create_order_rb_text_size"/>
+        </RadioGroup>
+        <TextView
+            android:id="@+id/tv_estimated_profit_rate"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_main_gray"
+            android:textSize="13sp"
+            android:text="预估收益 0.00(0.00%)"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:id="@+id/stop_loss"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="止损"
+                android:textColor="@color/text_black_2E2E47"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/iv_stop_loss"
+                app:layout_constraintTop_toTopOf="@+id/stop_loss"
+                app:layout_constraintLeft_toRightOf="@+id/stop_loss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:src="@mipmap/icon_switch_on" />
+            <TextView
+                app:layout_constraintTop_toTopOf="@id/stop_loss"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="按比例"
+                android:drawableStart="@drawable/ic_change"
+                android:drawablePadding="5dp"
+                android:textSize="16sp"
+                android:textColor="@color/blue_button_color"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/container_stop_loss"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_create_order_trigger_edit"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_trigger_minus_loss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_create_order_minus"
+                android:background="?selectableItemBackgroundBorderless"
+                android:layout_gravity="center_vertical"
+                android:padding="6dp"/>
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="0.5dp"
+                android:background="@color/color_divider_gray"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_trigger_price_loss"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/text_main_black"
+                android:inputType="numberDecimal"
+                android:hint="请输入止损比例"
+                android:background="@null"
+                android:textColorHint="@color/text_main_black"
+                android:textSize="13sp"/>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="0.5dp"
+                android:background="@color/color_divider_gray"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_trigger_plus_loss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_create_order_plus"
+                android:background="?selectableItemBackgroundBorderless"
+                android:layout_gravity="center_vertical"
+                android:padding="6dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <RadioGroup
+            android:id="@+id/leverage_container_rg_loss"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_create_order_rg">
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/leverage_5_loss"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="5%"
+                android:button="@null"
+                android:paddingVertical="7dp"
+                android:gravity="center"
+                android:checked="true"
+                android:background="@drawable/bg_create_order_leverage_item"
+                android:textColor="@color/withdraw_way_text_color_selector"
+                android:textSize="@dimen/create_order_rb_text_size"/>
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/leverage_10_loss"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="10%"
+                android:button="@null"
+                android:paddingVertical="7dp"
+                android:gravity="center"
+                android:background="@drawable/bg_create_order_leverage_item"
+                android:textColor="@color/withdraw_way_text_color_selector"
+                android:textSize="@dimen/create_order_rb_text_size"/>
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/leverage_20_loss"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="20%"
+                android:button="@null"
+                android:paddingVertical="7dp"
+                android:gravity="center"
+                android:background="@drawable/bg_create_order_leverage_item"
+                android:textColor="@color/withdraw_way_text_color_selector"
+                android:textSize="@dimen/create_order_rb_text_size"/>
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/leverage_50_loss"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="50%"
+                android:button="@null"
+                android:paddingVertical="7dp"
+                android:gravity="center"
+                android:background="@drawable/bg_create_order_leverage_item"
+                android:textColor="@color/withdraw_way_text_color_selector"
+                android:textSize="@dimen/create_order_rb_text_size"/>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/leverage_100_loss"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="100%"
+                android:button="@null"
+                android:paddingVertical="7dp"
+                android:gravity="center"
+                android:background="@drawable/bg_create_order_leverage_item"
+                android:textColor="@color/withdraw_way_text_color_selector"
+                android:textSize="@dimen/create_order_rb_text_size"/>
+        </RadioGroup>
+        <TextView
+            android:id="@+id/tv_estimated_loss_rate"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_main_gray"
+            android:textSize="13sp"
+            android:text="926.4807强平，预估亏损-100.00"/>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_circle_blue_bg_dp5"
+                android:gravity="center"
+                android:paddingTop="11dp"
+                android:paddingBottom="11dp"
+                android:text="@string/cancel"
+                android:textColor="@color/blue_button_color"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_confirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_blue_circle_bg_dp5"
+                android:gravity="center"
+                android:paddingTop="11dp"
+                android:paddingBottom="11dp"
+                android:text="@string/ok"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</FrameLayout>

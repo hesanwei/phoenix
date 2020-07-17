@@ -229,6 +229,13 @@ class ContractDetailFragment : BaseVBFragment<FragmentContractDetailBinding>() {
 //
 //                    })
 //                    .show(requireActivity().supportFragmentManager,"confirmOrder")
+
+                StopProfitLossRateDialog.newInstance().setOnConfirmListener(object :StopProfitLossRateDialog.OnConfirmListener{
+                    override fun onConfirm() {
+
+                    }
+
+                }).show(requireFragmentManager(),"stopRate")
             }
         }
 
