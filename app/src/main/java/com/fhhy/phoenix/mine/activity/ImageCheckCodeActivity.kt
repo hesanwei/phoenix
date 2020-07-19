@@ -9,6 +9,7 @@ import com.fhhy.phoenix.dialog.ImgCheckCodeDialog
 import com.fhhy.phoenix.mine.contract.ImageCheckCodeContract
 import com.fhhy.phoenix.mine.presenter.ImageCheckCodePresenter
 import com.fhhy.phoenix.utils.SPUtils
+import com.jaeger.library.StatusBarUtil
 
 
 /**
@@ -20,6 +21,7 @@ class ImageCheckCodeActivity : BaseMvpActivity<ImageCheckCodeContract.View,Image
 
     override fun initView() {
         super.initView()
+        StatusBarUtil.setTransparentForImageView(this,null)
         val type = intent.getStringExtra("type")!!
         imgCheckCodeDialog = ImgCheckCodeDialog(object : ImgCheckCodeDialog.OnOkListener {
             override fun onOkClick(imgCheckCode: String) {

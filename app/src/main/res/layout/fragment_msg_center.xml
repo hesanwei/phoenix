@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="12dp"
                     android:layout_marginStart="8dp"
-                    android:text="@string/msg_center_type_customer"
+                    android:text="@string/msg_center_type_system"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"

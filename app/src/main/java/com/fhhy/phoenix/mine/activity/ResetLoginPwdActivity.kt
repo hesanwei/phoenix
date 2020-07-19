@@ -14,6 +14,7 @@ import com.fhhy.phoenix.constants.SPKeyConstants
 import com.fhhy.phoenix.mine.contract.ResetLoginPwdContract
 import com.fhhy.phoenix.mine.presenter.ResetLoginPwdPresenter
 import com.fhhy.phoenix.utils.SPUtils
+import com.jaeger.library.StatusBarUtil
 import com.jakewharton.rxbinding4.widget.textChanges
 import kotlinx.android.synthetic.main.activity_reset_login_pwd.*
 import kotlinx.android.synthetic.main.activity_reset_login_pwd.btnEyeForgotPwd
@@ -37,6 +38,7 @@ class ResetLoginPwdActivity:BaseMvpActivity<ResetLoginPwdContract.View,ResetLogi
 
     override fun initView() {
         super.initView()
+        StatusBarUtil.setTransparentForImageView(this,null)
         val  mobile = SPUtils.getString(SPKeyConstants.SP_KEY_USER_PHONE)
         tvSmsCodeTipForgotPwd.text="验证码已发送至+86 $mobile"
         setViewClickListener(this,btnResetPwd,btnBack)
