@@ -51,10 +51,10 @@
                 android:paddingHorizontal="24dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCurrentLevel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="34dp"
-                    android:text="LV1"
                     android:textColor="@color/level_color_yellow"
                     android:textSize="25sp"
                     android:textStyle="bold" />
@@ -67,10 +67,10 @@
                     android:textSize="12sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTransactionRate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="100%"
                     android:textColor="@color/level_color_yellow"
                     android:textSize="19sp"
                     android:textStyle="bold" />
@@ -83,6 +83,7 @@
                     android:textSize="12sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvUpgradeTips"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -190,6 +191,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tvLimitTradingPeople">
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCurrentLevelTarget"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/level_text3"
@@ -197,6 +199,7 @@
                             android:textSize="12sp" />
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvNextLevelTarget"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/level_text3"
@@ -216,6 +219,7 @@
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOther"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

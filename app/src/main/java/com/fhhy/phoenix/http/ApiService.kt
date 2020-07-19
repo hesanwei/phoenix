@@ -145,4 +145,8 @@ interface ApiService {
     @FormUrlEncoded
     @POST("user/login_out")
     fun requestLogout(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
+
+    //我的等级
+    @POST()
+    fun requestMyLevel(): Observable<HttpResult<LevelBean?>>
 }

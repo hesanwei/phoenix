@@ -92,3 +92,16 @@ data class AppVersionBean(
     val app_downurls: String,
     val app_version: String
 )
+
+//我的等级
+data class LevelBean(
+    val current_level: String?,
+    val transaction_rate: String?,
+    val upgrade_tips: String?,
+    val end_time: String?,
+    val upgrade_target: String?,
+    val transactions_num: String?,
+    val current_level_target: String?,
+    val next_level_target: String?,
+    val other_instructions: String?
+)
