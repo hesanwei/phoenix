@@ -38,9 +38,9 @@
             android:id="@+id/tvValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
             android:textColor="@color/text_main_gray"
             android:textSize="16sp"
-            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toLeftOf="@id/ivArrow"
             app:layout_constraintTop_toTopOf="parent" />

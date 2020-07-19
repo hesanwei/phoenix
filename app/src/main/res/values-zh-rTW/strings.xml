@@ -357,6 +357,9 @@
     <string name="next_step">下一步</string>
     <string name="logout">退出登录</string>
     <string name="logout_tips">确认退出当前账号吗？</string>
+    <string name="no_auth">未认证</string>
+    <string name="audit">审核中</string>
+    <string name="authed">已认证</string>
 
 
 </resources>

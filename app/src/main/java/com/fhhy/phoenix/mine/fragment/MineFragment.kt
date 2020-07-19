@@ -1,6 +1,8 @@
 package com.fhhy.phoenix.mine.fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.text.TextUtils
 import android.view.View
 import com.bumptech.glide.Glide
 import com.fhhy.phoenix.R
@@ -28,6 +30,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
     View.OnClickListener {
 
     private var isFundsVisible = true
+    private var userInfoBean: UserInfoBean? = null
 
     override fun useEventBus(): Boolean = true
 
@@ -172,13 +175,13 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
 
             }
             R.id.mivAuthentication -> {//身份认证
-             startActivity(Intent(requireContext(),AuthenticationActivity::class.java))
+                startActivity(Intent(requireContext(), AuthenticationActivity::class.java))
             }
             R.id.mivSecurityCenter -> {//安全中心
-                startActivity(Intent(requireContext(),SecurityCenterActivity::class.java))
+                startActivity(Intent(requireContext(), SecurityCenterActivity::class.java))
             }
             R.id.mivSettings -> {//设置
-                startActivity(Intent(requireContext(),SettingActivity::class.java))
+                startActivity(Intent(requireContext(), SettingActivity::class.java))
             }
             R.id.mivAboutUs -> {//关于我们
 
@@ -196,10 +199,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
             tvConvertedCurrency.visibility = View.VISIBLE
             tvFunds2U.visibility = View.VISIBLE
             tvFull2U.visibility = View.VISIBLE
-            tvTotalAssets.text = "0.002"
-            tvTotalFunds.text = "0.0002"
-            tvTotalFull.text = "0.0002"
-
+            setAssetValue()
         } else {
             ivEyes.setImageResource(R.mipmap.icon_eyes_close)
             tvAssetsCurrency.visibility = View.INVISIBLE
@@ -225,12 +225,48 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
 
     override fun requestUserInfoSuccess(userInfoBean: UserInfoBean?) {
         // TODO: 2020/7/11 缺少字段
+        this.userInfoBean = userInfoBean
         userInfoBean?.apply {
             Glide.with(requireContext()).load(avatar).error(R.mipmap.icon_default_avatar)
                 .placeholder(R.mipmap.icon_default_avatar)
                 .into(civAvatar)
             tvUserName?.text = nick_name
             tvTotalAssets?.text = money
+            mivAuthentication?.setValue(if (TextUtils.isEmpty(idcard_auth)) "" else idcard_auth!!)
+            mivMyBonus?.setValue(
+                if (TextUtils.isEmpty(beginner_bonus)) "" else beginner_bonus!! + " ${resources.getString(
+                    R.string.USDT
+                )}"
+            )
+            setAssetValue()
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setAssetValue() {
+        userInfoBean?.apply {
+            tvTotalAssets.text = btc_assets
+            tvConvertedCurrency.text = "≈$usdt_assets ${resources.getString(R.string.USDT)}"
+        }
+    }
+
+    /**
+     * 身份证审核状态
+     * 审核状态 0 未实名 1，审核中，2 审核通过，3审核失败 示例：2
+     */
+    private fun getAuthenticationValue(status: String?): String {
+        var resId = R.string.no_auth
+        when (status) {
+            "0" -> {
+                resId = R.string.no_auth
+            }
+            "1" -> {
+                resId = R.string.audit
+            }
+            "2" -> {
+                resId = R.string.authed
+            }
+        }
+        return resources.getString(resId)
     }
 }

@@ -30,7 +30,9 @@ data class UserInfoBean(
     val mobile: String?,
     val sex: String,
     val profile: String?,
-    val country: String?
+    val country: String?,
+    val btc_assets: String?,
+    val usdt_assets: String?
 )
 
 data class UploadBean(
@@ -71,21 +73,22 @@ data class InviteListDataBean(
     val level_id: String?,
     val create_time: String?
 )
+
 //身份认证
 data class AuthenticationBean(
-    val urlList :MutableList<String>?
+    val urlList: MutableList<String>?
 )
 
 //安全设置
 data class SecuritySettingStateBean(
-    val google_auth_status:Int,
-    val login_password_status:Int,
-    val pay_password_status:Int
+    val google_auth_status: Int,
+    val login_password_status: Int,
+    val pay_password_status: Int
 )
 
 //APP版本信息
 data class AppVersionBean(
-    val app_clues:String,
-    val app_downurls:String,
-    val app_version:String
+    val app_clues: String,
+    val app_downurls: String,
+    val app_version: String
 )
