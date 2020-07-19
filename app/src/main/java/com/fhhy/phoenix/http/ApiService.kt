@@ -149,4 +149,9 @@ interface ApiService {
     //我的等级
     @POST()
     fun requestMyLevel(): Observable<HttpResult<LevelBean?>>
+
+    //我的赠金
+    @FormUrlEncoded
+    @POST("user/my_bonus")
+    fun requestBonusList(@FieldMap map: Map<String, String?>): Observable<HttpResult<List<BonusBean>?>>
 }

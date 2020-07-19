@@ -22,9 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:text="5"
+        android:layout_marginTop="@dimen/horizontal_space"
         android:textColor="@color/blue_button_color"
-        android:textSize="46sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topLine" />
@@ -33,10 +33,10 @@
         android:id="@+id/tvUnit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
+        android:paddingBottom="4dp"
         android:text="@string/USDT"
         android:textColor="@color/blue_button_color"
-        android:textSize="15sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/tvMoney"
         app:layout_constraintLeft_toRightOf="@id/tvMoney" />
 
@@ -44,7 +44,7 @@
         android:id="@+id/tvBonusNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="最高支持10X杠杆"
+        android:text="@string/up_leverage_limit"
         android:textColor="@color/text_main_gray"
         android:textSize="10sp"
         app:layout_constraintLeft_toLeftOf="@id/tvMoney"
@@ -52,10 +52,10 @@
         tools:ignore="SmallSp" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvBonusStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
-        android:text="立即使用"
         android:textColor="@color/text_main_red"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/middleLine"
@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="30dp"
         android:paddingVertical="12dp"
-        android:text="有效期：2020-05-31 00:00至2020-06-02 00:00"
+        android:text="@string/effect_time"
         android:textColor="@color/text_main_gray"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@id/bottomLine"
@@ -98,7 +98,6 @@
         android:id="@+id/tvBonusType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="新人赠金"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/middleLine"
@@ -123,4 +122,5 @@
         app:layout_constraintBottom_toBottomOf="@id/bottomLine"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/topLine" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

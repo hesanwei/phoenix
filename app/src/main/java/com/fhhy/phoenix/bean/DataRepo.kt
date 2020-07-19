@@ -105,3 +105,17 @@ data class LevelBean(
     val next_level_target: String?,
     val other_instructions: String?
 )
+
+//我的赠金
+data class BonusBean(
+    val id: String?,
+    val money: String?,
+    val is_expired: String?,
+    val is_used: String?,
+    val source_type: String?,
+    val create_time: String?,
+    val upper_limit: String?,
+    val expire_time: String?,
+    val effective_time: String?,
+    val effective_money: String?
+)
