@@ -1,22 +1,27 @@
 package com.fhhy.phoenix.mine.activity
 
 import android.content.Intent
+import android.text.TextUtils
+import android.util.Base64
 import android.view.View
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.fhhy.phoenix.R
-import com.fhhy.phoenix.base.BaseActivity
 import com.fhhy.phoenix.base.BaseMvpActivity
 import com.fhhy.phoenix.bean.AppVersionBean
+import com.fhhy.phoenix.constants.SPKeyConstants
+import com.fhhy.phoenix.dialog.LogoutDialog
 import com.fhhy.phoenix.mine.contract.SettingContract
 import com.fhhy.phoenix.mine.presenter.SettingPresenter
 import com.fhhy.phoenix.utils.PackageUtils
+import com.fhhy.phoenix.utils.SPUtils
 import kotlinx.android.synthetic.main.activity_setting.*
 import setViewClickListener
+import java.util.Base64.getDecoder
 
 /**
  * Created by hecuncun on 2020/7/11
  */
-class SettingActivity : BaseMvpActivity<SettingContract.View,SettingContract.Presenter>(),SettingContract.View,View.OnClickListener {
+class SettingActivity : BaseMvpActivity<SettingContract.View, SettingContract.Presenter>(),
+    SettingContract.View, View.OnClickListener {
     override fun getLayoutId(): Int = R.layout.activity_setting
 
     override fun initView() {
@@ -27,7 +32,8 @@ class SettingActivity : BaseMvpActivity<SettingContract.View,SettingContract.Pre
             ll_app_version_update,
             ll_language,
             ll_advanced_setting,
-            btnBack
+            btnBack,
+            tvLogout
         )
         mPresenter?.getAppVersion()
     }
@@ -46,20 +52,39 @@ class SettingActivity : BaseMvpActivity<SettingContract.View,SettingContract.Pre
             R.id.ll_advanced_setting -> {//高级设置
 
             }
-            R.id.btnBack->{
+            R.id.btnBack -> {
                 finish()
+            }
+
+            R.id.tvLogout -> {
+                LogoutDialog(View.OnClickListener { logout() }).show(supportFragmentManager)
             }
         }
     }
 
-    override fun createPresenter(): SettingContract.Presenter=SettingPresenter()
-    override fun getAppVersionSuccess(bean: AppVersionBean?) {
-        tv_app_version.text=bean?.app_version
-        if (PackageUtils.getVersionName(this) != bean?.app_version){//对比本地版本名称
-            tv_red_dot.visibility=View.VISIBLE
-        }else{
-            tv_red_dot.visibility=View.GONE
+    private fun logout() {
+        val token = SPUtils.getString(SPKeyConstants.SP_KEY_TOKEN)
+        val base64 = String(Base64.decode(token, Base64.DEFAULT))
+        if (!TextUtils.isEmpty(base64)) {
+            // TODO: 2020/7/19  获取refresh_token
+            val split = base64.split(Regex(":"))
+            mPresenter?.requestLogout(split[split.size - 1])
+
         }
+    }
+
+    override fun createPresenter(): SettingContract.Presenter = SettingPresenter()
+    override fun getAppVersionSuccess(bean: AppVersionBean?) {
+        tv_app_version.text = bean?.app_version
+        if (PackageUtils.getVersionName(this) != bean?.app_version) {//对比本地版本名称
+            tv_red_dot.visibility = View.VISIBLE
+        } else {
+            tv_red_dot.visibility = View.GONE
+        }
+
+    }
+
+    override fun requestLogoutSuccess() {
 
     }
 }

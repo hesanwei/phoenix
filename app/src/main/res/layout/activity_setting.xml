@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tool="http://schemas.android.com/tools"
-    android:background="@color/white"
     android:fitsSystemWindows="true">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:gravity="center"
         android:padding="10dp"
         android:text="@string/setting"
@@ -41,7 +41,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll_personal_info_setting"
             android:layout_width="match_parent"
-            android:layout_height="62dp">
+            android:layout_height="62dp"
+            android:background="@color/white">
 
             <TextView
                 android:id="@+id/tv_personal_setting"
@@ -78,6 +79,7 @@
             android:id="@+id/ll_app_version_update"
             android:layout_width="match_parent"
             android:layout_height="62dp"
+            android:background="@color/white"
             android:orientation="horizontal">
 
             <TextView
@@ -107,11 +109,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
-                tool:text="V1.10.0"
                 android:textColor="@color/text_main_gray"
                 android:textSize="16sp"
                 app:layout_constraintRight_toLeftOf="@id/iv_arrow_2"
-                app:layout_constraintTop_toTopOf="@id/tv_app_version_update" />
+                app:layout_constraintTop_toTopOf="@id/tv_app_version_update"
+                tool:text="V1.10.0" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_red_dot"
@@ -135,6 +137,7 @@
             android:id="@+id/ll_language"
             android:layout_width="match_parent"
             android:layout_height="62dp"
+            android:background="@color/white"
             android:orientation="horizontal">
 
             <TextView
@@ -184,6 +187,7 @@
             android:id="@+id/ll_advanced_setting"
             android:layout_width="match_parent"
             android:layout_height="62dp"
+            android:background="@color/white"
             android:orientation="horizontal">
 
             <TextView
@@ -209,13 +213,16 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLogout"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="@color/color_gray_F4F6F9"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="@string/logout"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

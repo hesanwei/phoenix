@@ -90,7 +90,10 @@ interface ApiService {
     //身份idCard认证
     @Multipart
     @POST("user/do_real_name")
-    fun requestAuthenticationIdCard(@PartMap map: Map<String, String?>, @Part partList: List<MultipartBody.Part>) : Observable<HttpResult<AuthenticationBean?>>
+    fun requestAuthenticationIdCard(
+        @PartMap map: Map<String, String?>,
+        @Part partList: List<MultipartBody.Part>
+    ): Observable<HttpResult<AuthenticationBean?>>
 
     //消息中心
     @POST("user/message_center")
@@ -113,28 +116,33 @@ interface ApiService {
     //重置/忘记登录密码获取验证码
     @FormUrlEncoded
     @POST("user/get_update_password_code")
-    fun requestUpdatePwdCode(@FieldMap map: Map<String, String?>):Observable<HttpResult<Any?>>
+    fun requestUpdatePwdCode(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
 
     //设置资金密码
     @FormUrlEncoded
     @POST("user/set_pay_password")
-    fun requestSetCostPwd(@FieldMap map: Map<String, String?>):Observable<HttpResult<Any?>>
+    fun requestSetCostPwd(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
 
     //重置资金密码获取验证码
     @FormUrlEncoded
     @POST("user/get_forget_pay_code")
-    fun requestUpdateCostPwdCode(@FieldMap map: Map<String, String?>):Observable<HttpResult<Any?>>
+    fun requestUpdateCostPwdCode(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
 
     //重置资金密码
     @FormUrlEncoded
     @POST("user/forget_pay_password")
-    fun requestResetCostPwd(@FieldMap map: Map<String, String?>):Observable<HttpResult<Any?>>
+    fun requestResetCostPwd(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
 
     //安全设置状态
     @POST("user/security_setting")
-    fun requestSecuritySettingState():Observable<HttpResult<SecuritySettingStateBean?>>
+    fun requestSecuritySettingState(): Observable<HttpResult<SecuritySettingStateBean?>>
 
     //获取APP版本
-     @POST("index/get_app_version")
-     fun requestAppVersion():Observable<HttpResult<AppVersionBean?>>
+    @POST("index/get_app_version")
+    fun requestAppVersion(): Observable<HttpResult<AppVersionBean?>>
+
+    //退出登录
+    @FormUrlEncoded
+    @POST("user/login_out")
+    fun requestLogout(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
 }

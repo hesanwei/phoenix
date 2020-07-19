@@ -356,5 +356,7 @@
     <string name="please_input">请输入</string>
     <string name="id_number">证件号</string>
     <string name="next_step">下一步</string>
+    <string name="logout">退出登录</string>
+    <string name="logout_tips">确认退出当前账号吗？</string>
 
 </resources>
