@@ -119,3 +119,13 @@ data class BonusBean(
     val effective_time: String?,
     val effective_money: String?
 )
+
+//我的邀请人
+data class MyInviterBean(
+    val inviter: InviterBean?
+)
+
+data class InviterBean(
+    val invitation_code: String?,
+    val mobile: String?
+)

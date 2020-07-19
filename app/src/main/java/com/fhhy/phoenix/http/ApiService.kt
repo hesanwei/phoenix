@@ -154,4 +154,13 @@ interface ApiService {
     @FormUrlEncoded
     @POST("user/my_bonus")
     fun requestBonusList(@FieldMap map: Map<String, String?>): Observable<HttpResult<List<BonusBean>?>>
+
+    //我的邀请人
+    @POST("user/my_inviter")
+    fun requestMyInviter(): Observable<HttpResult<MyInviterBean?>>
+
+    //接收邀请
+    @FormUrlEncoded
+    @POST("user/set_inviter")
+    fun requestAcceptInvite(@FieldMap map: Map<String, String?>): Observable<HttpResult<Any?>>
 }

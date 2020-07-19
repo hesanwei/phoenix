@@ -31,6 +31,7 @@ class MyBonusActivity : BaseMvpActivity<MyBonusContract.View, MyBonusContract.Pr
         super.initView()
         initRecyclerView()
         initRadioGroup()
+        btnBack.setOnClickListener { finish() }
         mPresenter?.requestBonusList(type)
     }
 

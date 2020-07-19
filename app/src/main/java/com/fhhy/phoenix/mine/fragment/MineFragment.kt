@@ -172,7 +172,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
 
             }
             R.id.mivMyInviter -> {//我的邀请人
-
+                startActivity(Intent(requireContext(), MyInviterActivity::class.java))
             }
             R.id.mivAuthentication -> {//身份认证
                 startActivity(Intent(requireContext(), AuthenticationActivity::class.java))

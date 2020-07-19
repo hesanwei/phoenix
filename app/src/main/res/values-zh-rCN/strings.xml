@@ -368,5 +368,9 @@
     <string name="no_effect">未生效</string>
     <string name="effect_time">有效期：%s至%s</string>
     <string name="effective_forever">永久有效</string>
+    <string name="accept_invite">接收邀请</string>
+    <string name="no_invite_tips">您未被邀请，请输入邀请码接受邀请</string>
+    <string name="my_inviter_tips">每人只能接受一次邀请</string>
+    <string name="input_invite_code_hint">请输入邀请码，不区分大小写</string>
 
 </resources>
