@@ -1,5 +1,6 @@
 package com.fhhy.phoenix.message.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.fhhy.phoenix.base.BaseViewModel
@@ -20,7 +21,7 @@ class MsgListViewModel(private val msgType: Int) : BaseViewModel() {
     val consumeMsgSuccess: Observable<Int>
         get() = _consumeMsgSuccess.hide()
 
-    private var mCurPage: Int = 0
+    private var mCurPage: Int = 1
     private var mTotalPage: Int = 0
 
     init {
@@ -47,13 +48,14 @@ class MsgListViewModel(private val msgType: Int) : BaseViewModel() {
             } else {
                 _msgList.onNext(ResultData.success(data = data.msgList))
             }
-            if (mCurPage == mTotalPage) {
-                _msgList.onComplete()
+            if (mCurPage >= mTotalPage) {
+                _msgList.onNext(ResultData.complete(null))
             }
         })
     }
 
     fun requestMorePage() {
+        mCurPage++;
         simpleRequest(api = {
             RetrofitManager.apiService.requestMsgList(
                 mapOf(
@@ -68,8 +70,8 @@ class MsgListViewModel(private val msgType: Int) : BaseViewModel() {
             mCurPage = data.currentPage
             mTotalPage = data.lastPage
             _msgList.onNext(ResultData.success(data = data.msgList))
-            if (mCurPage == mTotalPage || data.msgList.isEmpty()) {
-                _msgList.onComplete()
+            if (mCurPage >= mTotalPage || data.msgList.isEmpty()) {
+                _msgList.onNext(ResultData.complete(null))
             }
         })
     }

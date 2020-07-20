@@ -98,8 +98,7 @@ class MsgListFragment : BaseVBFragment<FragmentMsgListBinding>() {
 
         val consumeMsgSuccess = mViewModel.consumeMsgSuccess
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe {
-                Log.d(TAG, "setupObservers: -->")
+            .doOnNext {
                 EventBus.getDefault().post(UpdateMsgUnReadNumEvent())
             }
             .subscribe()
