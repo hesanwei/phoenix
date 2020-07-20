@@ -66,6 +66,7 @@
         <activity android:name=".mine.activity.SetCostPwdActivity" />
         <activity android:name=".mine.activity.ResetCostPwdActivity" />
         <activity android:name=".mine.activity.MyInviterActivity" />
+        <activity android:name=".mine.activity.FundsTransferActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

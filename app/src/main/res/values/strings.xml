@@ -373,5 +373,12 @@
     <string name="my_inviter_tips">每人只能接受一次邀请</string>
     <string name="input_invite_code_hint">请输入邀请码，不区分大小写</string>
     <string name="my_inviter_code">我的邀请人邀请码</string>
+    <string name="from">从</string>
+    <string name="to">到</string>
+    <string name="currency">币种</string>
+    <string name="amount">数量</string>
+    <string name="input_amount_hint">请输入数量</string>
+    <string name="max_transfer_amount">最大可转：</string>
+    <string name="now_transfer">立即划转</string>
 
 </resources>

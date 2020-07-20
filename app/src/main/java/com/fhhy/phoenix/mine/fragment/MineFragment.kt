@@ -151,7 +151,7 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
             }
 
             R.id.tvFundsTransfer -> {//资金划转
-
+                startActivity(Intent(requireContext(), FundsTransferActivity::class.java))
             }
             R.id.ivInviteFriends -> {//邀请好友
                 startActivity(Intent(requireContext(), InviteActivity::class.java))
