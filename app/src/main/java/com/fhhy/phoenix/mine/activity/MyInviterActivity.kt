@@ -1,6 +1,7 @@
 package com.fhhy.phoenix.mine.activity
 
 import android.text.TextUtils
+import android.view.View
 import com.fhhy.phoenix.R
 import com.fhhy.phoenix.base.BaseMvpActivity
 import com.fhhy.phoenix.bean.MyInviterBean
@@ -36,6 +37,23 @@ class MyInviterActivity : BaseMvpActivity<MyInviterContract.View, MyInviterContr
     }
 
     override fun requestMyInviterSuccess(myInviterBean: MyInviterBean?) {
+        if (myInviterBean?.inviter == null || TextUtils.isEmpty(myInviterBean.inviter.mobile)) {
+            clNoInvite.visibility = View.VISIBLE
+            clInvite.visibility = View.GONE
+            tvTitle.text = resources.getString(R.string.accept_invite)
+        } else {
+            clNoInvite.visibility = View.GONE
+            clInvite.visibility = View.VISIBLE
+            tvInviter.text = myInviterBean.inviter.mobile
+            tvInviteCode.text = myInviterBean.inviter.invitation_code
+            tvTitle.text = resources.getString(R.string.my_inviter)
+        }
+    }
+
+    override fun showError(errorMsg: String?) {
+        super.showError(errorMsg)
+        clNoInvite.visibility = View.VISIBLE
+        clInvite.visibility = View.GONE
     }
 
     override fun requestAcceptInviteSuccess() {

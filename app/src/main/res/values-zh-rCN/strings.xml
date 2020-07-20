@@ -372,5 +372,6 @@
     <string name="no_invite_tips">您未被邀请，请输入邀请码接受邀请</string>
     <string name="my_inviter_tips">每人只能接受一次邀请</string>
     <string name="input_invite_code_hint">请输入邀请码，不区分大小写</string>
+    <string name="my_inviter_code">我的邀请人邀请码</string>
 
 </resources>
