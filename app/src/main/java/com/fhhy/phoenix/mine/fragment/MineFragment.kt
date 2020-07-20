@@ -102,10 +102,10 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
     }
 
     override fun onClick(v: View?) {
-        when (v?.id) {
 
+        when (v?.id) {
             R.id.tvLogin -> {
-                startActivity(Intent(context, LoginActivity::class.java))
+                toLoginActivity()
             }
 
             R.id.llLogin -> {
@@ -120,50 +120,94 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
             }
 
             R.id.llFundsAccount -> {//资金账户
-                val intent = Intent(context, AccountActivity::class.java)
-                intent.putExtra(AccountActivity.ACCOUNT_TYPE, AccountActivity.ACCOUNT_TYPE_FUNDS)
-                startActivity(intent)
+                if (isLogin()) {
+                    val intent = Intent(context, AccountActivity::class.java)
+                    intent.putExtra(
+                        AccountActivity.ACCOUNT_TYPE,
+                        AccountActivity.ACCOUNT_TYPE_FUNDS
+                    )
+                    startActivity(intent)
+                } else {
+                    toLoginActivity()
+                }
+
             }
             R.id.llFullAccount -> {//全仓账户
-                val intent = Intent(context, AccountActivity::class.java)
-                intent.putExtra(AccountActivity.ACCOUNT_TYPE, AccountActivity.ACCOUNT_TYPE_FULL)
-                startActivity(intent)
+                if (isLogin()) {
+                    val intent = Intent(context, AccountActivity::class.java)
+                    intent.putExtra(AccountActivity.ACCOUNT_TYPE, AccountActivity.ACCOUNT_TYPE_FULL)
+                    startActivity(intent)
+                } else {
+                    toLoginActivity()
+                }
+
             }
             R.id.tvRecharge -> {//充值
-                CoinSelectDialog(mutableListOf("BTC", "ETH", "USDT"),
-                    object : CoinSelectDialog.OnItemSelectListener {
-                        override fun onItemSelect(coin: String) {
-                            val intent = Intent(context, RechargeActivity::class.java)
-                            intent.putExtra(FUNDS_NAME, coin)
-                            startActivity(intent)
-                        }
-                    }).show(activity!!.supportFragmentManager)
+                if (isLogin()) {
+                    CoinSelectDialog(mutableListOf("BTC", "ETH", "USDT"),
+                        object : CoinSelectDialog.OnItemSelectListener {
+                            override fun onItemSelect(coin: String) {
+                                val intent = Intent(context, RechargeActivity::class.java)
+                                intent.putExtra(FUNDS_NAME, coin)
+                                startActivity(intent)
+                            }
+                        }).show(activity!!.supportFragmentManager)
+                } else {
+                    toLoginActivity()
+                }
+
             }
             R.id.tvWithdraw -> {//提币
-                CoinSelectDialog(mutableListOf("BTC", "ETH", "USDT"),
-                    object : CoinSelectDialog.OnItemSelectListener {
-                        override fun onItemSelect(coin: String) {
-                            val intent = Intent(context, WithdrawActivity::class.java)
-                            intent.putExtra(FUNDS_NAME, coin)
-                            startActivity(intent)
-                        }
-                    }).show(activity!!.supportFragmentManager)
+                if (isLogin()) {
+                    CoinSelectDialog(mutableListOf("BTC", "ETH", "USDT"),
+                        object : CoinSelectDialog.OnItemSelectListener {
+                            override fun onItemSelect(coin: String) {
+                                val intent = Intent(context, WithdrawActivity::class.java)
+                                intent.putExtra(FUNDS_NAME, coin)
+                                startActivity(intent)
+                            }
+                        }).show(activity!!.supportFragmentManager)
+                } else {
+                    toLoginActivity()
+                }
+
             }
 
             R.id.tvFundsTransfer -> {//资金划转
-                startActivity(Intent(requireContext(), FundsTransferActivity::class.java))
+                if (isLogin()) {
+                    startActivity(Intent(requireContext(), FundsTransferActivity::class.java))
+                } else {
+                    toLoginActivity()
+                }
             }
             R.id.ivInviteFriends -> {//邀请好友
-                startActivity(Intent(requireContext(), InviteActivity::class.java))
+                if (isLogin()) {
+                    startActivity(Intent(requireContext(), InviteActivity::class.java))
+                } else {
+                    toLoginActivity()
+                }
             }
             R.id.mivMyBonus -> {//我的赠金
-                startActivity(Intent(context, MyBonusActivity::class.java))
+                if (isLogin()) {
+                    startActivity(Intent(context, MyBonusActivity::class.java))
+                } else {
+                    toLoginActivity()
+                }
             }
             R.id.mivDocumentaryManagement -> {//跟单管理
-                startActivity(Intent(requireContext(), FollowOrderManagerActivity::class.java))
+                if (isLogin()) {
+                    startActivity(Intent(requireContext(), FollowOrderManagerActivity::class.java))
+                } else {
+                    toLoginActivity()
+                }
+
             }
             R.id.mivRecommendDocumentary -> {//推荐跟单
-                startActivity(Intent(requireContext(), HighQualityTraderActivity::class.java))
+                if (isLogin()) {
+                    startActivity(Intent(requireContext(), HighQualityTraderActivity::class.java))
+                } else {
+                    toLoginActivity()
+                }
             }
             R.id.mivContactCustomerService -> {//联系客服
 
@@ -172,13 +216,25 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
 
             }
             R.id.mivMyInviter -> {//我的邀请人
-                startActivity(Intent(requireContext(), MyInviterActivity::class.java))
+                if (isLogin()) {
+                    startActivity(Intent(requireContext(), MyInviterActivity::class.java))
+                } else {
+                    toLoginActivity()
+                }
             }
             R.id.mivAuthentication -> {//身份认证
-                startActivity(Intent(requireContext(), AuthenticationActivity::class.java))
+                if (isLogin()) {
+                    startActivity(Intent(requireContext(), AuthenticationActivity::class.java))
+                } else {
+                    toLoginActivity()
+                }
             }
             R.id.mivSecurityCenter -> {//安全中心
-                startActivity(Intent(requireContext(), SecurityCenterActivity::class.java))
+                if (isLogin()) {
+                    startActivity(Intent(requireContext(), SecurityCenterActivity::class.java))
+                } else {
+                    toLoginActivity()
+                }
             }
             R.id.mivSettings -> {//设置
                 startActivity(Intent(requireContext(), SettingActivity::class.java))
@@ -187,6 +243,10 @@ class MineFragment : BaseMvpFragment<MineContract.View, MineContract.Presenter>(
 
             }
         }
+    }
+
+    private fun toLoginActivity() {
+        startActivity(Intent(requireContext(), LoginActivity::class.java))
     }
 
     /**

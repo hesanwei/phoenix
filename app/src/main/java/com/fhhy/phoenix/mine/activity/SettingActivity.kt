@@ -9,11 +9,16 @@ import com.fhhy.phoenix.base.BaseMvpActivity
 import com.fhhy.phoenix.bean.AppVersionBean
 import com.fhhy.phoenix.constants.SPKeyConstants
 import com.fhhy.phoenix.dialog.LogoutDialog
+import com.fhhy.phoenix.event.LoginSuccessEvent
+import com.fhhy.phoenix.login.LoginActivity
 import com.fhhy.phoenix.mine.contract.SettingContract
 import com.fhhy.phoenix.mine.presenter.SettingPresenter
 import com.fhhy.phoenix.utils.PackageUtils
 import com.fhhy.phoenix.utils.SPUtils
 import kotlinx.android.synthetic.main.activity_setting.*
+import kotlinx.android.synthetic.main.item_bonus.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import setViewClickListener
 import java.util.Base64.getDecoder
 
@@ -36,12 +41,17 @@ class SettingActivity : BaseMvpActivity<SettingContract.View, SettingContract.Pr
             tvLogout
         )
         mPresenter?.getAppVersion()
+        tvLogout.visibility = if (isLogin()) View.VISIBLE else View.GONE
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.ll_personal_info_setting -> {//个人信息设置
-                startActivity(Intent(this, PersonalInfoActivity::class.java))
+                if (isLogin()) {
+                    startActivity(Intent(this, PersonalInfoActivity::class.java))
+                } else {
+                    startActivity(Intent(this, LoginActivity::class.java))
+                }
             }
             R.id.ll_app_version_update -> {//版本更新
 
@@ -85,6 +95,11 @@ class SettingActivity : BaseMvpActivity<SettingContract.View, SettingContract.Pr
     }
 
     override fun requestLogoutSuccess() {
+        tvLogout.visibility = View.GONE
+    }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onLoginSuccess(event: LoginSuccessEvent) {
+        tvLogout.visibility = View.VISIBLE
     }
 }

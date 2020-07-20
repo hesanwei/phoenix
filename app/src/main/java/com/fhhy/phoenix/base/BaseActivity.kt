@@ -14,7 +14,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.fhhy.phoenix.R
+import com.fhhy.phoenix.constants.SPKeyConstants
 import com.fhhy.phoenix.event.EmptyEvent
+import com.fhhy.phoenix.utils.SPUtils
 import com.jaeger.library.StatusBarUtil
 import me.jessyan.autosize.internal.CustomAdapt
 import org.greenrobot.eventbus.EventBus
@@ -73,6 +75,10 @@ abstract class BaseActivity : AppCompatActivity(), CustomAdapt {
     override fun isBaseOnWidth(): Boolean = true
 
     override fun getSizeInDp(): Float = 360f
+
+    protected fun isLogin(): Boolean {
+        return SPUtils.getBoolean(SPKeyConstants.SP_KEY_IS_LOGIN)
+    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onReceiveEvent(event: EmptyEvent) {
